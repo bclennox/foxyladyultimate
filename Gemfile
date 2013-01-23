@@ -4,9 +4,15 @@ ruby '1.9.3'
 gem 'rails', '3.2.11'
 
 gem 'haml-rails'
+gem 'jquery-rails'
 gem 'pg'
 gem 'thin'
 gem 'twitter-bootstrap-rails'
+
+group :development do
+  gem 'less-rails'
+  gem 'therubyracer'
+end
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -19,8 +25,6 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
 end
-
-gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

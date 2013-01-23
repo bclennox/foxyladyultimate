@@ -1,0 +1,21 @@
+.page-header
+  %h1 Players
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th Name
+      %th E-mail
+      %th Phone
+      %th
+  %tbody
+    - @players.each do |player|
+      %tr
+        %td= player.name
+        %td= link_to player.email, "mailto:#{player.email}"
+        %td= player.phone
+        %td
+          = link_to 'Edit', edit_player_path(player), :class => 'btn btn-mini'
+          = link_to 'Delete', player_path(player), :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-mini btn-danger'
+
+= link_to 'Add a Player', new_player_path, :class => 'btn btn-primary'
