@@ -5,14 +5,11 @@ gem 'rails', '3.2.11'
 
 gem 'haml-rails'
 gem 'jquery-rails'
+gem 'less-rails'
 gem 'pg'
+gem 'therubyrhino'
 gem 'thin'
 gem 'twitter-bootstrap-rails'
-
-group :development do
-  gem 'less-rails'
-  gem 'therubyracer'
-end
 
 # Gems used only for assets and not required
 # in production environments by default.
