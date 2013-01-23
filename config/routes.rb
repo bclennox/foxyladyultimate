@@ -1,4 +1,7 @@
 Ultimate::Application.routes.draw do
+  resources :responses
+
+
   resources :games do
     collection do
       post :schedule
