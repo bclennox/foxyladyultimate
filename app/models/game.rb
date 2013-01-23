@@ -5,10 +5,8 @@ class Game < ActiveRecord::Base
   default_scope order('starts_at ASC')
   scope :upcoming, where('starts_at > NOW()')
 
-  def self.seed(count = 1)
-    schedule.next_occurrences(count).each do |datetime|
-      find_or_create_by_starts_at!(datetime)
-    end
+  def self.seed
+    find_or_create_by_starts_at!(schedule.next_occurrence)
   end
 
 private

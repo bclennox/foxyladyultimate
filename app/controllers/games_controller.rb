@@ -1,6 +1,4 @@
 class GamesController < ApplicationController
-  before_filter :ensure_games, only: :index
-
   def index
     @games = Game.all
   end
@@ -17,15 +15,14 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
 
     if @game.update_attributes(params[:game])
-      redirect_to @game, notice: 'Game was successfully updated.'
+      redirect_to games_path, notice: 'Game was successfully updated.'
     else
       render :edit
     end
   end
 
-private
-
-  def ensure_games
-    Game.seed if Game.upcoming.empty?
+  def schedule
+    Game.seed
+    redirect_to games_path, notice: 'Scheduled the next game.'
   end
 end

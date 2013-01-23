@@ -17,3 +17,6 @@
         %td
           = link_to 'Edit', edit_game_path(game), :class => 'btn btn-mini'
           = link_to 'Delete', game_path(game), :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-mini btn-danger'
+
+- if Game.upcoming.empty?
+  = button_to 'Schedule a Game', schedule_games_path, class: 'btn btn-primary'
