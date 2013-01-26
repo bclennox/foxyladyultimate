@@ -11,9 +11,9 @@
   %tbody
     - @games.each do |game|
       %tr
-        %td= link_to game.starts_at.strftime('%A, %B %d, %Y at %I:%M:%S %p'), game
+        %td= link_to game_date(game), game
         %td= game.location
-        %td= pluralize(game.players.count, 'player')
+        %td= link_to pluralize(game.players.count, 'player'), game_players_path(game)
         %td
           = link_to 'Edit', edit_game_path(game), :class => 'btn btn-mini'
 

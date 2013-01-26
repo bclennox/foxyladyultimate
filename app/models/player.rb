@@ -1,5 +1,8 @@
 class Player < ActiveRecord::Base
   attr_accessible :email, :first_name, :last_name, :phone
+
+  default_scope order('first_name ASC')
+
   has_many :responses
   has_many :games, through: :responses
 
