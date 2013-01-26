@@ -21,4 +21,8 @@ class Player < ActiveRecord::Base
   def played_games
     games.where('starts_at < NOW()').where('responses.playing' => true)
   end
+
+  def active?
+    played_games.present? && played_games.first.starts_at > 1.month.ago
+  end
 end

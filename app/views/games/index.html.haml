@@ -1,20 +1,20 @@
 .page-header
   %h1 Games
 
-%table.table.table-striped
+%table.table.table-striped.games
   %thead
     %tr
-      %th Date
-      %th Location
-      %th Attendance
-      %th
+      %th.date Date
+      %th.location Location
+      %th.players Players
+      %th.actions
   %tbody
     - @games.each do |game|
       %tr
-        %td= link_to game_date(game), game
-        %td= game.location
-        %td= pluralize(game.players.count, 'player')
-        %td
+        %td.name= link_to game_date(game), game
+        %td.location= game.location
+        %td.players= pluralize(game.players.count, 'player')
+        %td.actions
           = link_to 'Edit', edit_game_path(game), :class => 'btn btn-mini'
 
 - if Game.upcoming.empty?

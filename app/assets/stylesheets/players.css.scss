@@ -1,0 +1,12 @@
+table.players {
+  th.attendance,
+  td.attendance {
+    width: 18px;
+    padding-right: 0;
+    text-align: right;
+
+    .inactive {
+      color: #aaa;
+    }
+  }
+}

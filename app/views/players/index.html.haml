@@ -1,22 +1,22 @@
 .page-header
   %h1 Players
 
-%table.table.table-striped
+%table.table.table-striped.players
   %thead
     %tr
-      %th Name
-      %th E-mail
-      %th Phone
-      %th Attendance
-      %th
+      %th.attendance
+      %th.name Name
+      %th.email E-mail
+      %th.phone Phone
+      %th.actions
   %tbody
     - @players.each do |player|
       %tr
-        %td= player.name
-        %td= link_to player.email, "mailto:#{player.email}"
-        %td= player.phone
-        %td= player_attendance(player)
-        %td
+        %td.attendance= player_attendance(player)
+        %td.name= player.name
+        %td.email= link_to player.email, "mailto:#{player.email}"
+        %td.phone= player.phone
+        %td.actions
           = link_to 'Edit', edit_player_path(player), :class => 'btn btn-mini'
           = link_to 'Delete', player_path(player), :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-mini btn-danger'
 
