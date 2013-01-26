@@ -1,9 +1,9 @@
 require 'ice_cube'
 
 class Game < ActiveRecord::Base
-  attr_accessible :location, :starts_at
+  attr_accessible :canceled, :location, :starts_at
 
-  has_many :responses
+  has_many :responses, dependent: :destroy
   has_many :players, through: :responses
 
   default_scope order('starts_at DESC')
