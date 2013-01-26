@@ -15,6 +15,14 @@ class Game < ActiveRecord::Base
     players.where('responses.playing' => true)
   end
 
+  def declined_players
+    players.where('responses.playing' => false)
+  end
+
+  def upcoming?
+    starts_at > Time.now
+  end
+
 private
 
   def self.schedule

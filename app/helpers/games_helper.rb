@@ -3,8 +3,9 @@ module GamesHelper
     game.starts_at.strftime('%A, %B %d, %Y at %I:%M:%S %p')
   end
 
-  def game_players(game)
-    players = game.players.map(&:short_name)
+  def game_players(game, filter = nil)
+    method = filter.nil? ? :players : filter ? :confirmed_players : :declined_players
+    players = game.send(method).map(&:short_name)
 
     case players.size
       when 0    then 'No one yet'

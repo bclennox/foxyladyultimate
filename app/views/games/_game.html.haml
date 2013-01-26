@@ -7,8 +7,11 @@
     %dt Where
     %dd= @game.location
 
-    %dt= @game.starts_at > Time.now ? "Who's Playing" : "Who Played"
-    %dd= game_players(@game)
+    %dt= @game.upcoming? ? "Who's Playing" : "Who Played"
+    %dd= game_players(@game, true)
+
+    %dt= @game.upcoming? ? "Who's Definitely Out" : "Who Declined"
+    %dd= game_players(@game, false)
 
 .form-actions
   = link_to 'Edit', edit_game_path(@game), :class => 'btn'
