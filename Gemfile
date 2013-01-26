@@ -8,6 +8,7 @@ gem 'ice_cube'
 gem 'haml-rails'
 gem 'jquery-rails'
 gem 'pg'
+gem 'sextant'
 gem 'thin'
 gem 'twitter-bootstrap-rails'
 
