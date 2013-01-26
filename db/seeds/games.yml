@@ -1,0 +1,10 @@
+game1:
+  starts_at: '2013-01-06 12:00:00'
+  canceled: true
+
+game2:
+  starts_at: '2013-01-13 12:00:00'
+
+game3:
+  starts_at: '2013-01-20 12:00:00'
+  canceled: true

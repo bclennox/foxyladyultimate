@@ -1,0 +1,27 @@
+game2_brandan:
+  game_id: 2
+  player_id: 1
+
+game2_lindsay:
+  game_id: 2
+  player_id: 2
+
+game2_diana:
+  game_id: 2
+  player_id: 3
+
+game2_matt_staebler:
+  game_id: 2
+  player_id: 8
+
+game2_eric:
+  game_id: 2
+  player_id: 4
+
+game2_christian:
+  game_id: 2
+  player_id: 5
+
+game2_matt_cohen:
+  game_id: 2
+  player_id: 32
