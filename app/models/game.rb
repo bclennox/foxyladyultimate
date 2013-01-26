@@ -6,7 +6,7 @@ class Game < ActiveRecord::Base
   has_many :responses
   has_many :players, through: :responses
 
-  default_scope order('starts_at ASC')
+  default_scope order('starts_at DESC')
   scope :upcoming, where('starts_at > NOW()')
 
   def self.seed
