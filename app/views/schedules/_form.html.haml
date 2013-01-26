@@ -1,0 +1,12 @@
+= form_for @schedule, :html => { :class => 'form-horizontal' } do |f|
+  .control-group
+    = f.label :day, :class => 'control-label'
+    .controls
+      = f.select :day, schedule_days.map { |d| [d, d] }
+  .control-group
+    = f.label :time, :class => 'control-label'
+    .controls
+      = f.text_field :time, :class => 'text_field'
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
+    = link_to 'Cancel', games_path, :class => 'btn'

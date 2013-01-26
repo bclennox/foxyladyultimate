@@ -1,5 +1,5 @@
 module GamesHelper
-  DATE_FORMAT = '%A, %B %d, %Y at %I:%M:%S %p'
+  DATE_FORMAT = '%A, %B %d, %Y at %l:%M%P'
 
   def game_date(game)
     game.starts_at.strftime(DATE_FORMAT)

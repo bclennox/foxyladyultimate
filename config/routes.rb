@@ -1,5 +1,7 @@
 Ultimate::Application.routes.draw do
   resources :players, except: :show
+  resource :schedule, only: [:edit, :update]
+
   resources :games do
     collection do
       get :next
@@ -11,7 +13,6 @@ Ultimate::Application.routes.draw do
       post :notify
     end
   end
-  resource :schedule
 
   root to: 'games#next'
 end
