@@ -1,6 +1,8 @@
 module GamesHelper
+  DATE_FORMAT = '%A, %B %d, %Y at %I:%M:%S %p'
+
   def game_date(game)
-    game.starts_at.strftime('%A, %B %d, %Y at %I:%M:%S %p')
+    game.starts_at.strftime(DATE_FORMAT)
   end
 
   def game_players(game, filter = nil)

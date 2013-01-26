@@ -8,6 +8,7 @@ Ultimate::Application.routes.draw do
 
     member do
       get :respond
+      post :notify
     end
   end
   resource :schedule
