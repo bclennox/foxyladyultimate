@@ -1,5 +1,3 @@
-require 'ice_cube'
-
 class Game < ActiveRecord::Base
   attr_accessible :canceled, :location, :starts_at
 
@@ -20,11 +18,6 @@ class Game < ActiveRecord::Base
 private
 
   def self.schedule
-    unless defined? @schedule
-      @schedule = IceCube::Schedule.new(Time.local(2012, 1, 6, 12))
-      @schedule.add_recurrence_rule IceCube::Rule.weekly.day(:sunday)
-    end
-
-    @schedule
+    @schedule ||= Schedule.instance
   end
 end

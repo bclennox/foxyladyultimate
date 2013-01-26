@@ -18,4 +18,4 @@
           = link_to 'Edit', edit_game_path(game), :class => 'btn btn-mini'
 
 - if Game.upcoming.empty?
-  = button_to "Schedule Next Week's Game", schedule_games_path, class: 'btn btn-primary'
+  = button_to "Schedule #{Schedule.instance.day}'s Game", schedule_games_path, class: 'btn btn-primary'

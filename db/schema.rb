@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130123043730) do
+ActiveRecord::Schema.define(:version => 20130126202957) do
 
   create_table "games", :force => true do |t|
     t.string   "location",   :default => "Dillard Drive Elementary"
@@ -36,6 +36,13 @@ ActiveRecord::Schema.define(:version => 20130123043730) do
     t.boolean  "playing",    :default => true
     t.datetime "created_at",                   :null => false
     t.datetime "updated_at",                   :null => false
+  end
+
+  create_table "schedules", :force => true do |t|
+    t.string   "day"
+    t.string   "time"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
 end
