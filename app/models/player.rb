@@ -10,6 +10,14 @@ class Player < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
+  def short_name
+    if self.class.where(first_name: first_name).where('id != ?', id).exists?
+      "#{first_name} #{last_name[0]}."
+    else
+      first_name
+    end
+  end
+
   def played_games
     games.where('starts_at < NOW()').where('responses.playing' => true)
   end

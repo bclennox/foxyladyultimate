@@ -13,7 +13,7 @@
       %tr
         %td= link_to game_date(game), game
         %td= game.location
-        %td= link_to pluralize(game.players.count, 'player'), game_players_path(game)
+        %td= pluralize(game.players.count, 'player')
         %td
           = link_to 'Edit', edit_game_path(game), :class => 'btn btn-mini'
 

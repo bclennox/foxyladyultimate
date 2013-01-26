@@ -1,0 +1,15 @@
+.game-details
+  %dl
+    %dt When
+    %dd= game_date(@game)
+    %dd.muted= relative_date(@game.starts_at)
+
+    %dt Where
+    %dd= @game.location
+
+    %dt= @game.starts_at > Time.now ? "Who's Playing" : "Who Played"
+    %dd= game_players(@game)
+
+.form-actions
+  = link_to 'Edit', edit_game_path(@game), :class => 'btn'
+  = link_to 'Delete', game_path(@game), :method => "delete", :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-danger'

@@ -1,21 +1,4 @@
-- model_class = Game
 .page-header
-  %h1=t '.title', :default => model_class.model_name.human
+  %h1= "Game ##{@game.id}"
 
-%p
-  %strong= model_class.human_attribute_name(:location) + ':'
-  %br
-  = @game.location
-%p
-  %strong= model_class.human_attribute_name(:starts_at) + ':'
-  %br
-  = @game.starts_at
-%p
-  %strong= model_class.human_attribute_name(:canceled) + ':'
-  %br
-  = @game.canceled
-
-.form-actions
-  = link_to t('.back', :default => t("helpers.links.back")), games_path, :class => 'btn'
-  = link_to t('.edit', :default => t("helpers.links.edit")), edit_game_path(@game), :class => 'btn'
-  = link_to t('.destroy', :default => t("helpers.links.destroy")), game_path(@game), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
+= render @game

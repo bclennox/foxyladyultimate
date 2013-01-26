@@ -21,6 +21,10 @@ class GamesController < ApplicationController
     end
   end
 
+  def next
+    @game = Game.upcoming.last
+  end
+
   def schedule
     Game.seed
     redirect_to games_path, notice: 'Scheduled the next game.'

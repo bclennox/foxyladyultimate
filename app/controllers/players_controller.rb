@@ -1,12 +1,6 @@
 class PlayersController < ApplicationController
   def index
-    if params.key?(:game_id)
-      @game = Game.find(params[:game_id])
-      @players = @game.players.all
-    else
-      @game = nil
-      @players = Player.all
-    end
+    @players = Player.all
   end
 
   def new

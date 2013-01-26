@@ -2,12 +2,12 @@ Ultimate::Application.routes.draw do
   resources :responses
 
   resources :games do
-    resources :players
     collection do
+      get :next
       post :schedule
     end
   end
 
   resources :players, except: :show
-  root to: 'players#index'
+  root to: 'games#next'
 end

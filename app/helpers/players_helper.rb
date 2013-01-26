@@ -5,7 +5,7 @@ module PlayersHelper
     if games.empty?
       'Never played'
     else
-      "Last played #{time_ago_in_words(games.first.starts_at)} ago, #{pluralize(games.size, 'game')} total"
+      "Last played #{relative_date(games.first.starts_at)}, #{pluralize(games.size, 'game')} total"
     end
   end
 end
