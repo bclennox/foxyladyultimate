@@ -5,6 +5,10 @@ Ultimate::Application.routes.draw do
       get :next
       post :schedule
     end
+
+    member do
+      get :respond
+    end
   end
   resource :schedule
 

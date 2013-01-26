@@ -1,6 +1,6 @@
 class Player < ActiveRecord::Base
-  attr_accessible :email, :first_name, :last_name, :phone
-
+  attr_accessible :access_token, :email, :first_name, :last_name, :phone
+  before_create :generate_access_token
   default_scope order('first_name ASC')
 
   has_many :responses
@@ -24,5 +24,13 @@ class Player < ActiveRecord::Base
 
   def active?
     played_games.present? && played_games.first.starts_at > 1.month.ago
+  end
+
+private
+
+  def generate_access_token
+    begin
+      self.access_token = SecureRandom.hex
+    end while self.class.where(access_token: self.access_token).exists?
   end
 end
