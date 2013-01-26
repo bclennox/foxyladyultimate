@@ -3,7 +3,7 @@ Ultimate::Application.routes.draw do
   resources :games do
     collection do
       get :next
-      post :schedule
+      get :schedule
     end
 
     member do

@@ -12,3 +12,19 @@ tr {
     visibility: visible;
   }
 }
+
+.page-header {
+  position: relative;
+
+  .subnav {
+    position: absolute;
+    right: 0;
+    top: 6px;
+
+    li > p {
+      margin: 2px;
+      padding: 8px;
+      line-height: 14px;
+    }
+  }
+}

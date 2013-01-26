@@ -1,5 +1,6 @@
 .page-header
   %h1 Players
+  = render 'actions'
 
 %table.table.table-striped.players
   %thead
@@ -19,5 +20,3 @@
         %td.actions
           = link_to 'Edit', edit_player_path(player), :class => 'btn btn-mini'
           = link_to 'Delete', player_path(player), :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-mini btn-danger'
-
-= link_to 'Add a Player', new_player_path, :class => 'btn btn-primary'
