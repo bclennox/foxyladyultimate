@@ -15,7 +15,7 @@
       %tr
         %td.attendance= player_attendance(player)
         %td.name= player.name
-        %td.email= link_to player.email, "mailto:#{player.email}"
+        %td.email= player.email.present? ? link_to(player.email, "mailto:#{player.email}") : '(no e-mail address)'
         %td.phone= player.phone
         %td.actions
           = link_to 'Edit', edit_player_path(player), :class => 'btn btn-mini'
