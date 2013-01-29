@@ -25,3 +25,43 @@ game2_christian:
 game2_matt_cohen:
   game_id: 2
   player_id: 32
+
+game4_brandan:
+  game_id: 4
+  player_id: 1
+
+game4_diana:
+  game_id: 4
+  player_id: 3
+
+game4_matt_staebler:
+  game_id: 4
+  player_id: 8
+
+game4_matt_cohen:
+  game_id: 4
+  player_id: 32
+
+game4_troy:
+  game_id: 4
+  player_id: 16
+
+game4_congyi:
+  game_id: 4
+  player_id: 30
+
+game4_scott:
+  game_id: 4
+  player_id: 9
+
+game4_allen:
+  game_id: 4
+  player_id: 26
+
+game4_oscar:
+  game_id: 4
+  player_id: 34
+
+game4_diedre:
+  game_id: 4
+  player_id: 35

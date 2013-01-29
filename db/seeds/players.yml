@@ -171,3 +171,11 @@ sarah:
   first_name: Sarah
   last_name: Cohen
   email: sdcohen17@gmail.com
+
+oscar:
+  first_name: Oscar
+  last_name: McOscar
+
+diedre:
+  first_name: Diedre
+  last_name: McDiedre
