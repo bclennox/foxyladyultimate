@@ -1,7 +1,8 @@
+# encoding: utf-8
 require 'ice_cube'
 
 class Schedule < ActiveRecord::Base
-  attr_accessible :day, :time
+  attr_accessible :day, :location, :time
   after_initialize :create_ice_cube
   before_validation :parse_time
 
@@ -12,7 +13,7 @@ class Schedule < ActiveRecord::Base
   end
 
   def to_s
-    "#{@ice_cube} at #{Time.parse(time).strftime('%l:%M%P')}"
+    "#{@ice_cube} at #{Time.parse(time).strftime('%l:%M%P')} — #{location}"
   end
 
   def method_missing(method, *args)

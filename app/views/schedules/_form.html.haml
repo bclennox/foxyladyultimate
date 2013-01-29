@@ -7,6 +7,10 @@
     = f.label :time, :class => 'control-label'
     .controls
       = f.text_field :time, :class => 'text_field'
+  .control-group
+    = f.label :location, :class => 'control-label'
+    .controls
+      = f.text_field :location, :class => 'text_field'
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
     = link_to 'Go Back', games_path, :class => 'btn'

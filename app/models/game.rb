@@ -37,6 +37,6 @@ private
   end
 
   def ensure_location
-    self.location ||= 'Dillard Drive Elementary'
+    self.location ||= self.class.schedule.location
   end
 end
