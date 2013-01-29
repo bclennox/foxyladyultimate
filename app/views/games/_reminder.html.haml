@@ -2,17 +2,12 @@
   %ul.nav.nav-pills
     %li= link_to 'Send a Reminder', '#', id: 'send-reminder-link'
 
-.modal.hide#reminder-modal
-  .modal-header
-    %h3 Send a Reminder
+= render layout: 'layouts/modal', locals: { id: 'reminder-modal', title: 'Send a Reminder', url: notify_game_path(@game), button: 'Send' } do
+  %p
+    For the game on
+    %strong= game_date(@game)
 
-  = form_tag notify_game_path(@game) do
-    .modal-body
-      .control-group
-        = label_tag 'Message'
-        .controls
-          = text_area_tag :message, 'Who can make it?', rows: 5
-
-    .modal-footer
-      = button_tag 'Cancel', type: 'button', class: 'btn', data: { dismiss: 'modal' }
-      = submit_tag 'Send', class: 'btn btn-primary'
+  .control-group
+    = label_tag 'Message'
+    .controls
+      = text_area_tag :message, 'Who can make it?', rows: 5

@@ -1,5 +1,6 @@
 .page-header
   %h1= "Game ##{@game.id}"
-  = render 'reminder'
+  - if @game.upcoming?
+    = render 'reminder'
 
 = render @game
