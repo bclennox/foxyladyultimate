@@ -31,6 +31,15 @@ ActiveRecord::Schema.define(:version => 20130129185309) do
     t.string   "access_token"
   end
 
+  create_table "queue_classic_jobs", :force => true do |t|
+    t.string   "q_name"
+    t.string   "method"
+    t.text     "args"
+    t.datetime "locked_at"
+  end
+
+  add_index "queue_classic_jobs", ["q_name", "id"], :name => "idx_qc_on_name_only_unlocked"
+
   create_table "responses", :force => true do |t|
     t.integer  "player_id"
     t.integer  "game_id"
