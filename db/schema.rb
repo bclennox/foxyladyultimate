@@ -11,14 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130126210524) do
+ActiveRecord::Schema.define(:version => 20130129185309) do
 
   create_table "games", :force => true do |t|
-    t.string   "location",   :default => "Dillard Drive Elementary"
+    t.string   "location"
     t.datetime "starts_at"
     t.boolean  "canceled",   :default => false
-    t.datetime "created_at",                                         :null => false
-    t.datetime "updated_at",                                         :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
   create_table "players", :force => true do |t|

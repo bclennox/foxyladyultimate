@@ -3,6 +3,7 @@ class Game < ActiveRecord::Base
 
   has_many :responses, dependent: :destroy
   has_many :players, through: :responses
+  before_validation :ensure_location
 
   default_scope order('starts_at DESC')
   scope :upcoming, where('starts_at > NOW()')
@@ -27,5 +28,9 @@ private
 
   def self.schedule
     @schedule ||= Schedule.instance
+  end
+
+  def ensure_location
+    self.location ||= 'Dillard Drive Elementary'
   end
 end
