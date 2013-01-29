@@ -24,6 +24,12 @@ class Game < ActiveRecord::Base
     starts_at > Time.now
   end
 
+  def remind(message)
+    Player.emailable.each do |player|
+      QC.enqueue('NotificationService.reminder', id, player.id, message)
+    end
+  end
+
 private
 
   def self.schedule

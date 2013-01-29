@@ -1,13 +1,13 @@
 class GameMailer < ActionMailer::Base
-  default from: 'jarosiewicz_diana@cat.com'
+  default from: 'Diana Jarosiewicz <jarosiewicz_diana@cat.com>'
 
-  def reminder(game, message)
+  def reminder(game, player, message)
     @game = game
+    @player = player
     @message = message
-    @player = Player.find(1)
 
-    date = @game.starts_at.strftime('%b %d')
+    date = @game.starts_at.strftime('%b %-d')
 
-    mail(to: 'brandan@localhost', subject: "Ultimate Frisbee: #{date}")
+    mail(to: @player.email, subject: "Ultimate Frisbee: #{date}")
   end
 end

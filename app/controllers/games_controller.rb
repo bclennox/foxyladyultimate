@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-  before_filter :find_game, only: [:show, :edit, :update, :respond, :notify]
+  before_filter :find_game, only: [:show, :edit, :update, :respond, :remind]
   before_filter :find_player_by_access_token, only: :respond
 
   def index
@@ -35,8 +35,8 @@ class GamesController < ApplicationController
     redirect_to @game, notice: notice
   end
 
-  def notify
-    GameMailer.reminder(@game, params[:message]).deliver
+  def remind
+    @game.remind(params[:message])
     redirect_to @game, notice: 'Sent your message.'
   end
 
