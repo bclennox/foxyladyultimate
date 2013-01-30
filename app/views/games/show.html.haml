@@ -1,5 +1,8 @@
 .page-header
-  %h1= "Game ##{@game.id}"
+  %h1
+    = "Game ##{@game.id}"
+    - if @game.canceled?
+      (Canceled)
 
   - if @game.upcoming?
     .subnav

@@ -1,9 +1,9 @@
+@import "lib/mixins";
+
 table.players {
   th.attendance,
   td.attendance {
-    width: 18px;
-    padding-right: 0;
-    text-align: right;
+    @include icon-column;
 
     .inactive {
       color: #aaa;

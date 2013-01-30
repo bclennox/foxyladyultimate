@@ -1,5 +1,20 @@
+@import "lib/mixins";
+
 .game-details {
   dt {
     margin-top: 14px;
+  }
+}
+
+table.games {
+  th.status,
+  td.status {
+    @include icon-column;
+  }
+
+  tr.canceled {
+    td, a {
+      color: #999;
+    }
   }
 }
