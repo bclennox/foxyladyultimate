@@ -30,7 +30,7 @@ class GamesController < ApplicationController
     playing = params[:playing] == 'yes'
     notice = playing ? 'See you there!' : 'Maybe next time.'
 
-    Response.create(player_id: @player.id, game_id: @game.id, playing: playing)
+    @game.respond(@player, playing)
 
     redirect_to @game, notice: notice
   end

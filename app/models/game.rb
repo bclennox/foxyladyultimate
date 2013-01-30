@@ -12,6 +12,11 @@ class Game < ActiveRecord::Base
     find_or_create_by_starts_at!(schedule.next_occurrence)
   end
 
+  def respond(player, playing)
+    responses.where(player_id: player).destroy_all
+    responses.create(player_id: player.id, playing: playing)
+  end
+
   def confirmed_players
     players.where('responses.playing' => true)
   end
