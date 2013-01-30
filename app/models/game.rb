@@ -46,7 +46,7 @@ class Game < ActiveRecord::Base
 private
 
   def self.schedule
-    @schedule ||= Schedule.instance
+    Schedule.instance
   end
 
   def ensure_location
