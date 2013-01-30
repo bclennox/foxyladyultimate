@@ -6,8 +6,28 @@ class GameMailer < ActionMailer::Base
     @player = player
     @message = message
 
-    date = @game.starts_at.strftime('%b %-d')
+    mail(to: @player.email, subject: "Ultimate Frisbee on #{game_date(@game)}")
+  end
 
-    mail(to: @player.email, subject: "Ultimate Frisbee: #{date}")
+  def cancellation(game, player, message)
+    @game = game
+    @player = player
+    @message = message
+
+    mail(to: @player.email, subject: "Canceled: Ultimate Frisbee on #{game_date(@game)}")
+  end
+
+  def reschedule(game, player, message)
+    @game = game
+    @player = player
+    @message = message
+
+    mail(to: @player.email, subject: "Rescheduled: Ultimate Frisbee on #{game_date(@game)}")
+  end
+
+private
+
+  def game_date(game)
+    game.starts_at.strftime('%b %-d')
   end
 end

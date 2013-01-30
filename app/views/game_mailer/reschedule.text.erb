@@ -1,0 +1,7 @@
+<%= @message %>
+
+When: <%= @game.starts_at.strftime(GamesHelper::DATE_FORMAT) %>
+Where: <%= @game.location %>
+
+Count me in: <%= raw respond_game_url(@game, access_token: @player.access_token, playing: 'yes') %>
+Count me out: <%= raw respond_game_url(@game, access_token: @player.access_token, playing: 'no') %>

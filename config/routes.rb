@@ -11,6 +11,8 @@ Ultimate::Application.routes.draw do
     member do
       get :respond
       post :remind
+      post :cancel
+      post :reschedule
     end
   end
 

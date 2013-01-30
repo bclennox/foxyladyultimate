@@ -10,7 +10,7 @@
     %dt= @game.upcoming? ? "Who’s Playing" : "Who Played"
     %dd= game_players(@game, true)
 
-    %dt= @game.upcoming? ? "Who’s Definitely Out" : "Who Declined"
+    %dt= @game.upcoming? ? "Who’s Definitely Not Playing" : "Who Declined"
     %dd= game_players(@game, false)
 
 .form-actions

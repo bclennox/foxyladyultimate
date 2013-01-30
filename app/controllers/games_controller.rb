@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-  before_filter :find_game, only: [:show, :edit, :update, :respond, :remind]
+  before_filter :find_game, only: [:show, :edit, :update, :respond, :remind, :cancel, :reschedule]
   before_filter :find_player_by_access_token, only: :respond
 
   def index
@@ -38,6 +38,16 @@ class GamesController < ApplicationController
   def remind
     @game.remind(params[:message])
     redirect_to @game, notice: 'Sent your message.'
+  end
+
+  def cancel
+    @game.cancel(params[:message])
+    redirect_to @game, notice: 'Canceled the game and sent your message.'
+  end
+
+  def reschedule
+    @game.reschedule(params[:message])
+    redirect_to @game, notice: 'Rescheduled the game and sent your message.'
   end
 
 private

@@ -1,7 +1,10 @@
 .page-header
-  %h1 This Week's Game
+  %h1 This Week’s Game
 
 - if @game
-  = render @game
+  - if @game.canceled?
+    %p.lead It’s canceled. Maybe next week!
+  - else
+    = render @game
 - else
   %p.lead Nothing scheduled yet.

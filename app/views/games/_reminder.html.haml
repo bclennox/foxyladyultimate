@@ -1,8 +1,4 @@
-.subnav
-  %ul.nav.nav-pills
-    %li= link_to 'Send a Reminder', '#', id: 'send-reminder-link'
-
-= render layout: 'layouts/modal', locals: { id: 'reminder-modal', title: 'Send a Reminder', url: remind_game_path(@game), button: 'Send' } do
+= render layout: 'layouts/modal', locals: { id: 'send-reminder-modal', title: 'Send a Reminder', url: remind_game_path(@game), button: 'Send' } do
   %p
     For the game on
     %strong= game_date(@game)
