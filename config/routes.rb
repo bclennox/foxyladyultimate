@@ -1,4 +1,6 @@
 Ultimate::Application.routes.draw do
+  devise_for :users
+
   resources :players, except: :show
   resource :schedule, only: [:edit, :update]
 
