@@ -24,6 +24,12 @@
               %li= link_to 'Games', games_path
               %li= link_to 'Players', players_path
 
+            %ul.nav.pull-right
+              - if user_signed_in?
+                %li= link_to "Sign Out #{current_user.name}", destroy_user_session_path, method: :delete
+              - else
+                %li= link_to 'Sign In', new_user_session_path
+
     .container
       .row
         .span12
