@@ -8,14 +8,12 @@
 %table.table.table-striped.games
   %thead
     %tr
-      %td.status
       %th.date Date
       %th.location Location
-      %th.players Players
+      %th.players Who’s Coming
   %tbody
     - @games.each do |game|
       %tr{class: game.canceled? ? 'canceled' : 'active'}
-        %td.status= game_status(game)
-        %td.name= link_to game_date(game), game
+        %td.name= link_to(game.canceled? ? "#{game_date(game)} (canceled)" : game_date(game), game)
         %td.location= game.location
-        %td.players= game.canceled? ? '—' : pluralize(game.players.count, 'player')
+        %td.players= game.canceled? ? '—' : pluralize(game.confirmed_players.count, 'player')

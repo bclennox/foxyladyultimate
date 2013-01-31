@@ -2,16 +2,16 @@
 
 .game-details {
   dt {
-    margin-top: 14px;
+    float: left;
+    width: 9em;
+  }
+
+  dd {
+    margin-left: 10em;
   }
 }
 
 table.games {
-  th.status,
-  td.status {
-    @include icon-column;
-  }
-
   tr.canceled {
     td, a {
       color: #999;

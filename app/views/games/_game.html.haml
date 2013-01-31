@@ -7,10 +7,10 @@
     %dt Where
     %dd= @game.location
 
-    %dt= @game.upcoming? ? "Who’s Playing" : "Who Played"
+    %dt= @game.upcoming? ? "Who’s In" : "Who Played"
     %dd= game_players(@game, true)
 
-    %dt= @game.upcoming? ? "Who’s Definitely Not Playing" : "Who Declined"
+    %dt= @game.upcoming? ? "Who’s Out" : "Who Declined"
     %dd= game_players(@game, false)
 
 - if admin?
