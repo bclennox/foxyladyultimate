@@ -4,7 +4,7 @@
     - if @game.canceled?
       (Canceled)
 
-  - if @game.upcoming?
+  - if admin? && @game.upcoming?
     .subnav
       %ul.nav.nav-pills
         - if @game.canceled?

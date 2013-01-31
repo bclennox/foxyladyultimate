@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def admin?
+    current_user.present?
+  end
+
   def body_class
     [controller.controller_name, controller.action_name].join(' ')
   end
