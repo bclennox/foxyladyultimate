@@ -28,11 +28,16 @@ tr {
     position: absolute;
     right: 0;
     top: 6px;
+    background-color: transparent;
 
-    li > p {
-      margin: 2px;
-      padding: 8px;
-      line-height: 14px;
+    ul.nav {
+      margin-bottom: 0;
+
+      li > p {
+        margin: 2px;
+        padding: 8px;
+        line-height: 14px;
+      }
     }
   }
 }
