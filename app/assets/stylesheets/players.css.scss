@@ -1,12 +1,14 @@
 @import "lib/mixins";
 
-table.players {
-  th.attendance,
-  td.attendance {
-    @include icon-column;
+body.players {
+  table.players {
+    th.attendance,
+    td.attendance {
+      @include icon-column;
 
-    .inactive {
-      color: #aaa;
+      .inactive {
+        color: #aaa;
+      }
     }
   }
 }

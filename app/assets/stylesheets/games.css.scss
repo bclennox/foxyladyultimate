@@ -1,20 +1,29 @@
 @import "lib/mixins";
 
-.game-details {
-  dt {
-    float: left;
-    width: 9em;
+body.games {
+  .game-details {
+    dt,
+    dd {
+      font-size: 21px;
+      line-height: 1.5em;
+    }
+
+    dt {
+      float: left;
+      clear: left;
+      width: 9em;
+    }
+
+    dd {
+      margin-left: 10em;
+    }
   }
 
-  dd {
-    margin-left: 10em;
-  }
-}
-
-table.games {
-  tr.canceled {
-    td, a {
-      color: #999;
+  table.games {
+    tr.canceled {
+      td, a {
+        color: #999;
+      }
     }
   }
 }
