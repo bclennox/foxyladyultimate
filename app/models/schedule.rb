@@ -13,7 +13,7 @@ class Schedule < ActiveRecord::Base
   end
 
   def to_s
-    "#{@ice_cube} at #{Time.parse(time).strftime('%l:%M%P')} — #{location}"
+    "#{@ice_cube} at #{Time.zone.parse(time).strftime('%l:%M%P')} — #{location}"
   end
 
   def method_missing(method, *args)
@@ -34,12 +34,12 @@ private
   def epoch
     @epoch ||= begin
       hour, minute, second = time.split(':')
-      Time.local(2013, 1, 1, hour, minute, second)
+      Time.zone.local(2013, 1, 1, hour, minute, second)
     end
   end
 
   def parse_time
-    parsed = Time.parse(time).strftime('%H:%M:%S') rescue nil
+    parsed = Time.zone.parse(time).strftime('%H:%M:%S') rescue nil
     write_attribute(:time, parsed)
   end
 end
