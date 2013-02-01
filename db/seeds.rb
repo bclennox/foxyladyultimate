@@ -1,6 +1,6 @@
 require 'yaml'
 
-%w{players games responses schedules}.each do |model|
+%w{schedules players games responses}.each do |model|
   klass = model.classify.constantize
   klass.delete_all
 
