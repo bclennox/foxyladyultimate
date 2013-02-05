@@ -4,7 +4,7 @@
     %meta(charset="utf-8")
     %meta(http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1")
     %meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    %title= content_for?(:title) ? yield(:title) : "Ultimate"
+    %title= page_title
     = csrf_meta_tags
     /[if lt IE 9]
       = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js"
@@ -18,7 +18,7 @@
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          = link_to 'Dillard Drive Ultimate', root_path, class: 'brand'
+          = link_to 'Foxy Lady Ultimate', root_path, class: 'brand'
           .container.nav-collapse
             %ul.nav
               %li= link_to 'Games', games_path
