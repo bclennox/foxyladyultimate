@@ -1,5 +1,6 @@
 class GameMailer < ActionMailer::Base
   default from: 'Diana Jarosiewicz <jarosiewicz_diana@cat.com>'
+  layout 'game_mailer'
 
   def reminder(game, player, message)
     @game = game

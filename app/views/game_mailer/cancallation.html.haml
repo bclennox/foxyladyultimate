@@ -1,0 +1,8 @@
+%p= @message
+
+%p
+  %strong When:
+  = @game.starts_at.strftime(GamesHelper::DATE_FORMAT)
+  %br
+  %strong Where:
+  = @game.location
