@@ -16,7 +16,7 @@ class Player < ActiveRecord::Base
 
   def short_name
     if self.class.where(first_name: first_name).where('id != ?', id).exists?
-      "#{first_name} #{last_name[0]}."
+      name
     else
       first_name
     end
