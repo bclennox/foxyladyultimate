@@ -34,7 +34,7 @@ private
   end
 
   def perform(game, player, message, subject)
-    to = 'brandan@localhost'
+    to = player.email
 
     @game = game
     @player = player
