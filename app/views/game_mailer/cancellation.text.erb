@@ -2,3 +2,4 @@
 
 When: <%= @game.starts_at.strftime(GamesHelper::DATE_FORMAT) %>
 Where: <%= @game.location %>
+URL: <%= game_url(@game) %>
