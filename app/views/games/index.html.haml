@@ -12,7 +12,7 @@
     %tr
       %th.date Date
       %th.location Location
-      %th.players Who’s Coming
+      %th.players Attendance
   %tbody
     - @games.each do |game|
       %tr{class: game.canceled? ? 'canceled' : 'active'}
