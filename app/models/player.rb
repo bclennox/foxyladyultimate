@@ -3,9 +3,7 @@ class Player < ActiveRecord::Base
   before_create :generate_access_token
 
   default_scope order('first_name ASC')
-  # scope :emailable, where('email IS NOT NULL')
-  scope :emailable, where(id: [1, 2, 3, 32])
-  # scope :emailable, where(id: 1)
+  scope :emailable, where('email IS NOT NULL')
 
   has_many :responses
   has_many :games, through: :responses
