@@ -3,7 +3,12 @@
 .page-header
   %h1 Games
   - if admin?
-    = render 'actions'
+    .subnav
+      %ul.nav.nav-pills
+        - if Game.upcoming.empty?
+          %li= link_to "Schedule #{Schedule.instance.day}’s Game", schedule_games_path
+        %li= link_to 'Change the Schedule', edit_schedule_path
+
 
 %p.lead= Schedule.instance
 

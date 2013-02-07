@@ -1,5 +1,8 @@
-.subnav
-  %ul.nav.nav-pills
-    - if Game.upcoming.empty?
-      %li= link_to "Schedule #{Schedule.instance.day}’s Game", schedule_games_path
-    %li= link_to 'Change the Schedule', edit_schedule_path
+- if admin? && @game.upcoming?
+  .subnav
+    %ul.nav.nav-pills
+      - if @game.canceled?
+        %li= link_to 'Reschedule this Game', '#', id: 'reschedule-game-link'
+      - else
+        %li= link_to 'Send a Reminder', '#', id: 'send-reminder-link'
+        %li= link_to 'Cancel this Game', '#', id: 'cancel-game-link'

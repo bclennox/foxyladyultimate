@@ -33,6 +33,10 @@ tr {
     ul.nav {
       margin-bottom: 0;
 
+      li {
+        margin-left: 10px;
+      }
+
       li > p {
         margin: 2px;
         padding: 8px;

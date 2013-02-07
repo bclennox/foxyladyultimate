@@ -3,17 +3,8 @@
 .page-header
   %h1
     = "Game ##{@game.id}"
-    - if @game.canceled?
-      (Canceled)
-
-  - if admin? && @game.upcoming?
-    .subnav
-      %ul.nav.nav-pills
-        - if @game.canceled?
-          %li= link_to 'Reschedule this Game', '#', id: 'reschedule-game-link'
-        - else
-          %li= link_to 'Send a Reminder', '#', id: 'send-reminder-link'
-          %li= link_to 'Cancel this Game', '#', id: 'cancel-game-link'
+    = '(Canceled)' if @game.canceled?
+  = render 'actions'
 
 = render @game
 

@@ -2,6 +2,7 @@
 
 .page-header
   %h1 This Week’s Game
+  = render 'actions'
 
 - if @game
   - if @game.canceled?
@@ -10,3 +11,7 @@
     = render @game
 - else
   %p.lead Nothing scheduled yet.
+
+= render 'reminder'
+= render 'cancellation'
+= render 'reschedule'

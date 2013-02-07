@@ -1,4 +1,4 @@
-initializePage '.games.show', ->
+initializePage '.games.show, .games.next', ->
   $('#send-reminder-link, #cancel-game-link, #reschedule-game-link').click (e) ->
     e.preventDefault()
     modal_id = $(this).attr('id').replace(/link$/, 'modal')
