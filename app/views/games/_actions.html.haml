@@ -1,4 +1,4 @@
-- if admin? && @game.upcoming?
+- if admin? && @game.try(:upcoming?)
   .subnav
     %ul.nav.nav-pills
       - if @game.canceled?

@@ -9,9 +9,10 @@
     %p.lead It’s canceled. Maybe next week!
   - else
     = render @game
+
+  = render 'reminder'
+  = render 'cancellation'
+  = render 'reschedule'
+
 - else
   %p.lead Nothing scheduled yet.
-
-= render 'reminder'
-= render 'cancellation'
-= render 'reschedule'
