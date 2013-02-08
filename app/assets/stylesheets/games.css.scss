@@ -8,14 +8,16 @@ body.games {
       line-height: 1.5em;
     }
 
-    dt {
-      float: left;
-      clear: left;
-      width: 9em;
-    }
+    @media (min-width: 980px) {
+      dt {
+        float: left;
+        clear: left;
+        width: 9em;
+      }
 
-    dd {
-      margin-left: 10em;
+      dd {
+        margin-left: 10em;
+      }
     }
   }
 
