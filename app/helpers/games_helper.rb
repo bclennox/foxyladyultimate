@@ -1,17 +1,6 @@
 module GamesHelper
   DATE_FORMAT = '%A, %B %-d, %Y at %l:%M%P'
 
-  def game_status(game)
-    if game.canceled?
-      icon = 'canceled icon-remove'
-      tip = 'Canceled'
-    else
-      icon = 'active'
-    end
-
-    content_tag(:i, nil, class: icon, title: tip)
-  end
-
   def game_date(game)
     game.starts_at.strftime(DATE_FORMAT)
   end
