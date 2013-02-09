@@ -1,8 +1,10 @@
-body.sessions {
-  &.new {
-    .page-header {
-      h1 {
-        margin-left: 180px;
+@media (min-width: 481px) {
+  body.sessions {
+    &.new {
+      .page-header {
+        h1 {
+          margin-left: 180px;
+        }
       }
     }
   }

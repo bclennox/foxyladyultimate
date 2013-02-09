@@ -5,6 +5,31 @@ body {
 @media (min-width: 980px) {
   body {
     padding-top: 80px;
+
+  }
+
+  .page-header {
+    position: relative;
+
+    .subnav {
+      position: absolute;
+      right: 0;
+      top: 6px;
+
+      ul.nav {
+        margin-bottom: 0;
+
+        li {
+          margin-left: 10px;
+        }
+
+        li > p {
+          margin: 2px;
+          padding: 8px;
+          line-height: 14px;
+        }
+      }
+    }
   }
 }
 
@@ -18,35 +43,23 @@ tr {
   }
 }
 
-.navbar {
-  .nav.pull-right {
-    li:last-child a {
-      padding-right: 0;
+.page-header {
+  .subnav {
+    margin-top: 20px;
+    background-color: transparent;
+
+    ul.nav {
+      li {
+        margin-right: 10px;
+      }
     }
   }
 }
 
-.page-header {
-  position: relative;
-
-  .subnav {
-    position: absolute;
-    right: 0;
-    top: 6px;
-    background-color: transparent;
-
-    ul.nav {
-      margin-bottom: 0;
-
-      li {
-        margin-left: 10px;
-      }
-
-      li > p {
-        margin: 2px;
-        padding: 8px;
-        line-height: 14px;
-      }
+.navbar {
+  .nav.pull-right {
+    li:last-child a {
+      padding-right: 0;
     }
   }
 }
