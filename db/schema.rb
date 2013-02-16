@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130131211059) do
+ActiveRecord::Schema.define(:version => 20130216181708) do
 
 # Could not dump table "games" because of following TypeError
 #   can't convert Symbol into Integer

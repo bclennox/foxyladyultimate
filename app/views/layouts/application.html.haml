@@ -27,7 +27,7 @@
             %ul.nav.pull-right
               - if user_signed_in?
                 %li= link_to 'Change Your Password', edit_user_registration_path
-                %li= link_to "Sign Out #{current_user.name}", destroy_user_session_path, method: :delete
+                %li= link_to "Sign Out #{current_user.first_name}", destroy_user_session_path, method: :delete
               - else
                 %li= link_to 'Sign In', new_user_session_path
 

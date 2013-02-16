@@ -40,17 +40,17 @@ class GamesController < ApplicationController
   end
 
   def remind
-    @game.remind(params[:message])
+    @game.remind(current_user, params[:message])
     redirect_to @game, notice: 'Sent your message.'
   end
 
   def cancel
-    @game.cancel(params[:message])
+    @game.cancel(current_user, params[:message])
     redirect_to @game, notice: 'Canceled the game and sent your message.'
   end
 
   def reschedule
-    @game.reschedule(params[:message])
+    @game.reschedule(current_user, params[:message])
     redirect_to @game, notice: 'Rescheduled the game and sent your message.'
   end
 

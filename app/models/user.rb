@@ -3,6 +3,6 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :username
 
   def name
-    username.capitalize
+    "#{first_name} #{last_name}"
   end
 end
