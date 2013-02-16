@@ -13,6 +13,6 @@
     %dt= @game.upcoming? ? "Who’s Out" : "Who Declined"
     %dd= game_players(@game, false)
 
-- if admin?
-  .form-actions
-    = link_to 'Edit', edit_game_path(@game), :class => 'btn'
+= render 'player_actions' if @game.upcoming? && @player.present?
+= render 'admin_actions' if admin?
+

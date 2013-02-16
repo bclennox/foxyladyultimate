@@ -1,7 +1,8 @@
 class GamesController < ApplicationController
   before_filter :find_game, only: [:show, :edit, :update, :respond, :remind, :cancel, :reschedule]
   before_filter :authenticate_user!, only: [:edit, :update, :schedule, :remind, :cancel, :reschedule]
-  before_filter :find_player_by_access_token, only: :respond
+  before_filter :find_player_by_params_access_token, only: :respond
+  before_filter :find_player_by_cookie_access_token, only: [:next, :show]
 
   def index
     @games = Game.all
@@ -31,6 +32,8 @@ class GamesController < ApplicationController
     playing = params[:playing] == 'yes'
     notice = playing ? 'See you there!' : 'Maybe next time.'
 
+    cookies.permanent[:access_token] = @player.access_token
+
     @game.respond(@player, playing)
 
     redirect_to @game, notice: notice
@@ -57,8 +60,12 @@ private
     @game = Game.find(params[:id])
   end
 
-  def find_player_by_access_token
+  def find_player_by_params_access_token
     @player = Player.find_by_access_token(params[:access_token])
     redirect_to root_path unless @player
+  end
+
+  def find_player_by_cookie_access_token
+    @player = Player.find_by_access_token(cookies[:access_token])
   end
 end
