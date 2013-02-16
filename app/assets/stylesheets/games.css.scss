@@ -21,6 +21,15 @@ body.games {
     }
   }
 
+  @media (max-width: 480px) {
+    .player-actions {
+      .btn {
+        display: block;
+        margin-bottom: 5px;
+      }
+    }
+  }
+
   table.games {
     tr.canceled {
       td, a {
