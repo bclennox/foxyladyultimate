@@ -20,13 +20,25 @@ body {
         margin-bottom: 0;
 
         li {
-          margin-left: 10px;
+          margin-left: 2px;
         }
 
         li > p {
           margin: 2px;
           padding: 8px;
           line-height: 14px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 979px) {
+  .page-header {
+    .subnav {
+      ul.nav {
+        li {
+          margin-right: 10px;
         }
       }
     }
@@ -45,14 +57,7 @@ tr {
 
 .page-header {
   .subnav {
-    margin-top: 20px;
     background-color: transparent;
-
-    ul.nav {
-      li {
-        margin-right: 10px;
-      }
-    }
   }
 }
 
