@@ -13,6 +13,6 @@
     %dt= @game.upcoming? ? "Who’s Out" : "Who Declined"
     %dd= game_players(@game, false)
 
-= render 'player_actions' if @game.upcoming? && @player.present?
+= render 'player_actions' if @game.upcoming? && @game.on? && @player.present?
 = render 'admin_actions' if admin?
 

@@ -29,6 +29,10 @@ class Game < ActiveRecord::Base
     starts_at > Time.now
   end
 
+  def on?
+    !canceled?
+  end
+
   def remind(user, message)
     notify('reminder', user, message)
   end
