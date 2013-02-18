@@ -1,11 +1,15 @@
 brandan:
   username: brandan
   email: bclennox@gmail.com
+  first_name: Brandan
+  last_name: Lennox
   password: lennox
   password_confirmation: lennox
 
 diana:
   username: diana
   email: jarosiewicz_diana@cat.com
+  first_name: Diana
+  last_name: Jarosiewicz
   password: jarosiewicz
   password_confirmation: jarosiewicz
