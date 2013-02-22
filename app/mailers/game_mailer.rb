@@ -41,6 +41,8 @@ private
     @message = message
     @positive_response, @negative_response = self.class.responses.sample
 
+    attachments['ultimate.ics'] = EventService.create_event(@game).to_ical
+
     mail(to: to, from: from, subject: subject)
   end
 end
