@@ -1,8 +1,6 @@
 class AddNamesToUsers < ActiveRecord::Migration
   def change
-    change_table :users do |t|
-      t.string :first_name
-      t.string :last_name
-    end
+    add_column :users, :first_name, :string
+    add_column :users, :last_name, :string
   end
 end
