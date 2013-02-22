@@ -58,6 +58,7 @@ GEM
       railties (>= 3.1, < 4.1)
     hike (1.2.1)
     i18n (0.6.1)
+    icalendar (1.2.2)
     ice_cube (0.9.3)
     journey (1.0.4)
     jquery-rails (2.2.0)
@@ -151,6 +152,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   devise
   haml-rails
+  icalendar
   ice_cube
   jquery-rails
   less-rails

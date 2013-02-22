@@ -5,6 +5,7 @@ gem 'rails', '3.2.11'
 
 gem 'awesome_print'
 gem 'devise'
+gem 'icalendar'
 gem 'ice_cube'
 gem 'haml-rails'
 gem 'jquery-rails'
