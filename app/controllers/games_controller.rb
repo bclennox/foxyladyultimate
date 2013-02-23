@@ -8,7 +8,15 @@ class GamesController < ApplicationController
     @games = Game.all
   end
 
-  def show; end
+  def show
+    respond_to do |format|
+      format.html
+      format.ics do
+        send_data EventService.create_event(@game).to_ical, filename: 'ultimate.ics'
+      end
+    end
+  end
+
   def edit; end
 
   def update

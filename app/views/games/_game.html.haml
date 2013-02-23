@@ -13,6 +13,11 @@
     %dt= @game.upcoming? ? "Who’s Out" : "Who Declined"
     %dd= game_players(@game, false)
 
+  %p
+    = link_to game_path(@game, format: 'ics') do
+      = content_tag(:i, nil, class: 'icon-calendar')
+      Add it to your calendar
+
 = render 'player_actions' if @game.upcoming? && @game.on? && @player.present?
 = render 'admin_actions' if admin?
 
