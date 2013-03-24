@@ -17,7 +17,7 @@
   %tbody
     - @players.each do |player|
       %tr
-        %td.attendance= player_attendance(player)
+        %td.attendance= player.attendance
         %td.name= player.name
         %td.email= player.email.present? ? link_to(player.email, "mailto:#{player.email}") : '(no e-mail address)'
         - if admin?

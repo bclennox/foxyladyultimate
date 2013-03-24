@@ -2,7 +2,7 @@ class PlayersController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   def index
-    @players = Player.all
+    @players = Player.all.map(&:decorate)
   end
 
   def new
