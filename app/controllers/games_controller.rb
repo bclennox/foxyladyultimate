@@ -28,7 +28,7 @@ class GamesController < ApplicationController
   end
 
   def next
-    @game = Game.upcoming.last.decorate
+    @game = Game.upcoming.last.try(:decorate)
   end
 
   def schedule
