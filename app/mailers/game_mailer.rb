@@ -36,7 +36,7 @@ private
     to = Rails.env.development? ? 'brandan@localhost' : player.email
     from = "#{sender.name} <#{sender.email}>"
 
-    @game = game
+    @game = game.decorate
     @player = player
     @message = message
     @positive_response, @negative_response = self.class.responses.sample

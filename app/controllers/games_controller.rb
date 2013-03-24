@@ -1,11 +1,11 @@
 class GamesController < ApplicationController
   before_filter :find_game, only: [:show, :edit, :update, :respond, :remind, :cancel, :reschedule]
   before_filter :authenticate_user!, only: [:edit, :update, :schedule, :remind, :cancel, :reschedule]
-  before_filter :find_player_by_params_access_token, only: :respond
+  before_filter :find_player_by_params_access_token!, only: :respond
   before_filter :find_player_by_cookie_access_token, only: [:next, :show]
 
   def index
-    @games = Game.all
+    @games = Game.all.map(&:decorate)
   end
 
   def show
@@ -28,7 +28,7 @@ class GamesController < ApplicationController
   end
 
   def next
-    @game = Game.upcoming.last
+    @game = Game.upcoming.last.decorate
   end
 
   def schedule
@@ -65,10 +65,10 @@ class GamesController < ApplicationController
 private
 
   def find_game
-    @game = Game.find(params[:id])
+    @game = Game.find(params[:id]).decorate
   end
 
-  def find_player_by_params_access_token
+  def find_player_by_params_access_token!
     @player = Player.find_by_access_token(params[:access_token])
     redirect_to root_path unless @player
   end

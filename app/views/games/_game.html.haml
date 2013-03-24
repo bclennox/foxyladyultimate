@@ -1,17 +1,17 @@
 .game-details
   %dl
     %dt When
-    %dd= game_date(@game)
+    %dd= @game.date
     %dd.muted= relative_date(@game.starts_at)
 
     %dt Where
     %dd= @game.location
 
     %dt= @game.upcoming? ? "Who’s In" : "Who Played"
-    %dd= game_players(@game, true)
+    %dd= @game.players(true)
 
     %dt= @game.upcoming? ? "Who’s Out" : "Who Declined"
-    %dd= game_players(@game, false)
+    %dd= @game.players(false)
 
   - if @game.upcoming? && @game.on?
     %p

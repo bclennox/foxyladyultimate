@@ -1,7 +1,7 @@
 = render layout: 'layouts/modal', locals: { id: 'cancel-game-modal', title: 'Cancel this Game', url: cancel_game_path(@game), button: 'Cancel Game' } do
   %p
     Originally on
-    %strong= game_date(@game)
+    %strong= @game.date
 
   .control-group
     = label_tag 'Message'

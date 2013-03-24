@@ -1,6 +1,6 @@
 <%= @message %>
 
-When: <%= @game.starts_at.strftime(GamesHelper::DATE_FORMAT) %>
+When: <%= @game.date %>
 Where: <%= @game.location %>
 URL: <%= game_url(@game) %>
 
