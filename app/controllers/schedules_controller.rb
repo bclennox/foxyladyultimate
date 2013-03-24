@@ -2,7 +2,7 @@ class SchedulesController < ApplicationController
   before_filter :authenticate_user!
 
   def edit
-    @schedule = Schedule.instance
+    @schedule = Schedule.instance.decorate
   end
 
   def update
