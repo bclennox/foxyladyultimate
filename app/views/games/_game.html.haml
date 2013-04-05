@@ -7,8 +7,16 @@
     %dt Where
     %dd= @game.location
 
-    %dt= @game.upcoming? ? "Who’s In" : "Who Played"
-    %dd= @game.players(true)
+    %dt
+      - if @game.canceled?
+        Who Signed Up
+      - elsif @game.upcoming?
+        Who’s In
+      - else
+        Who Played
+    %dd
+      = @game.players(true)
+      %strong= "(#{pluralize @game.confirmed_players.count, 'player'})"
 
     %dt= @game.upcoming? ? "Who’s Out" : "Who Declined"
     %dd= @game.players(false)
