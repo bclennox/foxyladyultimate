@@ -7,8 +7,9 @@
   %strong Where:
   = @game.location
 
-%p= link_to 'See who’s playing', game_url(@game)
-
-%p#links
-  = link_to @positive_response, respond_game_url(@game, access_token: @player.access_token, playing: 'yes'), class: 'btn btn-primary'
-  = link_to @negative_response, respond_game_url(@game, access_token: @player.access_token, playing: 'no'), class: 'btn'
+%p
+  = link_to @positive_response, respond_game_url(@game, access_token: @player.access_token, playing: 'yes'), class: 'acceptance'
+  |
+  = link_to @negative_response, respond_game_url(@game, access_token: @player.access_token, playing: 'no'), class: 'declination'
+  |
+  = link_to 'Show me who’s playing', game_url(@game), class: 'postponement'
