@@ -33,6 +33,10 @@ class Game < ActiveRecord::Base
     !canceled?
   end
 
+  def default_location?
+    location == Schedule.instance.location
+  end
+
   def remind(user, message)
     notify('reminder', user, message)
   end

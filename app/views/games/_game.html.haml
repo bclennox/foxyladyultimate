@@ -4,8 +4,9 @@
     %dd= @game.date
     %dd.muted= relative_date(@game.starts_at)
 
-    %dt Where
-    %dd= @game.location
+    - unless @game.default_location?
+      %dt Where
+      %dd= @game.location
 
     %dt
       - if @game.canceled?
