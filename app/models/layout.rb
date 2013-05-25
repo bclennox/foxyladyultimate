@@ -9,7 +9,7 @@ class Layout
   end
 
   def page_title
-    if defined?(@page_title)
+    if @page_title.present?
       "#{@page_title} — #{application_name}"
     else
       application_name
