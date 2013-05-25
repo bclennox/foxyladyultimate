@@ -2,7 +2,7 @@
 
 .page-header
   %h1 Games
-  - if admin?
+  - if authorizer.admin?
     .subnav
       %ul.nav.nav-pills
         - if Game.upcoming.empty?

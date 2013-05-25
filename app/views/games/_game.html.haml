@@ -29,5 +29,5 @@
         Add it to your calendar
 
 = render 'player_actions' if @game.upcoming? && @game.on? && @player.present?
-= render 'admin_actions' if admin?
+= render 'admin_actions' if authorizer.admin?
 

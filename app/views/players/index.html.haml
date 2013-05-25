@@ -2,7 +2,7 @@
 
 .page-header
   %h1 Players
-  - if admin?
+  - if authorizer.admin?
     = render 'actions'
 
 %table.table.table-striped.players
@@ -11,7 +11,7 @@
       %th.attendance
       %th.name Name
       %th.email E-mail
-      - if admin?
+      - if authorizer.admin?
         %th.phone Phone
         %th.actions
   %tbody
@@ -20,7 +20,7 @@
         %td.attendance= player.attendance
         %td.name= player.name
         %td.email= player.email.present? ? link_to(player.email, "mailto:#{player.email}") : '(no e-mail address)'
-        - if admin?
+        - if authorizer.admin?
           %td.phone= player.phone
           %td.actions
             = link_to 'Edit', edit_player_path(player), :class => 'btn btn-mini'
