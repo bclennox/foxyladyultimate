@@ -2,7 +2,7 @@
   %dl
     %dt When
     %dd= @game.date
-    %dd.muted= relative_date(@game.starts_at)
+    %dd.muted= @game.relative_date
 
     - unless @game.default_location?
       %dt Where
