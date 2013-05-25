@@ -1,16 +1,18 @@
 # encoding: UTF-8
 class Layout
+  attr_accessor :application_name
   attr_writer :page_title
 
-  def self.application_name
-    'Foxy Lady Ultimate'
+  def initialize(options = {})
+    @application_name = options[:application_name]
+    @page_title = options[:page_title]
   end
 
   def page_title
     if defined?(@page_title)
-      "#{@page_title} — #{self.class.application_name}"
+      "#{@page_title} — #{application_name}"
     else
-      self.class.application_name
+      application_name
     end
   end
 
