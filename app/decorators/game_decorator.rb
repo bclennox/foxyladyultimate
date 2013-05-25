@@ -1,12 +1,13 @@
 class GameDecorator < Draper::Decorator
   delegate_all
+  include DateFormatter
 
   def date
     source.starts_at.strftime('%A, %B %-d, %Y at %l:%M%P')
   end
 
   def relative_date
-    _relative_date(source.starts_at)
+    time_ago_in_words_with_modifier(source.starts_at)
   end
 
   def players(filter = nil)
@@ -18,12 +19,5 @@ class GameDecorator < Draper::Decorator
       when 1..2 then players.join(' and ')
       else           players[0..-2].join(', ') + ', and ' + players.last
     end
-  end
-
-private
-
-  def _relative_date(date)
-    modifier = date < Time.now ? 'ago' : 'from now'
-    h.time_ago_in_words(date) + ' ' + modifier
   end
 end
