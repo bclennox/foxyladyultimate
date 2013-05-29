@@ -5,23 +5,5 @@
   - if authorizer.admin?
     = render 'actions'
 
-%table.table.table-striped.players
-  %thead
-    %tr
-      %th.attendance
-      %th.name Name
-      %th.email E-mail
-      - if authorizer.admin?
-        %th.phone Phone
-        %th.actions
-  %tbody
-    - @players.each do |player|
-      %tr
-        %td.attendance= player.attendance
-        %td.name= player.name
-        %td.email= player.email.present? ? link_to(player.email, "mailto:#{player.email}") : '(no e-mail address)'
-        - if authorizer.admin?
-          %td.phone= player.phone
-          %td.actions
-            = link_to 'Edit', edit_player_path(player), :class => 'btn btn-mini'
-            = link_to 'Delete', player_path(player), :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-mini btn-danger'
+%h2{style: 'margin-left:13%'} Games Played
+= column_chart @players.map { |p| [p.short_name, p.games_played] }
