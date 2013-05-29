@@ -2,11 +2,11 @@
 
 body.players {
   table.players {
-    th.attendance,
-    td.attendance {
+    th.icon,
+    td.icon {
       @include icon-column;
 
-      .inactive {
+      .worthless {
         color: #aaa;
       }
     }

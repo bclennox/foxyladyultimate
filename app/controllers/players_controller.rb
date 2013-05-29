@@ -2,7 +2,8 @@ class PlayersController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   def index
-    @players = PlayerRanker.games_played
+    @players = Player.active.all.map(&:decorate)
+    @ranked_players = PlayerRanker.games_played.limit(8)
   end
 
   def new

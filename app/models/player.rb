@@ -3,7 +3,8 @@ class Player < ActiveRecord::Base
   before_create :generate_access_token
 
   default_scope order('first_name ASC')
-  scope :emailable, where('email IS NOT NULL')
+  scope :active, where(deleted_at: nil)
+  scope :emailable, active.where('email IS NOT NULL')
 
   has_many :responses
   has_many :games, through: :responses
@@ -21,11 +22,16 @@ class Player < ActiveRecord::Base
   end
 
   def played_games
-    games.where('starts_at < NOW()').where('responses.playing' => true)
+    games.on.past.where('responses.playing' => true)
   end
 
-  def active?
+  def worthy?
     played_games.present? && played_games.first.starts_at > 1.month.ago
+  end
+
+  def destroy
+    self.deleted_at = Time.now
+    save
   end
 
 private

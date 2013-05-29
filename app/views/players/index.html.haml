@@ -5,5 +5,21 @@
   - if authorizer.admin?
     = render 'actions'
 
-%h2{style: 'margin-left:13%'} Games Played
-= column_chart @players.map { |p| [p.short_name, p.games_played] }
+.row
+  .span6
+    %h2 Everyone
+    %table.table.table-striped.players
+      %thead
+        %tr
+          %th.icon
+          %th.name Name
+          %th.attendance
+          -# %th.email E-mail
+          -# %th.phone Phone
+          -# %th.actions
+      %tbody
+        = render @players
+
+  .span6
+    %h2 Top 8
+    = column_chart @ranked_players.map { |p| [p.short_name, p.games_played] }

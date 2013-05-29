@@ -3,25 +3,25 @@ class PlayerDecorator < Draper::Decorator
   include DateFormatter
 
   def attendance
-    h.content_tag(:i, nil, class: icon, title: tip)
-  end
-
-private
-
-  def icon
-    source.active? ? 'active icon-star' : 'inactive icon-star-empty'
-  end
-
-  def games
-    @games ||= source.played_games.all
-  end
-
-  def tip
     if games.empty?
       'Never played'
     else
       "Last played #{last_played}, #{h.pluralize(games.size, 'game')} total"
     end
+  end
+
+  def icon
+    h.content_tag(:i, nil, class: icon_class)
+  end
+
+private
+
+  def icon_class
+    source.worthy? ? 'worthy icon-star' : 'worthless icon-star-empty'
+  end
+
+  def games
+    @games ||= source.played_games.all
   end
 
   def last_played

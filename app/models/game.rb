@@ -7,6 +7,8 @@ class Game < ActiveRecord::Base
 
   default_scope order('starts_at DESC')
   scope :upcoming, where('starts_at > NOW()')
+  scope :past, where('starts_at < NOW()')
+  scope :on, where(canceled: false)
 
   def self.seed
     find_or_create_by_starts_at!(schedule.next_occurrence)
