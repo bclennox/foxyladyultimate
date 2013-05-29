@@ -38,6 +38,6 @@ class PlayersController < ApplicationController
     @player = Player.find(params[:id])
     @player.destroy
 
-    redirect_to players_url
+    redirect_to players_url, notice: 'Player was successfully removed.'
   end
 end
