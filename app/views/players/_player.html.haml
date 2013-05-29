@@ -1,9 +1,10 @@
 %tr
   %td.icon= player.icon
-  %td.name= player.name
+  %td.name= authorizer.admin? ? link_to(player.name, "mailto:#{player.email}") : player.name
   %td.attendance= player.attendance
-  -# %td.email= player.email.present? ? link_to(player.email, "mailto:#{player.email}") : '(no e-mail address)'
-  -# %td.phone= player.phone
-  -# %td.actions
-    -# = link_to 'Edit', edit_player_path(player), :class => 'btn btn-mini'
-    -# = link_to 'Delete', player_path(player), :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-mini btn-danger'
+
+  - if authorizer.admin?
+    %td.phone= player.phone
+    %td.actions
+      = link_to content_tag(:i, nil, class: 'icon-edit'), edit_player_path(player)
+      = link_to content_tag(:i, nil, class: 'icon-remove'), player_path(player), :method => :delete, :data => { :confirm => 'Delete this player?' }

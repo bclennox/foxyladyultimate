@@ -8,18 +8,22 @@
 .row
   .span6
     %h2 Everyone
+
     %table.table.table-striped.players
       %thead
         %tr
           %th.icon
           %th.name Name
-          %th.attendance
-          -# %th.email E-mail
-          -# %th.phone Phone
-          -# %th.actions
+          %th.attendance Attendance
+
+          - if authorizer.admin?
+            %th.phone Phone
+            %th.actions
+
       %tbody
         = render @players
 
   .span6
-    %h2 Top 8
+    %h2 By Games Played
+
     = column_chart @ranked_players.map { |p| [p.short_name, p.games_played] }

@@ -3,7 +3,7 @@ class PlayersController < ApplicationController
 
   def index
     @players = Player.active.all.map(&:decorate)
-    @ranked_players = PlayerRanker.games_played.limit(8)
+    @ranked_players = PlayerRanker.games_played.limit(10)
   end
 
   def new

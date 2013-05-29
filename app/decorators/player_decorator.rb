@@ -6,7 +6,7 @@ class PlayerDecorator < Draper::Decorator
     if games.empty?
       'Never played'
     else
-      "Last played #{last_played}, #{h.pluralize(games.size, 'game')} total"
+      "Played #{last_played}, #{h.pluralize(games.size, 'game')} total"
     end
   end
 
