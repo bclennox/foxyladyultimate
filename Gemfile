@@ -4,6 +4,7 @@ ruby '1.9.3'
 gem 'rails', '3.2.11'
 
 gem 'awesome_print'
+gem 'chartkick'
 gem 'devise'
 gem 'draper'
 gem 'icalendar'
