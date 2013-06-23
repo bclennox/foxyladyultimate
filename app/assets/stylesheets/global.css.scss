@@ -34,7 +34,17 @@ body {
 }
 
 @media (max-width: 979px) {
+  .navbar a.brand {
+    padding-left: 20px;
+  }
+
   .page-header {
+    margin: 10px 0 20px;
+
+    h1 {
+      font-size: 36px;
+    }
+
     .subnav {
       ul.nav {
         li {

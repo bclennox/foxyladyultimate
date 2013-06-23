@@ -1,3 +1,5 @@
+%h3= pluralize @game.confirmed_players.count, 'player'
+
 .game-details
   %dl
     %dt When
@@ -17,7 +19,6 @@
         Who Played
     %dd
       = @game.players(true)
-      %strong= "(#{pluralize @game.confirmed_players.count, 'player'})"
 
     %dt= @game.upcoming? ? "Who’s Out" : "Who Declined"
     %dd= @game.players(false)
