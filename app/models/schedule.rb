@@ -3,13 +3,15 @@ require 'ice_cube'
 
 class Schedule < ActiveRecord::Base
   attr_accessible :day, :location, :time
-  after_initialize :create_ice_cube
-  before_validation :parse_time
-
+  before_validation :create_ice_cube
   validates :time, presence: true
 
   def self.instance
     first
+  end
+
+  def time=(t)
+    write_attribute :time, parse_time(t)
   end
 
   def to_s
@@ -38,8 +40,7 @@ private
     end
   end
 
-  def parse_time
-    parsed = Time.zone.parse(time).strftime('%H:%M:%S') rescue nil
-    write_attribute(:time, parsed)
+  def parse_time(t)
+    Time.zone.parse(t).strftime('%H:%M:%S') rescue nil
   end
 end
