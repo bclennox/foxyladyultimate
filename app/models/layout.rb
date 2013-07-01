@@ -1,10 +1,11 @@
 # encoding: UTF-8
 class Layout
-  attr_accessor :application_name
+  attr_accessor :application_name, :controller
   attr_writer :page_title
 
   def initialize(options = {})
     @application_name = options[:application_name]
+    @controller = options[:controller]
     @page_title = options[:page_title]
   end
 
@@ -16,7 +17,7 @@ class Layout
     end
   end
 
-  def body_class(controller)
+  def body_class
     [controller.controller_name, controller.action_name].join(' ')
   end
 end
