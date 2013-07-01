@@ -3,7 +3,7 @@ require 'ice_cube'
 
 class Schedule < ActiveRecord::Base
   attr_accessible :day, :location, :time
-  before_validation :create_ice_cube
+  before_validation :create_ice_cube, if: -> { day.present? && time.present? }
   validates :time, presence: true
 
   def self.instance
