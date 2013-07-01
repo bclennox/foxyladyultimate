@@ -18,10 +18,10 @@
       - else
         Who Played
     %dd
-      = @game.players(true)
+      = @game.confirmed_player_names
 
     %dt= @game.upcoming? ? "Who’s Out" : "Who Declined"
-    %dd= @game.players(false)
+    %dd= @game.declined_player_names
 
   - if @game.upcoming? && @game.on?
     %p

@@ -10,14 +10,21 @@ class GameDecorator < Draper::Decorator
     time_ago_in_words_with_modifier(source.starts_at)
   end
 
-  def players(filter = nil)
-    method = filter.nil? ? :players : filter ? :confirmed_players : :declined_players
-    players = source.send(method).map(&:short_name)
+  def confirmed_player_names
+    player_names(source.confirmed_players)
+  end
 
-    case players.size
+  def declined_player_names
+    player_names(source.declined_players)
+  end
+
+  def player_names(players)
+    names = players.map(&:short_name)
+
+    case names.size
       when 0    then source.upcoming? ? 'No one yet' : 'No one'
-      when 1..2 then players.join(' and ')
-      else           players[0..-2].join(', ') + ', and ' + players.last
+      when 1..2 then names.join(' and ')
+      else           names[0..-2].join(', ') + ', and ' + names.last
     end
   end
 end
