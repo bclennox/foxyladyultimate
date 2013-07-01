@@ -36,7 +36,7 @@ class Game < ActiveRecord::Base
   end
 
   def default_location?
-    location == Schedule.instance.location
+    location == self.class.schedule.location
   end
 
   def remind(user, message)
