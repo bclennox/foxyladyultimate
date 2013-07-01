@@ -26,6 +26,7 @@ group :assets do
 end
 
 group :test do
-  gem 'simplecov', require: false
+  gem 'factory_girl_rails'
   gem 'rspec-rails'
+  gem 'simplecov', require: false
 end
