@@ -48,6 +48,7 @@ GEM
       orm_adapter (~> 0.1)
       railties (~> 3.1)
       warden (~> 1.2.1)
+    diff-lcs (1.2.4)
     draper (1.1.0)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
@@ -115,6 +116,17 @@ GEM
       json (~> 1.4)
     ref (1.0.2)
     request_store (1.0.5)
+    rspec-core (2.13.1)
+    rspec-expectations (2.13.0)
+      diff-lcs (>= 1.1.3, < 2.0)
+    rspec-mocks (2.13.1)
+    rspec-rails (2.13.2)
+      actionpack (>= 3.0)
+      activesupport (>= 3.0)
+      railties (>= 3.0)
+      rspec-core (~> 2.13.0)
+      rspec-expectations (~> 2.13.0)
+      rspec-mocks (~> 2.13.0)
     sass (3.2.5)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
@@ -168,6 +180,7 @@ DEPENDENCIES
   pg
   queue_classic
   rails (= 3.2.11)
+  rspec-rails
   sass-rails (~> 3.2.3)
   sextant
   therubyracer
