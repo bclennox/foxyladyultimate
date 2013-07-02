@@ -60,7 +60,7 @@ private
   end
 
   def ensure_location
-    self.location ||= self.class.schedule.location
+    self.location = self.class.schedule.location if location.blank?
   end
 
   def notify(method, user, message)

@@ -3,7 +3,6 @@ require 'ice_cube'
 
 class Schedule < ActiveRecord::Base
   attr_accessible :day, :location, :time
-  before_validation :create_ice_cube, if: -> { day.present? && time.present? }
   validates :time, presence: true
 
   def self.instance
@@ -15,12 +14,12 @@ class Schedule < ActiveRecord::Base
   end
 
   def to_s
-    "#{@ice_cube} at #{Time.zone.parse(time).strftime('%l:%M%P')} — #{location}"
+    "#{ice_cube} at #{Time.zone.parse(time).strftime('%l:%M%P')} — #{location}"
   end
 
   def method_missing(method, *args)
-    if @ice_cube.respond_to?(method)
-      @ice_cube.send(method, *args)
+    if ice_cube.respond_to?(method)
+      ice_cube.send(method, *args)
     else
       super
     end
@@ -28,9 +27,10 @@ class Schedule < ActiveRecord::Base
 
 private
 
-  def create_ice_cube
-    @ice_cube = IceCube::Schedule.new(epoch)
-    @ice_cube.add_recurrence_rule IceCube::Rule.weekly.day(day.downcase.to_sym)
+  def ice_cube
+    @ice_cube ||= IceCube::Schedule.new(epoch).tap do |ice_cube|
+      ice_cube.add_recurrence_rule IceCube::Rule.weekly.day(day.downcase.to_sym)
+    end
   end
 
   def epoch
