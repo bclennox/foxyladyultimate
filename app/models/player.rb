@@ -1,12 +1,11 @@
 class Player < ActiveRecord::Base
-  attr_accessible :access_token, :email, :first_name, :last_name, :phone
   before_create :generate_access_token
 
   validates_presence_of :first_name, :last_name, :email
 
-  default_scope order('first_name ASC')
-  scope :active, where(deleted_at: nil)
-  scope :emailable, active.where('email IS NOT NULL')
+  default_scope { order('first_name ASC') }
+  scope :active, -> { where(deleted_at: nil) }
+  scope :emailable, -> { active.where('email IS NOT NULL') }
 
   has_many :responses
   has_many :games, through: :responses

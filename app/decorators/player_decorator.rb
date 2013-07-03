@@ -21,7 +21,7 @@ private
   end
 
   def games
-    @games ||= source.played_games.all
+    @games ||= source.played_games
   end
 
   def last_played

@@ -2,7 +2,6 @@
 require 'ice_cube'
 
 class Schedule < ActiveRecord::Base
-  attr_accessible :day, :location, :time
   validates :time, presence: true
 
   def self.instance

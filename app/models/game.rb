@@ -1,14 +1,12 @@
 class Game < ActiveRecord::Base
-  attr_accessible :canceled, :location, :starts_at
-
   has_many :responses, dependent: :destroy
   has_many :players, through: :responses
   before_validation :ensure_location
 
-  default_scope order('starts_at DESC')
-  scope :upcoming, where('starts_at > NOW()')
-  scope :past, where('starts_at < NOW()')
-  scope :on, where(canceled: false)
+  default_scope { order('starts_at DESC') }
+  scope :upcoming, -> { where('starts_at > NOW()') }
+  scope :past, -> { where('starts_at < NOW()') }
+  scope :on, -> { where(canceled: false) }
 
   def self.seed
     find_or_create_by_starts_at!(schedule.next_occurrence)
