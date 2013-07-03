@@ -2,7 +2,7 @@
   .subnav
     %ul.nav.nav-pills
       - if @game.canceled?
-        %li= link_to 'Reschedule this Game', '#', id: 'reschedule-game-link'
+        %li= link_to 'Reschedule this Game', '#', id: 'reschedule-game-link', class: 'action-link'
       - else
-        %li= link_to 'Send a Reminder', '#', id: 'send-reminder-link'
-        %li= link_to 'Cancel this Game', '#', id: 'cancel-game-link'
+        %li= link_to 'Send a Reminder', '#', id: 'send-reminder-link', class: 'action-link'
+        %li= link_to 'Cancel this Game', '#', id: 'cancel-game-link', class: 'action-link'

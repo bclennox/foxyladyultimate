@@ -19,6 +19,7 @@ gem 'sass-rails',   '~> 4.0.0'
 gem 'sextant'
 gem 'therubyracer'
 gem 'thin'
+gem 'turbolinks'
 gem 'twitter-bootstrap-rails'
 gem 'uglifier', '~> 2.1.1'
 
