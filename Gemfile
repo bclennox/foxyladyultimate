@@ -1,11 +1,12 @@
 source 'https://rubygems.org'
 
 ruby '1.9.3'
-gem 'rails', '3.2.11'
+gem 'rails', '4.0.0'
 
 gem 'awesome_print'
 gem 'chartkick'
-gem 'devise'
+gem 'coffee-rails', '~> 4.0.0'
+gem 'devise', github: 'plataformatec/devise', branch: 'rails4'
 gem 'draper'
 gem 'icalendar'
 gem 'ice_cube'
@@ -14,16 +15,12 @@ gem 'jquery-rails'
 gem 'less-rails'
 gem 'pg'
 gem 'queue_classic'
+gem 'sass-rails',   '~> 4.0.0'
 gem 'sextant'
 gem 'therubyracer'
 gem 'thin'
 gem 'twitter-bootstrap-rails'
-
-group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'uglifier', '>= 1.0.3'
-end
+gem 'uglifier', '~> 2.1.1'
 
 group :test do
   gem 'factory_girl_rails'
