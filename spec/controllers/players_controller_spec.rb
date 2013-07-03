@@ -85,7 +85,7 @@ describe PlayersController do
       end
 
       context 'with invalid parameters' do
-        before { post :create, player: {} }
+        before { post :create, player: { foo: 'bar' } }
 
         it 'assigns the instance' do
           assigns[:player].should be_present

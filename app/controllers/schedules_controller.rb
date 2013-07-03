@@ -8,11 +8,17 @@ class SchedulesController < ApplicationController
   def update
     @schedule = Schedule.instance.decorate
 
-    if @schedule.update_attributes(params[:schedule])
+    if @schedule.update_attributes(schedule_params)
       redirect_to games_path, notice: 'Updated the schedule.'
     else
       flash.now[:error] = 'Failed to update the schedule.'
       render :edit
     end
+  end
+
+private
+
+  def schedule_params
+    params.require(:schedule).permit(:day, :location, :time)
   end
 end

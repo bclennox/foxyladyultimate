@@ -2,7 +2,7 @@ class PlayersController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   def index
-    @players = Player.active.all.map(&:decorate)
+    @players = Player.active.map(&:decorate)
     @ranked_players = PlayerRanker.games_played.limit(10)
   end
 
@@ -15,7 +15,7 @@ class PlayersController < ApplicationController
   end
 
   def create
-    @player = Player.new(params[:player])
+    @player = Player.new(player_params)
 
     if @player.save
       redirect_to players_url, notice: 'Player was successfully created.'
@@ -28,7 +28,7 @@ class PlayersController < ApplicationController
   def update
     @player = Player.find(params[:id])
 
-    if @player.update_attributes(params[:player])
+    if @player.update_attributes(player_params)
       redirect_to players_url, notice: 'Player was successfully updated.'
     else
       flash.now[:error] = 'Failed to update player.'
@@ -41,5 +41,11 @@ class PlayersController < ApplicationController
     @player.destroy
 
     redirect_to players_url, notice: 'Player was successfully removed.'
+  end
+
+private
+
+  def player_params
+    params.require(:player).permit(:access_token, :email, :first_name, :last_name, :phone)
   end
 end

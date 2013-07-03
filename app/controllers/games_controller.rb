@@ -20,7 +20,7 @@ class GamesController < ApplicationController
   def edit; end
 
   def update
-    if @game.update_attributes(params[:game])
+    if @game.update_attributes(game_params)
       redirect_to games_path, notice: 'Game was successfully updated.'
     else
       render :edit
@@ -74,5 +74,9 @@ private
 
   def find_player_by_cookie_access_token
     @player = Player.find_by_access_token(cookies[:access_token])
+  end
+
+  def game_params
+    params.require(:game).permit(:canceled, :location, :starts_at)
   end
 end

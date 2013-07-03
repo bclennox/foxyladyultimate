@@ -27,14 +27,20 @@ class Schedule < ActiveRecord::Base
 private
 
   def ice_cube
-    @ice_cube ||= IceCube::Schedule.new(epoch).tap do |ice_cube|
-      ice_cube.add_recurrence_rule IceCube::Rule.weekly.day(day.downcase.to_sym)
+    d = read_attribute :day
+    t = read_attribute :time
+
+    unless defined?(@ice_cube) || !(d && t)
+      @ice_cube = IceCube::Schedule.new(epoch(t))
+      @ice_cube.add_recurrence_rule IceCube::Rule.weekly.day(d.downcase.to_sym)
     end
+
+    @ice_cube
   end
 
-  def epoch
+  def epoch(t)
     @epoch ||= begin
-      hour, minute, second = time.split(':')
+      hour, minute, second = t.split(':')
       Time.zone.local(2013, 1, 1, hour, minute, second)
     end
   end
