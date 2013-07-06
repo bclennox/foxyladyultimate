@@ -150,15 +150,31 @@ describe PlayersController do
 
     describe '#destroy' do
       let(:player) { FactoryGirl.create(:player) }
-      before { Player.any_instance.should_receive(:destroy) }
-      before { delete :destroy, id: player }
 
-      it 'redirects to the players path' do
-        response.should redirect_to(players_path)
+      context 'when successful' do
+        before { Player.any_instance.should_receive(:destroy).and_return(true) }
+        before { delete :destroy, id: player }
+
+        it 'adds a flash message' do
+          flash[:notice].should be_present
+        end
+
+        it 'redirects to the players path' do
+          response.should redirect_to(players_path)
+        end
       end
 
-      it 'adds a flash message' do
-        flash[:notice].should be_present
+      context 'when unsuccessful' do
+        before { Player.any_instance.should_receive(:destroy).and_return(false) }
+        before { delete :destroy, id: player }
+
+        it 'adds a flash message' do
+          flash[:alert].should_not be_nil
+        end
+
+        it 'redirects to the players path' do
+          response.should redirect_to(players_path)
+        end
       end
     end
   end
