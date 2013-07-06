@@ -9,7 +9,7 @@ class Game < ActiveRecord::Base
   scope :on, -> { where(canceled: false) }
 
   def self.seed
-    find_or_create_by_starts_at!(schedule.next_occurrence)
+    find_or_create_by!(starts_at: schedule.next_occurrence.start_time)
   end
 
   def respond(player, playing)

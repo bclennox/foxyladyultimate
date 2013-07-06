@@ -1,6 +1,20 @@
 require 'spec_helper'
 
 describe Game do
+  describe '::seed' do
+    let(:schedule) { FactoryGirl.build(:schedule) }
+    before { Game.should_receive(:schedule).at_least(:once).and_return(schedule) }
+    before { Game.delete_all }
+
+    it 'creates the game' do
+      expect { Game.seed }.to change{Game.count}.by(1)
+    end
+
+    it 'schedules the game correctly' do
+      Game.seed.starts_at.should == schedule.next_occurrence.start_time
+    end
+  end
+
   describe '#respond' do
     let(:player) { FactoryGirl.create(:player) }
     subject { FactoryGirl.create(:game) }
