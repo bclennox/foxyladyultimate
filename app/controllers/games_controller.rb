@@ -1,8 +1,8 @@
 class GamesController < ApplicationController
-  before_filter :authenticate_user!, only: [:edit, :update, :schedule, :remind, :cancel, :reschedule]
-  before_filter :find_game, only: [:show, :edit, :update, :respond, :remind, :cancel, :reschedule]
-  before_filter :find_player_by_params_access_token!, only: :respond
-  before_filter :find_player_by_cookie_access_token, only: [:next, :show]
+  before_action :authenticate_user!, only: [:edit, :update, :schedule, :remind, :cancel, :reschedule]
+  before_action :find_game, only: [:show, :edit, :update, :respond, :remind, :cancel, :reschedule]
+  before_action :find_player_by_params_access_token!, only: :respond
+  before_action :find_player_by_cookie_access_token, only: [:next, :show]
 
   def index
     @games = Game.all.map(&:decorate)
