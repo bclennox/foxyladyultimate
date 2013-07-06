@@ -23,6 +23,7 @@ gem 'thin'
 gem 'turbolinks'
 gem 'twitter-bootstrap-rails'
 gem 'uglifier', '~> 2.1.1'
+gem 'unicorn'
 
 group :test do
   gem 'factory_girl_rails'
