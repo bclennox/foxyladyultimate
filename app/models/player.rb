@@ -31,8 +31,7 @@ class Player < ActiveRecord::Base
   end
 
   def destroy
-    self.deleted_at = Time.now
-    save
+    update(deleted_at: Time.zone.now)
   end
 
 private

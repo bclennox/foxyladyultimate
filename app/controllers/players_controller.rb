@@ -37,10 +37,13 @@ class PlayersController < ApplicationController
   end
 
   def destroy
-    @player = Player.find(params[:id])
-    @player.destroy
+    player = Player.find(params[:id])
 
-    redirect_to players_url, notice: 'Player was successfully removed.'
+    if player.destroy
+      redirect_to players_url, notice: 'Player was successfully removed.'
+    else
+      redirect_to players_url, alert: player.errors.full_messages.join('. ')
+    end
   end
 
 private
