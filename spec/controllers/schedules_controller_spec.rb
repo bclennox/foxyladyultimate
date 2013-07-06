@@ -11,7 +11,7 @@ describe SchedulesController do
     end
 
     describe '#update' do
-      before { put :edit }
+      before { patch :edit }
       it { should redirect_to(new_user_session_path) }
     end
   end
@@ -32,7 +32,7 @@ describe SchedulesController do
       context 'with valid parameters' do
         let(:params) { FactoryGirl.attributes_for(:schedule).stringify_keys }
         before { Schedule.any_instance.should_receive(:update_attributes).with(params).and_return(true) }
-        before { put :update, schedule: params }
+        before { patch :update, schedule: params }
 
         it 'redirects to the games path' do
           response.should redirect_to(games_path)
@@ -44,7 +44,7 @@ describe SchedulesController do
       end
 
       context 'with invalid parameters' do
-        before { put :update, schedule: { 'time' => 'abc' } }
+        before { patch :update, schedule: { 'time' => 'abc' } }
 
         it 'decorates the instance' do
           assigns[:schedule].should respond_to(:available_days)

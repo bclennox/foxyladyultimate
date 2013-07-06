@@ -3,7 +3,7 @@
 .page-header
   %h1 Change Your Password
 
-= form_for(resource, as: resource_name, url: user_registration_path, html: { class: 'form-horizontal', method: :put }) do |f|
+= form_for(resource, as: resource_name, url: user_registration_path, html: { class: 'form-horizontal', method: :patch }) do |f|
   = devise_error_messages!
 
   .control-group

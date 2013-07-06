@@ -21,7 +21,7 @@ describe PlayersController do
     end
 
     describe '#update' do
-      before { put :update, id: 1 }
+      before { patch :update, id: 1 }
       it { should redirect_to(new_user_session_path) }
     end
 
@@ -120,7 +120,7 @@ describe PlayersController do
       context 'with valid parameters' do
         let(:params) { FactoryGirl.attributes_for(:player).stringify_keys }
         before { Player.any_instance.should_receive(:update_attributes).with(params).and_return(true) }
-        before { put :update, id: player, player: params }
+        before { patch :update, id: player, player: params }
 
         it 'redirects to the players path' do
           response.should redirect_to(players_path)
@@ -132,7 +132,7 @@ describe PlayersController do
       end
 
       context 'with invalid parameters' do
-        before { put :update, id: player, player: { first_name: '' } }
+        before { patch :update, id: player, player: { first_name: '' } }
 
         it 'assigns the instance' do
           assigns[:player].should be_present

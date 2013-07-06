@@ -11,7 +11,7 @@ describe GamesController do
     end
 
     describe '#update' do
-      before { put :update, id: 1 }
+      before { patch :update, id: 1 }
       it { should redirect_to(new_user_session_path) }
     end
 
@@ -108,7 +108,7 @@ describe GamesController do
       context 'with valid parameters' do
         let(:params) { { 'location' => 'Elsewhere' } }
         before { Game.any_instance.should_receive(:update_attributes).with(params).and_return(true) }
-        before { put :update, id: game, game: params }
+        before { patch :update, id: game, game: params }
 
         it 'redirects to the games path' do
           response.should redirect_to(games_path)
