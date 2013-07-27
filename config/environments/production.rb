@@ -52,9 +52,10 @@ Ultimate::Application.configure do
   # Use a different cache store in production
   config.cache_store = :dalli_store
 
+  client = Dalli::Client.new
   config.action_dispatch.rack_cache = {
-    metastore: Dalli::Client.new,
-    entitystore: 'file:tmp/cache/rack/body',
+    metastore: client,
+    entitystore: client,
     allow_reload: false
   }
 
