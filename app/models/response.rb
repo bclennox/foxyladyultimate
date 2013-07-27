@@ -1,4 +1,4 @@
 class Response < ActiveRecord::Base
-  belongs_to :player
-  belongs_to :game
+  belongs_to :player, touch: true
+  belongs_to :game, touch: true
 end
