@@ -1,5 +1,5 @@
 class PlayerRanker
-  def self.games_played
+  def self.by_games_played
     Player
       .active
       .joins(:games)
