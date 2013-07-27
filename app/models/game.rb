@@ -18,11 +18,15 @@ class Game < ActiveRecord::Base
   end
 
   def confirmed_players
-    players.where('responses.playing' => true)
+    Rails.cache.fetch([self, 'confirmed_players']) do
+      players.where('responses.playing' => true).to_a
+    end
   end
 
   def declined_players
-    players.where('responses.playing' => false)
+    Rails.cache.fetch([self, 'declined_players']) do
+      players.where('responses.playing' => false).to_a
+    end
   end
 
   def upcoming?
