@@ -29,6 +29,8 @@ describe SchedulesController do
     end
 
     describe '#update' do
+      before { FactoryGirl.create(:schedule) }
+
       context 'with valid parameters' do
         let(:params) { FactoryGirl.attributes_for(:schedule).stringify_keys }
         before { Schedule.any_instance.should_receive(:update_attributes).with(params).and_return(true) }

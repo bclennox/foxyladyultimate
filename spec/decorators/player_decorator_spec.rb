@@ -10,8 +10,7 @@ describe PlayerDecorator do
     end
 
     context 'when the player has played a few games' do
-      let(:games) { FactoryGirl.create_list(:game, 3) }
-      let(:last_game) { games.sort(&:started_at).last }
+      let(:games) { FactoryGirl.create_list(:game, 3, starts_at: 1.week.ago) }
 
       before do
         games.each { |game| game.respond(player, true) }

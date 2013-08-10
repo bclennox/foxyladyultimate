@@ -17,4 +17,5 @@ RSpec.configure do |config|
   config.include SessionHelper, type: :controller
 
   config.order = "random"
+  config.use_transactional_examples = true
 end
