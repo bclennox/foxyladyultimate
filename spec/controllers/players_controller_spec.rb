@@ -36,7 +36,7 @@ describe PlayersController do
 
     describe '#index' do
       let(:players) { FactoryGirl.create_list(:player, 3) }
-      let(:game) { FactoryGirl.create(:game) }
+      let(:game) { FactoryGirl.create(:game, starts_at: 1.week.ago) }
 
       before do
         players.each { |p| game.respond(p, true) }
@@ -48,7 +48,6 @@ describe PlayersController do
       end
 
       it 'ranks the players' do
-        pending 'Maybe a bug in Rails that breaks the SELECT clause'
         assigns[:ranked_players].should have(3).items
       end
     end
