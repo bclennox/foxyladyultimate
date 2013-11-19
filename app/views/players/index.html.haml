@@ -6,7 +6,7 @@
     = render 'actions'
 
 .row
-  .span6
+  .col-md-6
     %h2 Everyone
 
     %table.table.table-striped.players
@@ -23,7 +23,7 @@
       %tbody
         = render @players
 
-  .span6
+  .col-md-6
     %h2 By Games Played
 
     = column_chart @ranked_players.map { |p| [p.short_name, p.games_played] }

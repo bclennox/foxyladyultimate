@@ -19,12 +19,12 @@
     .navbar.navbar-fixed-top
       .navbar-inner
         .container
-          %a.btn.btn-navbar(data-target=".nav-collapse" data-toggle="collapse")
+          %a.btn.navbar-btn(data-target=".navbar-collapse" data-toggle="collapse")
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          = link_to 'Foxy Lady Ultimate', root_path, class: 'brand'
-          .nav-collapse
+          = link_to 'Foxy Lady Ultimate', root_path, class: 'navbar-brand'
+          .navbar-collapse
             %ul.nav
               %li= link_to 'Games', games_path
               %li= link_to 'Players', players_path
@@ -38,6 +38,6 @@
 
     .container
       .row
-        .span12
+        .col-md-12
           = layout.flash_messages(flash)
           = yield

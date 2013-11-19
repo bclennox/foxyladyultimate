@@ -17,7 +17,7 @@ class PlayerDecorator < Draper::Decorator
 private
 
   def icon_class
-    source.worthy? ? 'worthy icon-star' : 'worthless icon-star-empty'
+    source.worthy? ? 'worthy glyphicon glyphicon-star' : 'worthless glyphicon glyphicon-star-empty'
   end
 
   def games

@@ -1,14 +1,14 @@
 .form-actions
   - if @game.upcoming?
-    = link_to 'Edit', edit_game_path(@game), :class => 'btn'
+    = link_to 'Edit', edit_game_path(@game), :class => 'btn btn-default'
   - else
     .row
-      .span4
+      .col-md-4
         = form_tag override_game_url(@game), class: 'form-inline' do
           = hidden_field_tag :played, 'yes'
           = select_tag :player_id, options_from_collection_for_select(@game.unconfirmed_players, :id, :short_name)
           = button_tag 'Add', class: 'btn btn-primary'
-      .span4
+      .col-md-4
         = form_tag override_game_url(@game), class: 'form-inline' do
           = hidden_field_tag :played, 'no'
           = select_tag :player_id, options_from_collection_for_select(@game.confirmed_players, :id, :short_name)

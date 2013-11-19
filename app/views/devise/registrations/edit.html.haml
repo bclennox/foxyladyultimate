@@ -6,21 +6,21 @@
 = form_for(resource, as: resource_name, url: user_registration_path, html: { class: 'form-horizontal', method: :patch }) do |f|
   = devise_error_messages!
 
-  .control-group
+  .form-group
     = f.label :current_password, class: 'control-label'
     .controls
       = f.password_field :current_password, autofocus: true, autocomplete: 'off'
 
-  .control-group
+  .form-group
     = f.label :password, class: 'control-label'
     .controls
       = f.password_field :password
 
-  .control-group
+  .form-group
     = f.label :password_confirmation, class: 'control-label'
     .controls
       = f.password_field :password_confirmation
 
   .form-actions
     = f.submit 'Change Password', class: 'btn btn-primary'
-    = link_to 'Go Back', root_url, class: 'btn'
+    = link_to 'Go Back', root_url, class: 'btn btn-default'

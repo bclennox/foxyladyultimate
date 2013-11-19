@@ -6,4 +6,4 @@
   %h2= "RSVP as #{@player.short_name}"
   %p
     = link_to positive_response, respond_game_url(@game, access_token: @player.access_token, playing: 'yes'), class: 'btn btn-primary'
-    = link_to negative_response, respond_game_url(@game, access_token: @player.access_token, playing: 'no'), class: 'btn'
+    = link_to negative_response, respond_game_url(@game, access_token: @player.access_token, playing: 'no'), class: 'btn btn-default'

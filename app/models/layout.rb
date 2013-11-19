@@ -30,8 +30,8 @@ class Layout
       next if message.blank?
 
       type = :success if type == :notice
-      type = :error   if type == :alert
-      next unless [:error, :info, :success, :warning].include?(type)
+      type = :danger  if type == :alert
+      next unless [:danger, :info, :success, :warning].include?(type)
 
       Array(message).each do |msg|
         text = view_context.content_tag(:div,

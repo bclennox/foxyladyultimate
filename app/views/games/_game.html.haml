@@ -4,7 +4,7 @@
   %dl
     %dt When
     %dd= @game.date
-    %dd.muted= @game.relative_date
+    %dd.text-muted= @game.relative_date
 
     - unless @game.default_location?
       %dt Where
@@ -26,7 +26,7 @@
   - if @game.upcoming? && @game.on?
     %p
       = link_to game_path(@game, format: 'ics') do
-        = content_tag(:i, nil, class: 'icon-calendar')
+        = content_tag(:i, nil, class: 'glyphicon glyphicon-calendar')
         Add it to your calendar
 
 = render 'player_actions' if @game.upcoming? && @game.on? && @player.present?
