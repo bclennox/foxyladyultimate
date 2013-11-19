@@ -24,7 +24,7 @@ class Game < ActiveRecord::Base
   end
 
   def unconfirmed_players
-    Player.all - confirmed_players
+    Player.active - confirmed_players
   end
 
   def declined_players
