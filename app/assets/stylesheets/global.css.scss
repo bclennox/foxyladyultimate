@@ -1,13 +1,9 @@
 body {
+  padding-top: 60px;
   padding-bottom: 120px;
 }
 
 @media (min-width: 980px) {
-  body {
-    padding-top: 80px;
-
-  }
-
   .page-header {
     position: relative;
 
@@ -68,19 +64,5 @@ tr {
 .page-header {
   .subnav {
     background-color: transparent;
-  }
-}
-
-.navbar {
-  .nav.pull-right {
-    li:last-child a {
-      padding-right: 0;
-    }
-  }
-}
-
-.modal {
-  textarea {
-    width: 90%;
   }
 }

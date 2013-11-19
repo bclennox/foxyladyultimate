@@ -1,20 +1,22 @@
-= form_for @player, :html => { :class => 'form-horizontal' } do |f|
+= form_for @player, html: { class: 'form-horizontal' } do |f|
   .form-group
-    = f.label :first_name, :class => 'control-label'
-    .controls
-      = f.text_field :first_name, :class => 'text_field'
+    = f.label :first_name, class: 'col-md-2 control-label'
+    .col-md-4
+      = f.text_field :first_name, class: 'form-control'
   .form-group
-    = f.label :last_name, :class => 'control-label'
-    .controls
-      = f.text_field :last_name, :class => 'text_field'
+    = f.label :last_name, class: 'col-md-2 control-label'
+    .col-md-4
+      = f.text_field :last_name, class: 'form-control'
   .form-group
-    = f.label :email, :class => 'control-label'
-    .controls
-      = f.text_field :email, :class => 'text_field'
+    = f.label :email, class: 'col-md-2 control-label'
+    .col-md-4
+      = f.text_field :email, class: 'form-control'
   .form-group
-    = f.label :phone, :class => 'control-label'
-    .controls
-      = f.text_field :phone, :class => 'text_field'
-  .form-actions
-    = f.submit nil, :class => 'btn btn-primary'
-    = link_to 'Go Back', players_path, :class => 'btn btn-default'
+    = f.label :phone, class: 'col-md-2 control-label'
+    .col-md-4
+      = f.text_field :phone, class: 'form-control'
+
+  .form-group
+    .col-md-4.col-md-offset-2
+      = f.submit nil, class: 'btn btn-primary'
+      = link_to 'Go Back', players_path, class: 'btn btn-default'

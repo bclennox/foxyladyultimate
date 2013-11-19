@@ -1,9 +1,8 @@
-= render layout: 'layouts/modal', locals: { id: 'send-reminder-modal', title: 'Send a Reminder', url: remind_game_path(@game), button: 'Send' } do
+= render layout: 'layouts/modal', locals: { id: 'send-reminder-modal', title: 'Send a Reminder', url: remind_game_path(@game), button: 'Send Reminder' } do
   %p
     For the game on
     %strong= @game.date
 
   .form-group
-    = label_tag 'Message'
-    .controls
-      = text_area_tag :message, 'Who can make it?', rows: 5
+    = label_tag :message, 'Message', class: 'control-label'
+    = text_area_tag :message, 'Who can make it?', rows: 5, class: 'form-control'

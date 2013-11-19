@@ -4,7 +4,6 @@
     %strong= @game.date
 
   .form-group
-    = label_tag 'Message'
-    .controls
-      = text_area_tag :message, 'Sorry, guys. I have to cancel frisbee this week.', rows: 5
+    = label_tag :message, 'Message', class: 'control-label'
+    = text_area_tag :message, 'Sorry, guys. I have to cancel frisbee this week.', rows: 5, class: 'form-control'
 

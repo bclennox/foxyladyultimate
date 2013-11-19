@@ -5,15 +5,16 @@
 
 = form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'form-horizontal' }) do |f|
   .form-group
-    = f.label :username, class: 'control-label'
-    .controls
-      = f.text_field :username, class: 'text_field', autofocus: true
+    = f.label :username, class: 'col-md-2 control-label'
+    .col-md-4
+      = f.text_field :username, autofocus: true, class: 'form-control'
 
   .form-group
-    = f.label :password, class: 'control-label'
-    .controls
-      = f.password_field :password, class: 'text_field'
+    = f.label :password, class: 'col-md-2 control-label'
+    .col-md-4
+      = f.password_field :password, class: 'form-control'
       %span.help-block If you don’t know how to sign in, then you’re not supposed to.
 
-  .form-actions
-    = f.submit 'Sign In', class: 'btn btn-primary'
+  .form-group
+    .col-md-2.col-md-offset-2
+      = f.submit 'Sign In', class: 'btn btn-primary'

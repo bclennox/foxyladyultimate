@@ -20,7 +20,7 @@
       %th.players Attendance
   %tbody
     - @games.each do |game|
-      %tr{class: game.canceled? ? 'canceled' : 'active'}
+      %tr{class: game.canceled? ? 'canceled' : 'on'}
         %td.name= link_to(game.canceled? ? "#{game.date} (canceled)" : game.date, game)
         %td.location= game.location
         %td.players= game.canceled? ? '—' : pluralize(game.confirmed_players.count, 'player')

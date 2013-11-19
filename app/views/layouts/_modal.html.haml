@@ -1,11 +1,13 @@
-.modal.hide(id=id)
-  .modal-header
-    %h3= title
+.modal.fade(id=id)
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %h4.modal-title= title
 
-  = form_tag url do
-    .modal-body
-      = yield
+      = form_tag url do
+        .modal-body
+          = yield
 
-    .modal-footer
-      = button_tag 'Close', type: 'button', class: 'btn btn-default', data: { dismiss: 'modal' }
-      = submit_tag button, class: 'btn btn-primary'
+        .modal-footer
+          = button_tag 'Close', type: 'button', class: 'btn btn-default', data: { dismiss: 'modal' }
+          = submit_tag button, class: 'btn btn-primary'

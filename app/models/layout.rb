@@ -36,7 +36,7 @@ class Layout
       Array(message).each do |msg|
         text = view_context.content_tag(:div,
                            view_context.content_tag(:button, view_context.raw("&times;"), :class => "close", "data-dismiss" => "alert") +
-                           msg.html_safe, :class => "alert fade in alert-#{type}")
+                           msg.html_safe, :class => "alert alert-dismissable alert-#{type}")
         flash_messages << text if msg
       end
     end
