@@ -9,6 +9,10 @@ describe 'routes for games' do
     expect(get('/games/1/respond')).to route_to('games#respond', id: '1')
   end
 
+  it 'routes /games/1/override' do
+    expect(post('/games/1/override')).to route_to('games#override', id: '1')
+  end
+
   it 'routes /games/1/remind' do
     expect(post('/games/1/remind')).to route_to('games#remind', id: '1')
   end

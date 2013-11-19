@@ -167,7 +167,7 @@ describe GamesController do
       context 'when responding "yes"' do
         let(:params) { { id: game, access_token: player.access_token, playing: 'yes' } }
 
-        it 'responds to the game' do
+        it 'responds affirmatively to the game' do
           game.confirmed_players.should include(player)
         end
       end
@@ -175,8 +175,39 @@ describe GamesController do
       context 'when responding "no"' do
         let(:params) { { id: game, access_token: player.access_token, playing: 'no' } }
 
-        it 'responds to the game' do
+        it 'responds negatively to the game' do
           game.declined_players.should include(player)
+        end
+      end
+    end
+
+    describe '#override' do
+      let(:game) { FactoryGirl.create(:game) }
+      let(:player) { FactoryGirl.create(:player) }
+
+      before { post :override, params }
+
+      context 'when responding "yes"' do
+        let(:params) { { id: game, player_id: player, played: 'yes' } }
+
+        it 'adds the player to the game' do
+          game.confirmed_players.should include(player)
+        end
+
+        it 'redirects to the game' do
+          response.should redirect_to(game_path(game))
+        end
+      end
+
+      context 'when responding "no"' do
+        let(:params) { { id: game, player_id: player, played: 'no' } }
+
+        it 'removes the player from the game' do
+          game.unconfirmed_players.should include(player)
+        end
+
+        it 'redirects to the game' do
+          response.should redirect_to(game_path(game))
         end
       end
     end

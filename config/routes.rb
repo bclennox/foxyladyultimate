@@ -16,6 +16,7 @@ Ultimate::Application.routes.draw do
 
     member do
       get :respond
+      post :override
       post :remind
       post :cancel
       post :reschedule

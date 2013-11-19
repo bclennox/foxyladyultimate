@@ -37,4 +37,12 @@ body.games {
       }
     }
   }
+
+  &.show {
+    .form-actions {
+      form {
+        margin-bottom: 0;
+      }
+    }
+  }
 }

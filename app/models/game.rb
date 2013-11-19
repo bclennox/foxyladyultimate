@@ -23,6 +23,10 @@ class Game < ActiveRecord::Base
     end
   end
 
+  def unconfirmed_players
+    Player.all - confirmed_players
+  end
+
   def declined_players
     Rails.cache.fetch([self, 'declined_players']) do
       players.where('responses.playing' => false).to_a
