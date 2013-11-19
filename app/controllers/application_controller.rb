@@ -7,6 +7,6 @@ class ApplicationController < ActionController::Base
   end
 
   def layout
-    @layout ||= Layout.new(application_name: 'Foxy Lady Ultimate', controller: self)
+    @layout ||= Layout.new(application_name: 'Foxy Lady Ultimate', controller: self, view_context: view_context)
   end
 end
