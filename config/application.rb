@@ -13,5 +13,8 @@ module Ultimate
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     config.time_zone = 'Eastern Time (US & Canada)'
+
+    # This will be the default in the future, and may possibly be removed.
+    config.i18n.enforce_available_locales = true
   end
 end
