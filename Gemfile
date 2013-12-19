@@ -19,13 +19,16 @@ gem 'queue_classic'
 gem 'newrelic_rpm'
 gem 'rack-cache'
 gem 'sass-rails', '~> 4.0.0'
-gem 'spring'
-gem 'spring-commands-rspec'
 gem 'therubyracer'
 gem 'thin'
 gem 'turbolinks'
 gem 'uglifier', '~> 2.1.1'
 gem 'unicorn'
+
+group :development do
+  gem 'spring'
+  gem 'spring-commands-rspec'
+end
 
 group :production do
   gem 'rails_12factor'
