@@ -45,18 +45,18 @@ class Game < ActiveRecord::Base
     location == self.class.schedule.location
   end
 
-  def remind(user, message)
-    notify('reminder', user, message)
+  def remind(user, body)
+    notify('reminder', user, body)
   end
 
-  def cancel(user, message)
+  def cancel(user, body)
     update_attributes(canceled: true)
-    notify('cancellation', user, message)
+    notify('cancellation', user, body)
   end
 
-  def reschedule(user, message)
+  def reschedule(user, body)
     update_attributes(canceled: false)
-    notify('reschedule', user, message)
+    notify('reschedule', user, body)
   end
 
 private
@@ -69,9 +69,9 @@ private
     self.location = self.class.schedule.location if location.blank?
   end
 
-  def notify(method, user, message)
+  def notify(method, user, body)
     Player.emailable.pluck(:id).each do |player_id|
-      QC.enqueue("NotificationService.#{method}", id, player_id, user.id, message)
+      QC.enqueue("NotificationService.#{method}", id, player_id, user.id, body)
     end
   end
 end

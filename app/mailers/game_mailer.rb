@@ -1,4 +1,3 @@
-# encoding: utf-8
 class GameMailer < ActionMailer::Base
   layout 'game_mailer'
 
@@ -14,31 +13,53 @@ class GameMailer < ActionMailer::Base
     ]
   end
 
-  def reminder(game, player, sender, message)
-    perform(game, player, sender, message, "Ultimate Frisbee on #{game_date(game)}")
-  end
-
-  def cancellation(game, player, sender, message)
-    perform(game, player, sender, message, "Canceled: Ultimate Frisbee on #{game_date(game)}")
-  end
-
-  def reschedule(game, player, sender, message)
-    perform(game, player, sender, message, "Rescheduled: Ultimate Frisbee on #{game_date(game)}")
+  %w{reminder cancellation reschedule}.each do |message_type|
+    class_eval do
+      define_method(message_type) do |game: , player: , sender: , body: |
+        message = self.class.const_get("#{message_type.classify}Message").new(game, player, sender, body)
+        perform(message)
+      end
+    end
   end
 
 private
 
-  def game_date(game)
-    game.starts_at.strftime('%b %-d')
+  Message = Struct.new(:game, :player, :sender, :body) do
+    def to
+      player.email
+    end
+
+    def from
+      "#{sender.name} <#{sender.email}>"
+    end
+
+  private
+
+    def game_date
+      game.starts_at.strftime('%b %-d')
+    end
   end
 
-  def perform(game, player, sender, message, subject)
-    to = Rails.env.development? ? 'brandan@localhost' : player.email
-    from = "#{sender.name} <#{sender.email}>"
+  class ReminderMessage < Message
+    def subject() "Ultimate Frisbee on #{game_date}" end
+  end
 
-    @game = game.decorate
-    @player = player
-    @message = message
+  class CancellationMessage < Message
+    def subject() "Canceled: Ultimate Frisbee on #{game_date}" end
+  end
+
+  class RescheduleMessage < Message
+    def subject() "Rescheduled: Ultimate Frisbee on #{game_date}" end
+  end
+
+  def perform(message)
+    to = Rails.env.development? ? 'brandan@localhost' : message.to
+    from = message.from
+    subject = message.subject
+
+    @game = message.game.decorate
+    @player = message.player
+    @body = message.body
     @positive_response, @negative_response = self.class.responses.sample
 
     attachments['ultimate.ics'] = EventService.create_event(@game).to_ical

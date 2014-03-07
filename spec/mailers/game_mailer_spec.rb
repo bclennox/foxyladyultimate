@@ -4,11 +4,11 @@ describe GameMailer do
   let(:game) { FactoryGirl.create(:game) }
   let(:player) { FactoryGirl.create(:player) }
   let(:sender) { FactoryGirl.create(:user) }
-  let(:message) { 'message' }
+  let(:body) { 'body' }
 
   { reminder: '', cancellation: 'Canceled', reschedule: 'Rescheduled' }.each_pair do |method, subject|
     describe "##{method}" do
-      subject { GameMailer.send(method, game, player, sender, message) }
+      subject { GameMailer.send(method, game: game, player: player, sender: sender, body: body) }
 
       its(:subject) { should =~ /^#{subject}/ }
       its(:to) { should include(player.email) }

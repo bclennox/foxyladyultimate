@@ -6,12 +6,12 @@ describe NotificationService do
       let(:game) { FactoryGirl.create(:game) }
       let(:player) { FactoryGirl.create(:player) }
       let(:user) { FactoryGirl.create(:user) }
-      let(:message) { 'message' }
+      let(:body) { 'body' }
       let(:mailer) { double('mailer').as_null_object }
 
       it 'delegates to GameMailer' do
-        GameMailer.should_receive(:reminder).with(game, player, user, message).and_return(mailer)
-        NotificationService.reminder(game.id, player.id, user.id, message)
+        GameMailer.should_receive(:reminder).with(game: game, player: player, sender: user, body: body).and_return(mailer)
+        NotificationService.reminder(game.id, player.id, user.id, body)
       end
     end
 
