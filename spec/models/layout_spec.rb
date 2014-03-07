@@ -1,19 +1,21 @@
 require 'spec_helper'
 
 describe Layout do
-  describe '#page_title' do
+  describe '#full_page_title' do
     let(:application_name) { 'Webulatr' }
-    subject { Layout.new(application_name: application_name) }
+    let(:layout) { Layout.new(application_name: application_name) }
+
+    subject { layout.full_page_title }
 
     context 'when no page title has been set' do
-      its(:page_title) { should == application_name }
+      it { should == application_name }
     end
 
     context 'when a page title has been set' do
-      before { subject.page_title = 'Home' }
+      before { layout.page_title = 'Home' }
 
-      its(:page_title) { should include('Home') }
-      its(:page_title) { should include(application_name) }
+      it { should include('Home') }
+      it { should include(application_name) }
     end
   end
 
@@ -25,9 +27,9 @@ describe Layout do
       end
     end
 
-    subject { Layout.new(controller: controller) }
+    subject { Layout.new(controller: controller).body_class }
 
-    its(:body_class) { should include(controller.controller_name) }
-    its(:body_class) { should include(controller.action_name) }
+    it { should include(controller.controller_name) }
+    it { should include(controller.action_name) }
   end
 end

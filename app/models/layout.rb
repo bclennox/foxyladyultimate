@@ -1,18 +1,10 @@
-# encoding: UTF-8
 class Layout
-  attr_accessor :application_name, :controller, :view_context
-  attr_writer :page_title
+  include ActiveModel::Model
+  attr_accessor :application_name, :controller, :page_title, :view_context
 
-  def initialize(options = {})
-    @application_name = options[:application_name]
-    @controller = options[:controller]
-    @page_title = options[:page_title]
-    @view_context = options[:view_context]
-  end
-
-  def page_title
-    if @page_title.present?
-      "#{@page_title} — #{application_name}"
+  def full_page_title
+    if page_title.present?
+      "#{page_title} — #{application_name}"
     else
       application_name
     end
