@@ -19,4 +19,8 @@ RSpec.configure do |config|
 
   config.order = "random"
   config.use_transactional_examples = true
+
+  config.before(:each, type: :feature) do
+    FactoryGirl.create(:schedule)
+  end
 end

@@ -2,8 +2,12 @@ class GameDecorator < Draper::Decorator
   delegate_all
   include DateFormatter
 
+  def self.date_format
+    '%A, %B %-d, %Y at %l:%M%P'
+  end
+
   def date
-    source.starts_at.strftime('%A, %B %-d, %Y at %l:%M%P')
+    source.starts_at.strftime(self.class.date_format)
   end
 
   def relative_date
