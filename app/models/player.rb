@@ -4,9 +4,9 @@ class Player < ActiveRecord::Base
 
   validates_presence_of :first_name, :last_name, :email
 
-  default_scope { order('first_name ASC') }
+  default_scope -> { order(first_name: :asc) }
   scope :active, -> { where(deleted_at: nil) }
-  scope :emailable, -> { active.where('email IS NOT NULL') }
+  scope :emailable, -> { active.where.not(email: nil) }
 
   has_many :responses
   has_many :games, through: :responses
@@ -17,13 +17,13 @@ class Player < ActiveRecord::Base
 
   def short_name
     Rails.cache.fetch([self, 'short_name']) do
-      self.class.where(first_name: first_name).where('id != ?', id).exists? ? name : first_name
+      self.class.where(first_name: first_name).where.not(id: id).exists? ? name : first_name
     end
   end
 
   def played_games
     Rails.cache.fetch([self, 'played_games']) do
-      games.on.past.where('responses.playing' => true).to_a
+      games.on.past.where(responses: { playing: true }).to_a
     end
   end
 

@@ -3,7 +3,7 @@ class Game < ActiveRecord::Base
   has_many :players, through: :responses
   before_validation :ensure_location
 
-  default_scope { order('starts_at DESC') }
+  default_scope -> { order(starts_at: :desc) }
   scope :upcoming, -> { where('starts_at > NOW()') }
   scope :past, -> { where('starts_at < NOW()') }
   scope :on, -> { where(canceled: false) }
@@ -19,7 +19,7 @@ class Game < ActiveRecord::Base
 
   def confirmed_players
     Rails.cache.fetch([self, 'confirmed_players']) do
-      players.where('responses.playing' => true).to_a
+      players.where(responses: { playing: true }).to_a
     end
   end
 
@@ -29,7 +29,7 @@ class Game < ActiveRecord::Base
 
   def declined_players
     Rails.cache.fetch([self, 'declined_players']) do
-      players.where('responses.playing' => false).to_a
+      players.where(responses: { playing: false }).to_a
     end
   end
 
