@@ -21,9 +21,9 @@ class Layout
       # Skip empty messages, e.g. for devise messages set to nothing in a locale file.
       next if message.blank?
 
-      type = :success if type == :notice
-      type = :danger  if type == :alert
-      next unless [:danger, :info, :success, :warning].include?(type)
+      type = 'success' if type == 'notice'
+      type = 'danger'  if type == 'alert'
+      next unless %w(danger info success warning).include?(type)
 
       Array(message).each do |msg|
         text = view_context.content_tag(:div,
