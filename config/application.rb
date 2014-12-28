@@ -16,5 +16,8 @@ module Ultimate
 
     # This will be the default in the future, and may possibly be removed.
     config.i18n.enforce_available_locales = true
+
+    # This will be the default in the future, and may possibly be removed.
+    config.active_record.raise_in_transactional_callbacks = true
   end
 end

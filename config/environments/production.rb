@@ -16,7 +16,7 @@ Ultimate::Application.configure do
 
   # Disable Rails's static asset server (Apache or nginx will already do this)
   # Set to true to serve assets through memcached on Heroku
-  config.serve_static_assets = true
+  config.serve_static_files = true
 
   # Compress JavaScripts and CSS
   config.assets.js_compressor = :uglify
