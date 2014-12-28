@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature 'Session and user management' do
+RSpec.feature 'Session and user management' do
   given(:username) { 'brandan' }
   given(:password) { 'nadnarb' }
 
@@ -17,15 +17,15 @@ feature 'Session and user management' do
     end
 
     it 'signs me in' do
-      page.should have_content('Signed in successfully.')
+      expect(page).to have_content('Signed in successfully.')
     end
 
     it 'allows me to change my password' do
-      page.should have_link('Change Your Password')
+      expect(page).to have_link('Change Your Password')
     end
 
     it 'allows me to sign out' do
-      page.should have_link('Sign Out')
+      expect(page).to have_link('Sign Out')
     end
   end
 
@@ -42,11 +42,11 @@ feature 'Session and user management' do
     end
 
     it 'signs me out' do
-      page.should have_content('Signed out successfully.')
+      expect(page).to have_content('Signed out successfully.')
     end
 
     it 'allows me to sign in' do
-      page.should have_link('Sign In')
+      expect(page).to have_link('Sign In')
     end
   end
 
@@ -62,7 +62,7 @@ feature 'Session and user management' do
     end
 
     it 'redirects me back to the page I was on before' do
-      page.current_path.should == games_path
+      expect(page.current_path).to eq(games_path)
     end
   end
 end

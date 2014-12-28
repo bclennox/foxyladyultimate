@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature 'Player management' do
+RSpec.feature 'Player management' do
   background do
     admin = FactoryGirl.create(:user, username: 'brandan', password: 'nadnarb')
 
@@ -29,11 +29,11 @@ feature 'Player management' do
     end
 
     it 'shows the new player as an e-mail link' do
-      page.should have_link("#{first_name} #{last_name}")
+      expect(page).to have_link("#{first_name} #{last_name}")
     end
 
     it 'shows their phone number' do
-      page.should have_content(phone)
+      expect(page).to have_content(phone)
     end
   end
 
@@ -55,7 +55,7 @@ feature 'Player management' do
     end
 
     it 'updates the player information' do
-      page.should have_link("#{new_first_name} #{new_last_name}")
+      expect(page).to have_link("#{new_first_name} #{new_last_name}")
     end
   end
 

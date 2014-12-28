@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe NotificationService do
+RSpec.describe NotificationService do
   context 'delegation' do
     context 'when GameMailer responds to the message' do
       let(:game) { FactoryGirl.create(:game) }
@@ -10,7 +10,7 @@ describe NotificationService do
       let(:mailer) { double('mailer').as_null_object }
 
       it 'delegates to GameMailer' do
-        GameMailer.should_receive(:reminder).with(game: game, player: player, sender: user, body: body).and_return(mailer)
+        expect(GameMailer).to receive(:reminder).with(game: game, player: player, sender: user, body: body).and_return(mailer)
         NotificationService.reminder(game.id, player.id, user.id, body)
       end
     end

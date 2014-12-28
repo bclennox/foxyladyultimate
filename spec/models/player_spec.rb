@@ -1,11 +1,11 @@
 require 'spec_helper'
 
-describe Player do
+RSpec.describe Player do
   describe '#name' do
     let(:player) { FactoryGirl.build(:player, first_name: 'Brandan', last_name: 'Lennox') }
     subject { player.name }
-    it { should include('Brandan') }
-    it { should include('Lennox') }
+    it { is_expected.to include('Brandan') }
+    it { is_expected.to include('Lennox') }
   end
 
   describe '#short_name' do
@@ -14,12 +14,12 @@ describe Player do
 
     context 'when no other players with the same first name exist' do
       before { Player.where(first_name: original.first_name).delete_all }
-      it { should == original.first_name }
+      it { is_expected.to eq(original.first_name) }
     end
 
     context 'when another player with the same first name exists' do
       before { FactoryGirl.create(:player, first_name: 'Nerf', last_name: 'Zerbder') }
-      it { should == original.name }
+      it { is_expected.to eq(original.name) }
     end
   end
 
@@ -27,29 +27,32 @@ describe Player do
     subject { FactoryGirl.create(:player) }
 
     context 'when the player has never played' do
-      it { should_not be_worthy }
+      it { is_expected.not_to be_worthy }
     end
 
     context 'when the player has played in the deep past' do
       let(:game) { FactoryGirl.create(:game, starts_at: 1.year.ago) }
       before { game.respond(subject, true) }
-      it { should_not be_worthy }
+      it { is_expected.not_to be_worthy }
     end
 
     context 'when the player has played recently' do
       let(:game) { FactoryGirl.create(:game, starts_at: 1.week.ago) }
       before { game.respond(subject, true) }
-      it { should be_worthy }
+      it { is_expected.to be_worthy }
     end
   end
 
   describe '#destroy' do
-    subject { FactoryGirl.create(:player) }
-    before do
-      subject.destroy
-      subject.reload
-    end
+    let(:player) { FactoryGirl.create(:player) }
 
-    its(:deleted_at) { should be_present }
+    describe '#deleted_at' do
+      subject do
+        player.destroy
+        player.reload.deleted_at
+      end
+
+      it { is_expected.to be_present }
+    end
   end
 end

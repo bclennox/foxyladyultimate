@@ -1,9 +1,11 @@
 require 'spec_helper'
 
-describe ScheduleDecorator do
+RSpec.describe ScheduleDecorator do
   describe '#available_days' do
     let(:schedule) { FactoryGirl.build(:schedule) }
     subject { schedule.decorate.available_days }
-    it { should have(7).items }
+    it 'has 7 items' do
+      expect(subject.size).to eq(7)
+    end
   end
 end

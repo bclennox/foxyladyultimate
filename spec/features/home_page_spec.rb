@@ -1,15 +1,15 @@
 require 'spec_helper'
 
-feature 'Home page' do
+RSpec.feature 'Home page' do
   it 'shows a heading' do
     visit root_url
-    page.should have_content('Next Game')
+    expect(page).to have_content('Next Game')
   end
 
   context 'when no game is scheduled' do
     it 'says as much' do
       visit root_url
-      page.should have_content('Nothing scheduled yet.')
+      expect(page).to have_content('Nothing scheduled yet.')
     end
   end
 
@@ -25,12 +25,12 @@ feature 'Home page' do
 
     it 'shows the game date' do
       visit root_url
-      page.should have_content(game.starts_at.strftime(GameDecorator.date_format))
+      expect(page).to have_content(game.starts_at.strftime(GameDecorator.date_format))
     end
 
     it 'shows how many people are playing' do
       visit root_url
-      page.should have_content('1 player')
+      expect(page).to have_content('1 player')
     end
   end
 
@@ -39,7 +39,7 @@ feature 'Home page' do
 
     it 'says as much' do
       visit root_url
-      page.should have_content("It’s canceled.")
+      expect(page).to have_content("It’s canceled.")
     end
   end
 end

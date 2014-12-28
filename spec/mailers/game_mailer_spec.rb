@@ -1,19 +1,37 @@
 require 'spec_helper'
 
-describe GameMailer do
-  let(:game) { FactoryGirl.create(:game) }
+RSpec.describe GameMailer do
+  let(:game)   { FactoryGirl.create(:game) }
   let(:player) { FactoryGirl.create(:player) }
   let(:sender) { FactoryGirl.create(:user) }
-  let(:body) { 'body' }
+  let(:body)   { 'body' }
 
-  { reminder: '', cancellation: 'Canceled', reschedule: 'Rescheduled' }.each_pair do |method, subject|
+  { reminder: '', cancellation: 'Canceled', reschedule: 'Rescheduled' }.each do |method, message_subject|
     describe "##{method}" do
-      subject { GameMailer.send(method, game: game, player: player, sender: sender, body: body) }
+      let(:mailer) { GameMailer.send(method, game: game, player: player, sender: sender, body: body) }
 
-      its(:subject) { should =~ /^#{subject}/ }
-      its(:to) { should include(player.email) }
-      its(:from) { should include(sender.email) }
-      its(:attachments) { should have(1).item }
+      describe '#subject' do
+        subject { mailer.subject }
+        it { is_expected.to match(/^#{message_subject}/) }
+      end
+
+      describe '#to' do
+        subject { mailer.to }
+        it { is_expected.to include(player.email) }
+      end
+
+      describe '#from' do
+        subject { mailer.from }
+        it { is_expected.to include(sender.email) }
+      end
+
+      describe '#attachments' do
+        subject { mailer.attachments }
+
+        it 'has 1 item' do
+          expect(subject.size).to eq(1)
+        end
+      end
     end
   end
 end

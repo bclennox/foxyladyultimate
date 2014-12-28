@@ -1,12 +1,15 @@
 require 'spec_helper'
 
-describe PlayerDecorator do
+RSpec.describe PlayerDecorator do
   describe '#attendance' do
-    let(:player) { FactoryGirl.create(:player) }
-    subject { player.decorate }
+    let(:player)    { FactoryGirl.create(:player) }
+    let(:decorator) { player.decorate }
 
     context 'when the player has never played' do
-      its(:attendance) { should == 'Never played' }
+      describe '#attendance' do
+        subject { decorator.attendance }
+        it { is_expected.to eq('Never played') }
+      end
     end
 
     context 'when the player has played a few games' do
@@ -16,7 +19,10 @@ describe PlayerDecorator do
         games.each { |game| game.respond(player, true) }
       end
 
-      its(:attendance) { should include('3 games') }
+      describe '#attendance' do
+        subject { decorator.attendance }
+        it { is_expected.to include('3 games') }
+      end
     end
   end
 end

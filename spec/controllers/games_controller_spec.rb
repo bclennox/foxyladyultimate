@@ -1,38 +1,38 @@
 require 'spec_helper'
 
-describe GamesController do
+RSpec.describe GamesController do
   context 'before signing in' do
     before { sign_out session_user }
     subject { response }
 
     describe '#edit' do
       before { get :edit, id: 1 }
-      it { should redirect_to(new_user_session_path) }
+      it { is_expected.to redirect_to(new_user_session_path) }
     end
 
     describe '#update' do
       before { patch :update, id: 1 }
-      it { should redirect_to(new_user_session_path) }
+      it { is_expected.to redirect_to(new_user_session_path) }
     end
 
     describe '#schedule' do
       before { get :schedule }
-      it { should redirect_to(new_user_session_path) }
+      it { is_expected.to redirect_to(new_user_session_path) }
     end
 
     describe '#remind' do
       before { get :remind, id: 1 }
-      it { should redirect_to(new_user_session_path) }
+      it { is_expected.to redirect_to(new_user_session_path) }
     end
 
     describe '#cancel' do
       before { get :cancel, id: 1 }
-      it { should redirect_to(new_user_session_path) }
+      it { is_expected.to redirect_to(new_user_session_path) }
     end
 
     describe '#reschedule' do
       before { get :reschedule, id: 1 }
-      it { should redirect_to(new_user_session_path) }
+      it { is_expected.to redirect_to(new_user_session_path) }
     end
   end
 
@@ -44,7 +44,7 @@ describe GamesController do
       before { get :index }
 
       it 'decorates the instances' do
-        assigns[:games].first.should respond_to(:player_names)
+        expect(assigns[:games].first).to respond_to(:player_names)
       end
     end
 
@@ -54,13 +54,13 @@ describe GamesController do
       context 'format.html' do
         it 'renders the show template' do
           get :show, id: game
-          response.should render_template('show')
+          expect(response).to render_template('show')
         end
 
         context 'without a saved access token' do
           it 'does not assign a player' do
             get :show, id: game
-            assigns[:player].should be_nil
+            expect(assigns[:player]).to be_nil
           end
         end
 
@@ -70,7 +70,7 @@ describe GamesController do
 
           it 'assigns a player' do
             get :show, id: game
-            assigns[:player].should == player
+            expect(assigns[:player]).to eq(player)
           end
         end
       end
@@ -79,12 +79,12 @@ describe GamesController do
         let(:event) { double('event') }
         let(:content) { 'ical content' }
 
-        before { event.should_receive(:to_ical).and_return(content) }
-        before { EventService.should_receive(:create_event).with(game).and_return(event) }
+        before { expect(event).to receive(:to_ical).and_return(content) }
+        before { expect(EventService).to receive(:create_event).with(game).and_return(event) }
         before { get :show, id: game, format: 'ics' }
 
         it 'renders the game as an iCalendar event' do
-          response.body.should == content
+          expect(response.body).to eq(content)
         end
       end
     end
@@ -94,11 +94,11 @@ describe GamesController do
       before { get :edit, id: game }
 
       it 'decorates the instance' do
-        assigns[:game].should respond_to(:player_names)
+        expect(assigns[:game]).to respond_to(:player_names)
       end
 
       it 'renders the edit template' do
-        response.should render_template('edit')
+        expect(response).to render_template('edit')
       end
     end
 
@@ -107,15 +107,15 @@ describe GamesController do
 
       context 'with valid parameters' do
         let(:params) { { 'location' => 'Elsewhere' } }
-        before { Game.any_instance.should_receive(:update_attributes).with(params).and_return(true) }
+        before { expect_any_instance_of(Game).to receive(:update_attributes).with(params).and_return(true) }
         before { patch :update, id: game, game: params }
 
         it 'redirects to the games path' do
-          response.should redirect_to(games_path)
+          expect(response).to redirect_to(games_path)
         end
 
         it 'adds a flash message' do
-          flash[:notice].should be_present
+          expect(flash[:notice]).to be_present
         end
       end
     end
@@ -127,21 +127,21 @@ describe GamesController do
       before { get :next }
 
       it 'assigns the last upcoming game' do
-        assigns[:game].id.should == upcoming_game.id
+        expect(assigns[:game].id).to eq(upcoming_game.id)
       end
     end
 
     describe '#schedule' do
       let(:game) { FactoryGirl.create(:game) }
-      before { Game.should_receive(:seed).and_return(game) }
+      before { expect(Game).to receive(:seed).and_return(game) }
       before { get :schedule }
 
       it 'redirects to the new game' do
-        response.should redirect_to(game_path(game))
+        expect(response).to redirect_to(game_path(game))
       end
 
       it 'adds a flash message' do
-        flash[:notice].should be_present
+        expect(flash[:notice]).to be_present
       end
     end
 
@@ -153,22 +153,22 @@ describe GamesController do
       before { get :respond, params }
 
       it 'sets the cookie' do
-        cookies[:access_token].should == player.access_token
+        expect(cookies[:access_token]).to eq(player.access_token)
       end
 
       it 'redirects to the game' do
-        response.should redirect_to(game_path(game))
+        expect(response).to redirect_to(game_path(game))
       end
 
       it 'adds a flash message' do
-        flash[:notice].should be_present
+        expect(flash[:notice]).to be_present
       end
 
       context 'when responding "yes"' do
         let(:params) { { id: game, access_token: player.access_token, playing: 'yes' } }
 
         it 'responds affirmatively to the game' do
-          game.confirmed_players.should include(player)
+          expect(game.confirmed_players).to include(player)
         end
       end
 
@@ -176,7 +176,7 @@ describe GamesController do
         let(:params) { { id: game, access_token: player.access_token, playing: 'no' } }
 
         it 'responds negatively to the game' do
-          game.declined_players.should include(player)
+          expect(game.declined_players).to include(player)
         end
       end
     end
@@ -191,11 +191,11 @@ describe GamesController do
         let(:params) { { id: game, player_id: player, played: 'yes' } }
 
         it 'adds the player to the game' do
-          game.confirmed_players.should include(player)
+          expect(game.confirmed_players).to include(player)
         end
 
         it 'redirects to the game' do
-          response.should redirect_to(game_path(game))
+          expect(response).to redirect_to(game_path(game))
         end
       end
 
@@ -203,11 +203,11 @@ describe GamesController do
         let(:params) { { id: game, player_id: player, played: 'no' } }
 
         it 'removes the player from the game' do
-          game.unconfirmed_players.should include(player)
+          expect(game.unconfirmed_players).to include(player)
         end
 
         it 'redirects to the game' do
-          response.should redirect_to(game_path(game))
+          expect(response).to redirect_to(game_path(game))
         end
       end
     end
@@ -216,15 +216,15 @@ describe GamesController do
       let(:game) { FactoryGirl.create(:game) }
       let(:message) { 'message' }
 
-      before { Game.any_instance.should_receive(:remind).with(session_user, message) }
+      before { expect_any_instance_of(Game).to receive(:remind).with(session_user, message) }
       before { get :remind, id: game, message: message }
 
       it 'redirects to the game' do
-        response.should redirect_to(game_path(game))
+        expect(response).to redirect_to(game_path(game))
       end
 
       it 'adds a flash message' do
-        flash[:notice].should be_present
+        expect(flash[:notice]).to be_present
       end
     end
 
@@ -232,15 +232,15 @@ describe GamesController do
       let(:game) { FactoryGirl.create(:game) }
       let(:message) { 'message' }
 
-      before { Game.any_instance.should_receive(:cancel).with(session_user, message) }
+      before { expect_any_instance_of(Game).to receive(:cancel).with(session_user, message) }
       before { get :cancel, id: game, message: message }
 
       it 'redirects to the game' do
-        response.should redirect_to(game_path(game))
+        expect(response).to redirect_to(game_path(game))
       end
 
       it 'adds a flash message' do
-        flash[:notice].should be_present
+        expect(flash[:notice]).to be_present
       end
     end
 
@@ -248,15 +248,15 @@ describe GamesController do
       let(:game) { FactoryGirl.create(:game) }
       let(:message) { 'message' }
 
-      before { Game.any_instance.should_receive(:reschedule).with(session_user, message) }
+      before { expect_any_instance_of(Game).to receive(:reschedule).with(session_user, message) }
       before { get :reschedule, id: game, message: message }
 
       it 'redirects to the game' do
-        response.should redirect_to(game_path(game))
+        expect(response).to redirect_to(game_path(game))
       end
 
       it 'adds a flash message' do
-        flash[:notice].should be_present
+        expect(flash[:notice]).to be_present
       end
     end
   end

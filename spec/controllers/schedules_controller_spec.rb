@@ -1,18 +1,18 @@
 require 'spec_helper'
 
-describe SchedulesController do
+RSpec.describe SchedulesController do
   context 'before signing in' do
     before { sign_out session_user }
     subject { response }
 
     describe '#edit' do
       before { get :edit }
-      it { should redirect_to(new_user_session_path) }
+      it { is_expected.to redirect_to(new_user_session_path) }
     end
 
     describe '#update' do
       before { patch :edit }
-      it { should redirect_to(new_user_session_path) }
+      it { is_expected.to redirect_to(new_user_session_path) }
     end
   end
 
@@ -24,7 +24,7 @@ describe SchedulesController do
       before { get :edit }
 
       it 'decorates the instance' do
-        assigns[:schedule].should respond_to(:available_days)
+        expect(assigns[:schedule]).to respond_to(:available_days)
       end
     end
 
@@ -33,15 +33,15 @@ describe SchedulesController do
 
       context 'with valid parameters' do
         let(:params) { FactoryGirl.attributes_for(:schedule).stringify_keys }
-        before { Schedule.any_instance.should_receive(:update_attributes).with(params).and_return(true) }
+        before { expect_any_instance_of(Schedule).to receive(:update_attributes).with(params).and_return(true) }
         before { patch :update, schedule: params }
 
         it 'redirects to the games path' do
-          response.should redirect_to(games_path)
+          expect(response).to redirect_to(games_path)
         end
 
         it 'adds a flash message' do
-          flash[:notice].should be_present
+          expect(flash[:notice]).to be_present
         end
       end
 
@@ -49,15 +49,15 @@ describe SchedulesController do
         before { patch :update, schedule: { 'time' => 'abc' } }
 
         it 'decorates the instance' do
-          assigns[:schedule].should respond_to(:available_days)
+          expect(assigns[:schedule]).to respond_to(:available_days)
         end
 
         it 'renders the edit template' do
-          response.should render_template('edit')
+          expect(response).to render_template('edit')
         end
 
         it 'adds a flash message' do
-          flash[:error].should be_present
+          expect(flash[:error]).to be_present
         end
       end
     end

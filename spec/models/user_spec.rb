@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-describe User do
+RSpec.describe User do
   describe '#name' do
     let(:user) { FactoryGirl.build(:user, first_name: 'Brandan', last_name: 'Lennox') }
     subject { user.name }
-    it { should include('Brandan') }
-    it { should include('Lennox') }
+    it { is_expected.to include('Brandan') }
+    it { is_expected.to include('Lennox') }
   end
 end

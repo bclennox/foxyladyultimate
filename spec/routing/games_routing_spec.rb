@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'routes for games' do
+RSpec.describe 'routes for games' do
   it 'routes /games/schedule' do
     expect(get('/games/schedule')).to route_to('games#schedule')
   end

@@ -1,33 +1,33 @@
 require 'spec_helper'
 
-describe PlayersController do
+RSpec.describe PlayersController do
   context 'before signing in' do
     before { sign_out session_user }
     subject { response }
 
     describe '#new' do
       before { get :new }
-      it { should redirect_to(new_user_session_path) }
+      it { is_expected.to redirect_to(new_user_session_path) }
     end
 
     describe '#create' do
       before { post :create }
-      it { should redirect_to(new_user_session_path) }
+      it { is_expected.to redirect_to(new_user_session_path) }
     end
 
     describe '#edit' do
       before { get :edit, id: 1 }
-      it { should redirect_to(new_user_session_path) }
+      it { is_expected.to redirect_to(new_user_session_path) }
     end
 
     describe '#update' do
       before { patch :update, id: 1 }
-      it { should redirect_to(new_user_session_path) }
+      it { is_expected.to redirect_to(new_user_session_path) }
     end
 
     describe '#destroy' do
       before { delete :destroy, id: 1 }
-      it { should redirect_to(new_user_session_path) }
+      it { is_expected.to redirect_to(new_user_session_path) }
     end
   end
 
@@ -44,11 +44,11 @@ describe PlayersController do
       end
 
       it 'decorates the players' do
-        assigns[:players].first.should respond_to(:attendance)
+        expect(assigns[:players].first).to respond_to(:attendance)
       end
 
       it 'ranks the players' do
-        assigns[:ranked_players].should have(3).items
+        expect(assigns[:ranked_players].size).to eq(3)
       end
     end
 
@@ -56,11 +56,11 @@ describe PlayersController do
       before { get :new }
 
       it 'assigns the instance' do
-        assigns[:player].should be_present
+        expect(assigns[:player]).to be_present
       end
 
       it 'renders the new template' do
-        response.should render_template('new')
+        expect(response).to render_template('new')
       end
     end
 
@@ -74,12 +74,12 @@ describe PlayersController do
 
         it 'redirects to the players path' do
           post :create, player: params
-          response.should redirect_to(players_path)
+          expect(response).to redirect_to(players_path)
         end
 
         it 'adds a flash message' do
           post :create, player: params
-          flash[:notice].should be_present
+          expect(flash[:notice]).to be_present
         end
       end
 
@@ -87,15 +87,15 @@ describe PlayersController do
         before { post :create, player: { foo: 'bar' } }
 
         it 'assigns the instance' do
-          assigns[:player].should be_present
+          expect(assigns[:player]).to be_present
         end
 
         it 'renders the new template' do
-          response.should render_template('new')
+          expect(response).to render_template('new')
         end
 
         it 'adds a flash message' do
-          flash[:error].should be_present
+          expect(flash[:error]).to be_present
         end
       end
     end
@@ -105,11 +105,11 @@ describe PlayersController do
       before { get :edit, id: player }
 
       it 'assigns the instance' do
-        assigns[:player].should be_present
+        expect(assigns[:player]).to be_present
       end
 
       it 'renders the edit template' do
-        response.should render_template('edit')
+        expect(response).to render_template('edit')
       end
     end
 
@@ -118,15 +118,15 @@ describe PlayersController do
 
       context 'with valid parameters' do
         let(:params) { FactoryGirl.attributes_for(:player).stringify_keys }
-        before { Player.any_instance.should_receive(:update_attributes).with(params).and_return(true) }
+        before { expect_any_instance_of(Player).to receive(:update_attributes).with(params).and_return(true) }
         before { patch :update, id: player, player: params }
 
         it 'redirects to the players path' do
-          response.should redirect_to(players_path)
+          expect(response).to redirect_to(players_path)
         end
 
         it 'adds a flash message' do
-          flash[:notice].should be_present
+          expect(flash[:notice]).to be_present
         end
       end
 
@@ -134,15 +134,15 @@ describe PlayersController do
         before { patch :update, id: player, player: { first_name: '' } }
 
         it 'assigns the instance' do
-          assigns[:player].should be_present
+          expect(assigns[:player]).to be_present
         end
 
         it 'renders the edit template' do
-          response.should render_template('edit')
+          expect(response).to render_template('edit')
         end
 
         it 'adds a flash message' do
-          flash[:error].should be_present
+          expect(flash[:error]).to be_present
         end
       end
     end
@@ -151,28 +151,28 @@ describe PlayersController do
       let(:player) { FactoryGirl.create(:player) }
 
       context 'when successful' do
-        before { Player.any_instance.should_receive(:destroy).and_return(true) }
+        before { expect_any_instance_of(Player).to receive(:destroy).and_return(true) }
         before { delete :destroy, id: player }
 
         it 'adds a flash message' do
-          flash[:notice].should be_present
+          expect(flash[:notice]).to be_present
         end
 
         it 'redirects to the players path' do
-          response.should redirect_to(players_path)
+          expect(response).to redirect_to(players_path)
         end
       end
 
       context 'when unsuccessful' do
-        before { Player.any_instance.should_receive(:destroy).and_return(false) }
+        before { expect_any_instance_of(Player).to receive(:destroy).and_return(false) }
         before { delete :destroy, id: player }
 
         it 'adds a flash message' do
-          flash[:alert].should_not be_nil
+          expect(flash[:alert]).not_to be_nil
         end
 
         it 'redirects to the players path' do
-          response.should redirect_to(players_path)
+          expect(response).to redirect_to(players_path)
         end
       end
     end

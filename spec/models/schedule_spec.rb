@@ -1,9 +1,13 @@
 require 'spec_helper'
 
-describe Schedule do
+RSpec.describe Schedule do
   context 'parsing the time' do
-    subject { FactoryGirl.build(:schedule, time: '2pm') }
-    its(:time) { should == '14:00:00' }
+    let(:schedule) { FactoryGirl.build(:schedule, time: '2pm') }
+
+    describe '#time' do
+      subject { schedule.time }
+      it { is_expected.to eq('14:00:00') }
+    end
   end
 
   context 'delegation' do
@@ -11,7 +15,7 @@ describe Schedule do
 
     context 'when the scheduler responds to the message' do
       it 'delegates the message' do
-        subject.next_occurrence.should be_present
+        expect(subject.next_occurrence).to be_present
       end
     end
 
@@ -30,8 +34,8 @@ describe Schedule do
 
     subject { schedule.to_s }
 
-    it { should include(day) }
-    it { should include(time) }
-    it { should include(location) }
+    it { is_expected.to include(day) }
+    it { is_expected.to include(time) }
+    it { is_expected.to include(location) }
   end
 end
