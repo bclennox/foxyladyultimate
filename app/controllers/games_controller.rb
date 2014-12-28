@@ -4,6 +4,8 @@ class GamesController < ApplicationController
   before_action :find_player_by_params_access_token!, only: :respond
   before_action :find_player_by_cookie_access_token, only: [:next, :show]
 
+  after_action :set_access_token, only: [:respond]
+
   def index
     @games = Game.all.map(&:decorate)
   end
@@ -39,8 +41,6 @@ class GamesController < ApplicationController
   def respond
     playing = params[:playing] == 'yes'
     notice = playing ? 'See you there!' : 'Maybe next time.'
-
-    cookies.permanent[:access_token] = @player.access_token
 
     @game.respond(@player, playing)
 
@@ -84,6 +84,10 @@ private
 
   def find_game
     @game = Game.find(params[:id]).decorate
+  end
+
+  def set_access_token
+    cookies.permanent[:access_token] = @player.access_token
   end
 
   def find_player_by_params_access_token!
