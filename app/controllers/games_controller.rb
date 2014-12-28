@@ -17,7 +17,8 @@ class GamesController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+  end
 
   def update
     if @game.update_attributes(game_params)
@@ -59,21 +60,27 @@ class GamesController < ApplicationController
   end
 
   def remind
-    @game.remind(current_user, params[:message])
+    notifier.send_reminder
     redirect_to @game, notice: 'Sent your message.'
   end
 
   def cancel
-    @game.cancel(current_user, params[:message])
+    @game.update(canceled: true)
+    notifier.send_cancellation
     redirect_to @game, notice: 'Canceled the game and sent your message.'
   end
 
   def reschedule
-    @game.reschedule(current_user, params[:message])
+    @game.update(canceled: false)
+    notifier.send_reschedule
     redirect_to @game, notice: 'Rescheduled the game and sent your message.'
   end
 
 private
+
+  def notifier
+    GameNotifier.new(game: @game.object, sender: current_user, body: params[:message])
+  end
 
   def find_game
     @game = Game.find(params[:id]).decorate

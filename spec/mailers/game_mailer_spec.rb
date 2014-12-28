@@ -6,7 +6,7 @@ RSpec.describe GameMailer do
 
   { reminder: '', cancellation: 'Canceled', reschedule: 'Rescheduled' }.each do |method, message_subject|
     describe "##{method}" do
-      let(:mailer) { GameMailer.send(method, game: game, player: player, sender: sender, body: body) }
+      let(:mailer) { GameMailer.send(method, game, player, sender, body) }
 
       describe '#subject' do
         subject { mailer.subject }

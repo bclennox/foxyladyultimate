@@ -1,4 +1,4 @@
-class GameMailer < ActionMailer::Base
+class GameMailer < ApplicationMailer
   layout 'game_mailer'
 
   def self.responses
@@ -14,11 +14,8 @@ class GameMailer < ActionMailer::Base
   end
 
   %w{reminder cancellation reschedule}.each do |message_type|
-    class_eval do
-      define_method(message_type) do |game: , player: , sender: , body: |
-        message = self.class.const_get("#{message_type.classify}Message").new(game, player, sender, body)
-        perform(message)
-      end
+    define_method(message_type) do |game, player, sender, body|
+      send_message self.class.const_get("#{message_type.classify}Message").new(game, player, sender, body)
     end
   end
 
@@ -52,7 +49,7 @@ private
     def subject() "Rescheduled: Ultimate Frisbee on #{game_date}" end
   end
 
-  def perform(message)
+  def send_message(message)
     to = Rails.env.development? ? 'brandan@localhost' : message.to
     from = message.from
     subject = message.subject

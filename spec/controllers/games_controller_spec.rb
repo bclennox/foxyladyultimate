@@ -214,7 +214,7 @@ RSpec.describe GamesController do
       let(:game) { FactoryGirl.create(:game) }
       let(:message) { 'message' }
 
-      before { expect_any_instance_of(Game).to receive(:remind).with(session_user, message) }
+      before { expect_any_instance_of(GameNotifier).to receive(:send_reminder) }
       before { get :remind, id: game, message: message }
 
       it 'redirects to the game' do
@@ -230,7 +230,7 @@ RSpec.describe GamesController do
       let(:game) { FactoryGirl.create(:game) }
       let(:message) { 'message' }
 
-      before { expect_any_instance_of(Game).to receive(:cancel).with(session_user, message) }
+      before { expect_any_instance_of(GameNotifier).to receive(:send_cancellation) }
       before { get :cancel, id: game, message: message }
 
       it 'redirects to the game' do
@@ -246,7 +246,7 @@ RSpec.describe GamesController do
       let(:game) { FactoryGirl.create(:game) }
       let(:message) { 'message' }
 
-      before { expect_any_instance_of(Game).to receive(:reschedule).with(session_user, message) }
+      before { expect_any_instance_of(GameNotifier).to receive(:send_reschedule) }
       before { get :reschedule, id: game, message: message }
 
       it 'redirects to the game' do

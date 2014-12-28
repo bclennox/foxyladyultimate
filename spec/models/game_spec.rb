@@ -79,26 +79,4 @@ RSpec.describe Game do
       it { is_expected.to be_default_location }
     end
   end
-
-  context 'notifications' do
-    let(:user) { FactoryGirl.build(:user) }
-    let(:message) { 'message' }
-    subject { FactoryGirl.build(:game) }
-    before { expect(subject).to receive(:notify).with(an_instance_of(String), user, message) }
-
-    describe '#remind' do
-      before { subject.remind(user, message) }
-      it { is_expected.to be_on }
-    end
-
-    describe '#cancel' do
-      before { subject.cancel(user, message) }
-      it { is_expected.to be_canceled }
-    end
-
-    describe '#reschedule' do
-      before { subject.reschedule(user, message) }
-      it { is_expected.to be_on }
-    end
-  end
 end

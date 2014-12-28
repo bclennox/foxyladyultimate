@@ -14,6 +14,8 @@ module Ultimate
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     config.time_zone = 'Eastern Time (US & Canada)'
 
+    config.active_job.queue_adapter = :queue_classic
+
     # This will be the default in the future, and may possibly be removed.
     config.i18n.enforce_available_locales = true
 
