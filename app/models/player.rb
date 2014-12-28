@@ -44,6 +44,6 @@ private
   end
 
   def flush_cache
-    self.class.all.each(&:touch)
+    Rails.cache.clear
   end
 end
