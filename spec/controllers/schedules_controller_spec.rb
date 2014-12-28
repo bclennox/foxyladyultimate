@@ -31,7 +31,7 @@ RSpec.describe SchedulesController do
 
       context 'with valid parameters' do
         let(:params) { FactoryGirl.attributes_for(:schedule).stringify_keys }
-        before { expect_any_instance_of(Schedule).to receive(:update_attributes).with(params).and_return(true) }
+        before { expect_any_instance_of(Schedule).to receive(:update).with(params).and_return(true) }
         before { patch :update, schedule: params }
 
         it 'redirects to the games path' do

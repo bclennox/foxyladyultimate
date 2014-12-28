@@ -105,7 +105,7 @@ RSpec.describe GamesController do
 
       context 'with valid parameters' do
         let(:params) { { 'location' => 'Elsewhere' } }
-        before { expect_any_instance_of(Game).to receive(:update_attributes).with(params).and_return(true) }
+        before { expect_any_instance_of(Game).to receive(:update).with(params).and_return(true) }
         before { patch :update, id: game, game: params }
 
         it 'redirects to the games path' do

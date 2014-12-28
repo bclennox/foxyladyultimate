@@ -32,7 +32,7 @@ class Player < ActiveRecord::Base
   end
 
   def destroy
-    update_attribute(:deleted_at, Time.zone.now)
+    update(deleted_at: Time.zone.now)
   end
 
 private

@@ -116,7 +116,7 @@ RSpec.describe PlayersController do
 
       context 'with valid parameters' do
         let(:params) { FactoryGirl.attributes_for(:player).stringify_keys }
-        before { expect_any_instance_of(Player).to receive(:update_attributes).with(params).and_return(true) }
+        before { expect_any_instance_of(Player).to receive(:update).with(params).and_return(true) }
         before { patch :update, id: player, player: params }
 
         it 'redirects to the players path' do

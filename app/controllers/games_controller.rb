@@ -21,7 +21,7 @@ class GamesController < ApplicationController
   end
 
   def update
-    if @game.update_attributes(game_params)
+    if @game.update(game_params)
       redirect_to games_path, notice: 'Game was successfully updated.'
     else
       render :edit

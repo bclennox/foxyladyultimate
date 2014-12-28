@@ -28,7 +28,7 @@ class PlayersController < ApplicationController
   def update
     @player = Player.find(params[:id])
 
-    if @player.update_attributes(player_params)
+    if @player.update(player_params)
       redirect_to players_url, notice: 'Player was successfully updated.'
     else
       flash.now[:error] = 'Failed to update player.'
