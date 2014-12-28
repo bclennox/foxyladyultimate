@@ -14,7 +14,7 @@ class GamesController < ApplicationController
     respond_to do |format|
       format.html
       format.ics do
-        send_data EventService.create_event(@game).to_ical, filename: 'ultimate.ics'
+        send_data Event.new(game: @game, view_context: view_context).to_ical, filename: 'ultimate.ics'
       end
     end
   end

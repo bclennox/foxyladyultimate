@@ -1,9 +1,16 @@
-module EventService
-  def self.create_event(game)
-    url = url(game)
-    sequence = sequence(game)
+class Event
+  include ActiveModel::Model
 
-    Icalendar::Calendar.new.tap do |calendar|
+  attr_accessor :game, :view_context
+
+  def to_ical
+    calendar.to_ical
+  end
+
+  private
+
+  def calendar
+    @calendar ||= Icalendar::Calendar.new.tap do |calendar|
       calendar.ip_method = game.canceled? ? 'CANCEL' : 'PUBLISH'
       calendar.event do |event|
         event.summary      = 'Ultimate Frisbee'
@@ -19,14 +26,11 @@ module EventService
     end
   end
 
-private
-
-  # surely a better way
-  def self.url(game)
-    "http://#{ActionMailer::Base.default_url_options[:host]}/games/#{game.id}"
+  def url
+    view_context.game_url(game)
   end
 
-  def self.sequence(game)
+  def sequence
     game.updated_at.to_i - game.created_at.to_i
   end
 end

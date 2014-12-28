@@ -78,7 +78,7 @@ RSpec.describe GamesController do
         let(:content) { 'ical content' }
 
         before { expect(event).to receive(:to_ical).and_return(content) }
-        before { expect(EventService).to receive(:create_event).with(game).and_return(event) }
+        before { expect(Event).to receive(:new).and_return(event) }
         before { get :show, id: game, format: 'ics' }
 
         it 'renders the game as an iCalendar event' do
