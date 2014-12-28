@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 RSpec.describe Player do
   describe '#name' do
     let(:player) { FactoryGirl.build(:player, first_name: 'Brandan', last_name: 'Lennox') }

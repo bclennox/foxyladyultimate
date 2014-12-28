@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 RSpec.feature 'Session and user management' do
   given(:username) { 'brandan' }
   given(:password) { 'nadnarb' }

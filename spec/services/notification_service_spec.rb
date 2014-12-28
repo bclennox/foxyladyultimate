@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 RSpec.describe NotificationService do
   context 'delegation' do
     context 'when GameMailer responds to the message' do

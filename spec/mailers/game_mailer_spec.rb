@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 RSpec.describe GameMailer do
   let(:game)   { FactoryGirl.create(:game) }
   let(:player) { FactoryGirl.create(:player) }

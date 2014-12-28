@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 RSpec.feature 'Home page' do
   it 'shows a heading' do
     visit root_url

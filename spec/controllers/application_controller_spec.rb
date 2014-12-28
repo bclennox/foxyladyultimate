@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 RSpec.describe ApplicationController do
   describe '#authorizer' do
     let(:user)       { FactoryGirl.build(:user) }

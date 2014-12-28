@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 RSpec.describe Game do
   describe '::seed' do
     let(:schedule) { FactoryGirl.build(:schedule) }

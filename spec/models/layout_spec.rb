@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 RSpec.describe Layout do
   describe '#full_page_title' do
     let(:application_name) { 'Webulatr' }

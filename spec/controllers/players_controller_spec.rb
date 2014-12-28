@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 RSpec.describe PlayersController do
   context 'before signing in' do
     before { sign_out session_user }

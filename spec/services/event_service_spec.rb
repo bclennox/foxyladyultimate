@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 RSpec.describe EventService do
   let(:game) { FactoryGirl.create(:game) }
   before { expect(game).to receive(:updated_at).and_return(game.created_at + 1.minute) }

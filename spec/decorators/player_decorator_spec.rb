@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 RSpec.describe PlayerDecorator do
   describe '#attendance' do
     let(:player)    { FactoryGirl.create(:player) }

@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 RSpec.describe ScheduleDecorator do
   describe '#available_days' do
     let(:schedule) { FactoryGirl.build(:schedule) }

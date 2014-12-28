@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 RSpec.describe Schedule do
   context 'parsing the time' do
     let(:schedule) { FactoryGirl.build(:schedule, time: '2pm') }

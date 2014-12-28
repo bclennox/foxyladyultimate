@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 RSpec.feature 'Player management' do
   background do
     admin = FactoryGirl.create(:user, username: 'brandan', password: 'nadnarb')
