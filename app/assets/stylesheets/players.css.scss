@@ -15,4 +15,8 @@ body.players {
       @include icon-column;
     }
   }
+
+  #player-chart {
+    margin-top: 25px;
+  }
 }

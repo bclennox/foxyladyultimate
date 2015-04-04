@@ -6,7 +6,10 @@ class PlayersController < ApplicationController
 
   def index
     @players = Player.active
-    @ranked_players = PlayerRanker.by_games_played.limit(10).to_a
+  end
+
+  def ranked
+    @players = PlayerRanker.by_games_played.limit(10)
   end
 
   def new

@@ -44,9 +44,19 @@ RSpec.describe PlayersController do
       it 'decorates the players' do
         expect(controller.players.first).to respond_to(:attendance)
       end
+    end
+
+    describe '#ranked' do
+      let(:players) { FactoryGirl.create_list(:player, 3) }
+      let(:game) { FactoryGirl.create(:game, starts_at: 1.week.ago) }
+
+      before do
+        players.each { |p| game.respond(p, true) }
+        get :ranked, format: 'json'
+      end
 
       it 'ranks the players' do
-        expect(assigns[:ranked_players].size).to eq(3)
+        expect(controller.players.size).to eq(3)
       end
     end
 

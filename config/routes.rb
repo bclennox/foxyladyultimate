@@ -5,7 +5,12 @@ Ultimate::Application.routes.draw do
     patch 'users' => 'devise/registrations#update', as: 'user_registration'
   end
 
-  resources :players, except: :show
+  resources :players, except: :show do
+    collection do
+      get :ranked
+    end
+  end
+
   resource :schedule, only: [:edit, :update]
 
   resources :games do
