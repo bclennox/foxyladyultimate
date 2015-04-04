@@ -3,7 +3,9 @@ class PlayerDecorator < Draper::Decorator
   include DateFormatter
 
   def attendance
-    if games.empty?
+    if source.retired?
+      'Retired'
+    elsif games.empty?
       'Never played'
     else
       "Played #{last_played}, #{h.pluralize(games.size, 'game')} total"
@@ -11,13 +13,29 @@ class PlayerDecorator < Draper::Decorator
   end
 
   def icon
-    h.content_tag(:i, nil, class: icon_class)
+    h.content_tag(:i, nil, class: "glyphicon #{icon_class}")
+  end
+
+  def css_class
+    if source.retired?
+      'retired'
+    elsif source.worthy?
+      'worthy'
+    else
+      'worthless'
+    end
   end
 
 private
 
   def icon_class
-    source.worthy? ? 'worthy glyphicon glyphicon-star' : 'worthless glyphicon glyphicon-star-empty'
+    if source.retired?
+      'glyphicon-heart-empty'
+    elsif source.worthy?
+      'glyphicon-star'
+    else
+      'glyphicon-star-empty'
+    end
   end
 
   def games

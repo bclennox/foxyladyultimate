@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141228163853) do
+ActiveRecord::Schema.define(version: 20150404030021) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,16 +29,17 @@ ActiveRecord::Schema.define(version: 20141228163853) do
     t.string   "last_name",    limit: 255
     t.string   "email",        limit: 255
     t.string   "phone",        limit: 255
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
     t.string   "access_token", limit: 255
     t.datetime "deleted_at"
+    t.boolean  "retired",                  default: false, null: false
   end
 
   create_table "queue_classic_jobs", id: :bigserial, force: :cascade do |t|
     t.text     "q_name",                       null: false
     t.text     "method",                       null: false
-    t.json     "args",                         null: false
+    t.text     "args",                         null: false
     t.datetime "locked_at"
     t.integer  "locked_by"
     t.datetime "created_at", default: "now()"

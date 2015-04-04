@@ -6,7 +6,7 @@ class Player < ActiveRecord::Base
 
   default_scope -> { order(first_name: :asc) }
   scope :active, -> { where(deleted_at: nil) }
-  scope :emailable, -> { active.where.not(email: nil) }
+  scope :emailable, -> { active.where.not(email: nil).where(retired: false) }
 
   has_many :responses
   has_many :games, through: :responses

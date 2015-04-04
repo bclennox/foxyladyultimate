@@ -1,4 +1,15 @@
 RSpec.describe Player do
+  describe '::emailable' do
+    before do
+      FactoryGirl.create_list(:player, 4)
+      FactoryGirl.create_list(:player, 3, :retired)
+    end
+
+    subject { Player.emailable.count }
+
+    it { is_expected.to eq(4) }
+  end
+
   describe '#name' do
     let(:player) { FactoryGirl.build(:player, first_name: 'Brandan', last_name: 'Lennox') }
     subject { player.name }

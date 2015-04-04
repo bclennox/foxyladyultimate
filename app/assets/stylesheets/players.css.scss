@@ -2,13 +2,17 @@
 
 body.players {
   table.players {
+    .worthless,
+    .retired {
+      .icon,
+      .attendance {
+        color: #aaa;
+      }
+    }
+
     th.icon,
     td.icon {
       @include icon-column;
-
-      .worthless {
-        color: #aaa;
-      }
     }
   }
 }
