@@ -1,34 +1,34 @@
-%h3= pluralize @game.confirmed_players.count, 'player'
+%h3= pluralize game.confirmed_players.count, 'player'
 
 .game-details
   %dl
     %dt When
-    %dd= @game.date
-    %dd.text-muted= @game.relative_date
+    %dd= game.date
+    %dd.text-muted= game.relative_date
 
-    - unless @game.default_location?
+    - unless game.default_location?
       %dt Where
-      %dd= @game.location
+      %dd= game.location
 
     %dt
-      - if @game.canceled?
+      - if game.canceled?
         Who Signed Up
-      - elsif @game.upcoming?
+      - elsif game.upcoming?
         Who’s In
       - else
         Who Played
     %dd
-      = @game.confirmed_player_names
+      = game.confirmed_player_names
 
-    %dt= @game.upcoming? ? "Who’s Out" : "Who Declined"
-    %dd= @game.declined_player_names
+    %dt= game.upcoming? ? "Who’s Out" : "Who Declined"
+    %dd= game.declined_player_names
 
-  - if @game.upcoming? && @game.on?
+  - if game.upcoming? && game.on?
     %p
-      = link_to game_path(@game, format: 'ics') do
+      = link_to game_path(game, format: 'ics') do
         = content_tag(:i, nil, class: 'glyphicon glyphicon-calendar')
         Add it to your calendar
 
-= render 'player_actions' if @game.upcoming? && @game.on? && @player.present?
+= render 'player_actions' if game.upcoming? && game.on? && player.present?
 = render 'admin_actions' if authorizer.admin?
 

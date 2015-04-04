@@ -42,7 +42,7 @@ RSpec.describe PlayersController do
       end
 
       it 'decorates the players' do
-        expect(assigns[:players].first).to respond_to(:attendance)
+        expect(controller.players.first).to respond_to(:attendance)
       end
 
       it 'ranks the players' do
@@ -54,7 +54,7 @@ RSpec.describe PlayersController do
       before { get :new }
 
       it 'assigns the instance' do
-        expect(assigns[:player]).to be_present
+        expect(controller.player).to be_present
       end
 
       it 'renders the new template' do
@@ -85,7 +85,7 @@ RSpec.describe PlayersController do
         before { post :create, player: { foo: 'bar' } }
 
         it 'assigns the instance' do
-          expect(assigns[:player]).to be_present
+          expect(controller.player).to be_present
         end
 
         it 'renders the new template' do
@@ -103,7 +103,7 @@ RSpec.describe PlayersController do
       before { get :edit, id: player }
 
       it 'assigns the instance' do
-        expect(assigns[:player]).to be_present
+        expect(controller.player).to be_present
       end
 
       it 'renders the edit template' do
@@ -132,7 +132,7 @@ RSpec.describe PlayersController do
         before { patch :update, id: player, player: { first_name: '' } }
 
         it 'assigns the instance' do
-          expect(assigns[:player]).to be_present
+          expect(controller.player).to be_present
         end
 
         it 'renders the edit template' do

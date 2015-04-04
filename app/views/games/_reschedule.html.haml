@@ -1,7 +1,7 @@
-= render layout: 'layouts/modal', locals: { id: 'reschedule-game-modal', title: 'Reschedule this Game', url: reschedule_game_path(@game), button: 'Reschedule Game' } do
+= render layout: 'layouts/modal', locals: { id: 'reschedule-game-modal', title: 'Reschedule this Game', url: reschedule_game_path(game), button: 'Reschedule Game' } do
   %p
     For
-    %strong= @game.date
+    %strong= game.date
 
   .form-group
     = label_tag :message, 'Message', class: 'control-label'

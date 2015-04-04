@@ -1,7 +1,7 @@
-- if authorizer.admin? && @game.try(:upcoming?)
+- if authorizer.admin? && game.try(:upcoming?)
   .subnav
     %ul.nav.nav-pills
-      - if @game.canceled?
+      - if game.canceled?
         %li= link_to 'Reschedule this Game', '#', id: 'reschedule-game-link', class: 'action-link'
       - else
         %li= link_to 'Send a Reminder', '#', id: 'send-reminder-link', class: 'action-link'

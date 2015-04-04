@@ -3,7 +3,7 @@ class PlayerDecorator < Draper::Decorator
   include DateFormatter
 
   def attendance
-    if source.retired?
+    if object.retired?
       'Retired'
     elsif games.empty?
       'Never played'
@@ -17,9 +17,9 @@ class PlayerDecorator < Draper::Decorator
   end
 
   def css_class
-    if source.retired?
+    if object.retired?
       'retired'
-    elsif source.worthy?
+    elsif object.worthy?
       'worthy'
     else
       'worthless'
@@ -29,9 +29,9 @@ class PlayerDecorator < Draper::Decorator
 private
 
   def icon_class
-    if source.retired?
+    if object.retired?
       'glyphicon-heart-empty'
-    elsif source.worthy?
+    elsif object.worthy?
       'glyphicon-star'
     else
       'glyphicon-star-empty'
@@ -39,7 +39,7 @@ private
   end
 
   def games
-    @games ||= source.played_games
+    @games ||= object.played_games
   end
 
   def last_played

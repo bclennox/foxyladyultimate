@@ -7,26 +7,26 @@ class GameDecorator < Draper::Decorator
   end
 
   def date
-    source.starts_at.strftime(self.class.date_format)
+    object.starts_at.strftime(self.class.date_format)
   end
 
   def relative_date
-    time_ago_in_words_with_modifier(source.starts_at)
+    time_ago_in_words_with_modifier(object.starts_at)
   end
 
   def confirmed_player_names
-    player_names(source.confirmed_players)
+    player_names(object.confirmed_players)
   end
 
   def declined_player_names
-    player_names(source.declined_players)
+    player_names(object.declined_players)
   end
 
   def player_names(players)
     names = players.map(&:short_name)
 
     case names.size
-      when 0    then source.upcoming? ? 'No one yet' : 'No one'
+      when 0    then object.upcoming? ? 'No one yet' : 'No one'
       when 1..2 then names.join(' and ')
       else           names[0..-2].join(', ') + ', and ' + names.last
     end

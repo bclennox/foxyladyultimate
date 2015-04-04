@@ -22,7 +22,7 @@ RSpec.describe SchedulesController do
       before { get :edit }
 
       it 'decorates the instance' do
-        expect(assigns[:schedule]).to respond_to(:available_days)
+        expect(controller.schedule).to respond_to(:available_days)
       end
     end
 
@@ -47,7 +47,7 @@ RSpec.describe SchedulesController do
         before { patch :update, schedule: { 'time' => 'abc' } }
 
         it 'decorates the instance' do
-          expect(assigns[:schedule]).to respond_to(:available_days)
+          expect(controller.schedule).to respond_to(:available_days)
         end
 
         it 'renders the edit template' do

@@ -42,7 +42,7 @@ RSpec.describe GamesController do
       before { get :index }
 
       it 'decorates the instances' do
-        expect(assigns[:games].first).to respond_to(:player_names)
+        expect(controller.games.first).to respond_to(:player_names)
       end
     end
 
@@ -58,7 +58,7 @@ RSpec.describe GamesController do
         context 'without a saved access token' do
           it 'does not assign a player' do
             get :show, id: game
-            expect(assigns[:player]).to be_nil
+            expect(controller.player).to be_nil
           end
         end
 
@@ -68,7 +68,7 @@ RSpec.describe GamesController do
 
           it 'assigns a player' do
             get :show, id: game
-            expect(assigns[:player]).to eq(player)
+            expect(controller.player).to eq(player)
           end
         end
       end
@@ -92,7 +92,7 @@ RSpec.describe GamesController do
       before { get :edit, id: game }
 
       it 'decorates the instance' do
-        expect(assigns[:game]).to respond_to(:player_names)
+        expect(controller.game).to respond_to(:player_names)
       end
 
       it 'renders the edit template' do
@@ -125,7 +125,7 @@ RSpec.describe GamesController do
       before { get :next }
 
       it 'assigns the last upcoming game' do
-        expect(assigns[:game].id).to eq(upcoming_game.id)
+        expect(controller.game.id).to eq(upcoming_game.id)
       end
     end
 

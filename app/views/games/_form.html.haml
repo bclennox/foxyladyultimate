@@ -1,4 +1,4 @@
-= form_for @game, html: { class: 'form-horizontal' } do |f|
+= form_for game, html: { class: 'form-horizontal' } do |f|
   .form-group
     = f.label :location, class: 'col-md-2 control-label'
     .col-md-4
@@ -11,4 +11,4 @@
   .form-group
     .col-md-4.col-md-offset-2
       = f.submit nil, class: 'btn btn-primary'
-      = link_to 'Go Back', (@game.new_record? ? games_path : @game), class: 'btn btn-default'
+      = link_to 'Go Back', (game.new_record? ? games_path : game), class: 'btn btn-default'

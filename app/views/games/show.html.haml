@@ -1,12 +1,12 @@
-- layout.page_title = "Game ##{@game.id}"
+- layout.page_title = "Game ##{game.id}"
 
 .page-header
   %h1
-    = "Game ##{@game.id}"
-    = '(Canceled)' if @game.canceled?
+    = "Game ##{game.id}"
+    = '(Canceled)' if game.canceled?
   = render 'actions'
 
-= render @game
+= render game
 
 = render 'reminder'
 = render 'cancellation'

@@ -4,11 +4,11 @@
   %h1 Next Game
   = render 'actions'
 
-- if @game
-  - if @game.canceled?
+- if game
+  - if game.canceled?
     %p.lead It’s canceled. Maybe next week!
   - else
-    = render @game
+    = render game
 
   = render 'reminder'
   = render 'cancellation'

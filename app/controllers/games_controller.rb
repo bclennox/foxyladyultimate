@@ -6,8 +6,10 @@ class GamesController < ApplicationController
 
   after_action :set_access_token, only: [:respond]
 
+  decorates_assigned :game, :games, :player
+
   def index
-    @games = Game.all.map(&:decorate)
+    @games = Game.all
   end
 
   def show
@@ -31,7 +33,7 @@ class GamesController < ApplicationController
   end
 
   def next
-    @game = Game.upcoming.last.try(:decorate)
+    @game = Game.upcoming.last
   end
 
   def schedule
@@ -79,11 +81,11 @@ class GamesController < ApplicationController
 private
 
   def notifier
-    GameNotifier.new(game: @game.object, sender: current_user, body: params[:message])
+    GameNotifier.new(game: @game, sender: current_user, body: params[:message])
   end
 
   def find_game
-    @game = Game.find(params[:id]).decorate
+    @game = Game.find(params[:id])
   end
 
   def set_access_token
