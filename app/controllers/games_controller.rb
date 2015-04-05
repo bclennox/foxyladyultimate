@@ -9,7 +9,7 @@ class GamesController < ApplicationController
   decorates_assigned :game, :games, :player
 
   def index
-    @games = Game.all
+    @games = Game.page(params[:page]).per(25)
   end
 
   def show
