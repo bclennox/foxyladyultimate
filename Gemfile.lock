@@ -272,3 +272,6 @@ DEPENDENCIES
   turbolinks
   uglifier
   unicorn
+
+BUNDLED WITH
+   1.11.2
