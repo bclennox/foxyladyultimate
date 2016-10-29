@@ -30,9 +30,9 @@ RSpec.describe SchedulesController do
       before { FactoryGirl.create(:schedule) }
 
       context 'with valid parameters' do
-        let(:params) { FactoryGirl.attributes_for(:schedule).stringify_keys }
-        before { expect_any_instance_of(Schedule).to receive(:update).with(params).and_return(true) }
-        before { patch :update, schedule: params }
+        let(:schedule_params) { FactoryGirl.attributes_for(:schedule).stringify_keys }
+        before { expect_any_instance_of(Schedule).to receive(:update).and_return(true) }
+        before { patch :update, params: { schedule: schedule_params } }
 
         it 'redirects to the games path' do
           expect(response).to redirect_to(games_path)
@@ -44,14 +44,14 @@ RSpec.describe SchedulesController do
       end
 
       context 'with invalid parameters' do
-        before { patch :update, schedule: { 'time' => 'abc' } }
+        before { patch :update, params: { schedule: { 'time' => 'abc' } } }
 
         it 'decorates the instance' do
           expect(controller.schedule).to respond_to(:available_days)
         end
 
         it 'renders the edit template' do
-          expect(response).to render_template('edit')
+          expect(response).to be_success
         end
 
         it 'adds a flash message' do
