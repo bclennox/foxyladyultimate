@@ -50,14 +50,7 @@ Ultimate::Application.configure do
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
 
   # Use a different cache store in production
-  config.cache_store = :dalli_store
-
-  client = Dalli::Client.new
-  config.action_dispatch.rack_cache = {
-    metastore: client,
-    entitystore: client,
-    allow_reload: false
-  }
+  config.cache_store = :memory_store
 
   config.static_cache_control = 'public, max-age=2592000'
 
