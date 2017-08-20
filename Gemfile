@@ -23,6 +23,11 @@ gem 'uglifier'
 
 group :development do
   gem 'awesome_print'
+  gem 'capistrano'
+  gem 'capistrano-bundler'
+  gem 'capistrano-passenger'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
   gem 'spring'
   gem 'spring-commands-rspec'
 end
