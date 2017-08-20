@@ -1,26 +1,16 @@
-development:
+default: &default
   adapter: postgresql
   encoding: unicode
-  database: ultimate_development
-  username: ultimate
-  password:
   pool: 5
-  min_messages: WARNING
+
+development:
+  <<: *default
+  database: foxyladyultimate_development
 
 test:
-  adapter: postgresql
-  encoding: unicode
-  database: ultimate_test
-  username: ultimate
-  password:
-  pool: 5
-  min_messages: WARNING
+  <<: *default
+  database: foxyladyultimate_test
 
 production:
-  adapter: postgresql
-  encoding: unicode
-  database: ultimate
-  username: ultimate
-  password: "QfkF@46TtXL6aygB;=rWg?8x"
-  pool: 5
-  min_messages: WARNING
+  <<: *default
+  url: <%= ENV['DATABASE_URL'] %>
