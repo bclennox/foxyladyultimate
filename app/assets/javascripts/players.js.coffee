@@ -1,4 +1,4 @@
-$(document).on 'page:change', ->
+$(document).on 'turbolinks:load', ->
   url = $('#player-chart').data('url')
 
   if url?
