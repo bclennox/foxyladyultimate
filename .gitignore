@@ -9,6 +9,7 @@
 /vendor/bundle
 
 # Ignore sensitive environment variables
+/.envrc
 /.env
 /.powenv
 
