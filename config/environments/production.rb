@@ -50,14 +50,7 @@ Ultimate::Application.configure do
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
 
   # Use a different cache store in production
-  config.cache_store = :dalli_store
-
-  client = Dalli::Client.new
-  config.action_dispatch.rack_cache = {
-    metastore: client,
-    entitystore: client,
-    allow_reload: false
-  }
+  config.cache_store = :memory_store
 
   config.static_cache_control = 'public, max-age=2592000'
 
@@ -73,12 +66,11 @@ Ultimate::Application.configure do
   config.action_mailer.default_url_options = { host: 'www.foxyladyultimate.com' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :address        => 'smtp.sendgrid.net',
-    :port           => '587',
-    :authentication => :plain,
-    :user_name      => ENV['SENDGRID_USERNAME'],
-    :password       => ENV['SENDGRID_PASSWORD'],
-    :domain         => 'heroku.com'
+    address:        ENV['SMTP_HOST'],
+    port:           ENV['SMTP_PORT'],
+    user_name:      ENV['SMTP_USERNAME'],
+    password:       ENV['SMTP_PASSWORD'],
+    authentication: ENV['SMTP_AUTH']
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to

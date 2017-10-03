@@ -6,8 +6,10 @@
 
 # Ignore bundler config
 /.bundle
+/vendor/bundle
 
 # Ignore sensitive environment variables
+/.envrc
 /.env
 /.powenv
 

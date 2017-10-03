@@ -19,7 +19,7 @@ class GameNotifier
 
   def notify(type)
     Player.emailable.each do |player|
-      GameMailer.send(type, game, player, sender, body).deliver_later(queue: 'default')
+      GameMailer.send(type, game, player, sender, body).deliver_later
     end
   end
 end
