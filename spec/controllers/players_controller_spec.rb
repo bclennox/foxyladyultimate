@@ -14,17 +14,17 @@ RSpec.describe PlayersController do
     end
 
     describe '#edit' do
-      before { get :edit, id: 1 }
+      before { get :edit, params: { id: 1 } }
       it { is_expected.to redirect_to(new_user_session_path) }
     end
 
     describe '#update' do
-      before { patch :update, id: 1 }
+      before { patch :update, params: { id: 1 } }
       it { is_expected.to redirect_to(new_user_session_path) }
     end
 
     describe '#destroy' do
-      before { delete :destroy, id: 1 }
+      before { delete :destroy, params: { id: 1 } }
       it { is_expected.to redirect_to(new_user_session_path) }
     end
   end
@@ -68,38 +68,38 @@ RSpec.describe PlayersController do
       end
 
       it 'renders the new template' do
-        expect(response).to render_template('new')
+        expect(response).to be_success
       end
     end
 
     describe '#create' do
       context 'with valid parameters' do
-        let(:params) { FactoryGirl.attributes_for(:player).stringify_keys }
+        let(:player_params) { FactoryGirl.attributes_for(:player).stringify_keys }
 
         it 'creates the player' do
-          expect { post :create, player: params }.to change{Player.count}.by(1)
+          expect { post :create, params: { player: player_params } }.to change{Player.count}.by(1)
         end
 
         it 'redirects to the players path' do
-          post :create, player: params
+          post :create, params: { player: player_params }
           expect(response).to redirect_to(players_path)
         end
 
         it 'adds a flash message' do
-          post :create, player: params
+          post :create, params: { player: player_params }
           expect(flash[:notice]).to be_present
         end
       end
 
       context 'with invalid parameters' do
-        before { post :create, player: { foo: 'bar' } }
+        before { post :create, params: { player: { foo: 'bar' } } }
 
         it 'assigns the instance' do
           expect(controller.player).to be_present
         end
 
         it 'renders the new template' do
-          expect(response).to render_template('new')
+          expect(response).to be_success
         end
 
         it 'adds a flash message' do
@@ -110,14 +110,14 @@ RSpec.describe PlayersController do
 
     describe '#edit' do
       let(:player) { FactoryGirl.create(:player) }
-      before { get :edit, id: player }
+      before { get :edit, params: { id: player } }
 
       it 'assigns the instance' do
         expect(controller.player).to be_present
       end
 
       it 'renders the edit template' do
-        expect(response).to render_template('edit')
+        expect(response).to be_success
       end
     end
 
@@ -125,9 +125,9 @@ RSpec.describe PlayersController do
       let(:player) { FactoryGirl.create(:player) }
 
       context 'with valid parameters' do
-        let(:params) { FactoryGirl.attributes_for(:player).stringify_keys }
-        before { expect_any_instance_of(Player).to receive(:update).with(params).and_return(true) }
-        before { patch :update, id: player, player: params }
+        let(:player_params) { FactoryGirl.attributes_for(:player).stringify_keys }
+        before { expect_any_instance_of(Player).to receive(:update).and_return(true) }
+        before { patch :update, params: { id: player, player: player_params } }
 
         it 'redirects to the players path' do
           expect(response).to redirect_to(players_path)
@@ -139,14 +139,14 @@ RSpec.describe PlayersController do
       end
 
       context 'with invalid parameters' do
-        before { patch :update, id: player, player: { first_name: '' } }
+        before { patch :update, params: { id: player, player: { first_name: '' } } }
 
         it 'assigns the instance' do
           expect(controller.player).to be_present
         end
 
         it 'renders the edit template' do
-          expect(response).to render_template('edit')
+          expect(response).to be_success
         end
 
         it 'adds a flash message' do
@@ -160,7 +160,7 @@ RSpec.describe PlayersController do
 
       context 'when successful' do
         before { expect_any_instance_of(Player).to receive(:destroy).and_return(true) }
-        before { delete :destroy, id: player }
+        before { delete :destroy, params: { id: player } }
 
         it 'adds a flash message' do
           expect(flash[:notice]).to be_present
@@ -173,7 +173,7 @@ RSpec.describe PlayersController do
 
       context 'when unsuccessful' do
         before { expect_any_instance_of(Player).to receive(:destroy).and_return(false) }
-        before { delete :destroy, id: player }
+        before { delete :destroy, params: { id: player } }
 
         it 'adds a flash message' do
           expect(flash[:alert]).not_to be_nil

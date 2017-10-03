@@ -1,4 +1,4 @@
-Ultimate::Application.routes.draw do
+Rails.application.routes.draw do
   devise_for :users, skip: :registrations
   devise_scope :user do
     get 'users/edit' => 'devise/registrations#edit', as: 'edit_user_registration'

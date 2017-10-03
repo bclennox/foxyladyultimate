@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -37,15 +36,14 @@ ActiveRecord::Schema.define(version: 20150404030021) do
   end
 
   create_table "queue_classic_jobs", id: :bigserial, force: :cascade do |t|
-    t.text     "q_name",                       null: false
-    t.text     "method",                       null: false
-    t.text     "args",                         null: false
+    t.text     "q_name",                              null: false
+    t.text     "method",                              null: false
+    t.text     "args",                                null: false
     t.datetime "locked_at"
     t.integer  "locked_by"
-    t.datetime "created_at", default: "now()"
+    t.datetime "created_at", default: -> { "now()" }
+    t.index ["q_name", "id"], name: "idx_qc_on_name_only_unlocked", where: "(locked_at IS NULL)", using: :btree
   end
-
-  add_index "queue_classic_jobs", ["q_name", "id"], name: "idx_qc_on_name_only_unlocked", where: "(locked_at IS NULL)", using: :btree
 
   create_table "responses", force: :cascade do |t|
     t.integer  "player_id"

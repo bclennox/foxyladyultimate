@@ -4,12 +4,12 @@ RSpec.describe GamesController do
     subject { response }
 
     describe '#edit' do
-      before { get :edit, id: 1 }
+      before { get :edit, params: { id: 1 } }
       it { is_expected.to redirect_to(new_user_session_path) }
     end
 
     describe '#update' do
-      before { patch :update, id: 1 }
+      before { patch :update, params: { id: 1 } }
       it { is_expected.to redirect_to(new_user_session_path) }
     end
 
@@ -19,17 +19,17 @@ RSpec.describe GamesController do
     end
 
     describe '#remind' do
-      before { get :remind, id: 1 }
+      before { get :remind, params: { id: 1 } }
       it { is_expected.to redirect_to(new_user_session_path) }
     end
 
     describe '#cancel' do
-      before { get :cancel, id: 1 }
+      before { get :cancel, params: { id: 1 } }
       it { is_expected.to redirect_to(new_user_session_path) }
     end
 
     describe '#reschedule' do
-      before { get :reschedule, id: 1 }
+      before { get :reschedule, params: { id: 1 } }
       it { is_expected.to redirect_to(new_user_session_path) }
     end
   end
@@ -51,13 +51,13 @@ RSpec.describe GamesController do
 
       context 'format.html' do
         it 'renders the show template' do
-          get :show, id: game
-          expect(response).to render_template('show')
+          get :show, params: { id: game }
+          expect(response).to be_success
         end
 
         context 'without a saved access token' do
           it 'does not assign a player' do
-            get :show, id: game
+            get :show, params: { id: game }
             expect(controller.player).to be_nil
           end
         end
@@ -67,7 +67,7 @@ RSpec.describe GamesController do
           before { cookies[:access_token] = player.access_token }
 
           it 'assigns a player' do
-            get :show, id: game
+            get :show, params: { id: game }
             expect(controller.player).to eq(player)
           end
         end
@@ -79,7 +79,7 @@ RSpec.describe GamesController do
 
         before { expect(event).to receive(:to_ical).and_return(content) }
         before { expect(Event).to receive(:new).and_return(event) }
-        before { get :show, id: game, format: 'ics' }
+        before { get :show, params: { id: game, format: 'ics' } }
 
         it 'renders the game as an iCalendar event' do
           expect(response.body).to eq(content)
@@ -89,14 +89,14 @@ RSpec.describe GamesController do
 
     describe '#edit' do
       let(:game) { FactoryGirl.create(:game) }
-      before { get :edit, id: game }
+      before { get :edit, params: { id: game } }
 
       it 'decorates the instance' do
         expect(controller.game).to respond_to(:player_names)
       end
 
       it 'renders the edit template' do
-        expect(response).to render_template('edit')
+        expect(response).to be_success
       end
     end
 
@@ -105,8 +105,8 @@ RSpec.describe GamesController do
 
       context 'with valid parameters' do
         let(:params) { { 'location' => 'Elsewhere' } }
-        before { expect_any_instance_of(Game).to receive(:update).with(params).and_return(true) }
-        before { patch :update, id: game, game: params }
+        before { expect_any_instance_of(Game).to receive(:update).and_return(true) }
+        before { patch :update, params: { id: game, game: params } }
 
         it 'redirects to the games path' do
           expect(response).to redirect_to(games_path)
@@ -148,7 +148,7 @@ RSpec.describe GamesController do
       let(:player) { FactoryGirl.create(:player) }
       let(:params) { { id: game, access_token: player.access_token } }
 
-      before { get :respond, params }
+      before { get :respond, params: params }
 
       it 'sets the cookie' do
         expect(cookies[:access_token]).to eq(player.access_token)
@@ -183,7 +183,7 @@ RSpec.describe GamesController do
       let(:game) { FactoryGirl.create(:game) }
       let(:player) { FactoryGirl.create(:player) }
 
-      before { post :override, params }
+      before { post :override, params: params }
 
       context 'when responding "yes"' do
         let(:params) { { id: game, player_id: player, played: 'yes' } }
@@ -215,7 +215,7 @@ RSpec.describe GamesController do
       let(:message) { 'message' }
 
       before { expect_any_instance_of(GameNotifier).to receive(:send_reminder) }
-      before { get :remind, id: game, message: message }
+      before { get :remind, params: { id: game, message: message } }
 
       it 'redirects to the game' do
         expect(response).to redirect_to(game_path(game))
@@ -231,7 +231,7 @@ RSpec.describe GamesController do
       let(:message) { 'message' }
 
       before { expect_any_instance_of(GameNotifier).to receive(:send_cancellation) }
-      before { get :cancel, id: game, message: message }
+      before { get :cancel, params: { id: game, message: message } }
 
       it 'redirects to the game' do
         expect(response).to redirect_to(game_path(game))
@@ -247,7 +247,7 @@ RSpec.describe GamesController do
       let(:message) { 'message' }
 
       before { expect_any_instance_of(GameNotifier).to receive(:send_reschedule) }
-      before { get :reschedule, id: game, message: message }
+      before { get :reschedule, params: { id: game, message: message } }
 
       it 'redirects to the game' do
         expect(response).to redirect_to(game_path(game))
