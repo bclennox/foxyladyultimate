@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 ruby '2.4.1'
-gem 'rails', '5.0.6'
+gem 'rails', '5.1.4'
 
 gem 'coffee-rails'
 gem 'devise'
@@ -28,6 +28,7 @@ group :development do
   gem 'capistrano-passenger'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
+  gem 'listen'
   gem 'spring'
   gem 'spring-commands-rspec'
 end

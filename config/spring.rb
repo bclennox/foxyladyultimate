@@ -1,5 +1,4 @@
 %w(
-  .ruby-gemset
   .ruby-version
   .rbenv-vars
   tmp/restart.txt
