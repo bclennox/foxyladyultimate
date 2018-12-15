@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   devise :database_authenticatable, :recoverable, :timeoutable
 
   validates :password, confirmation: true

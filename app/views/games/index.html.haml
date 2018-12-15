@@ -8,7 +8,7 @@
         - if Game.upcoming.empty?
           %li= link_to "Schedule #{Schedule.instance.day}’s Game", schedule_games_path
         %li= link_to 'Change the Schedule', edit_schedule_path
-
+        %li= link_to 'Statistics', statistics_games_path
 
 %p.lead= Schedule.instance
 
@@ -26,3 +26,5 @@
         %td.name= link_to(game.canceled? ? "#{game.date} (canceled)" : game.date, game)
         %td.location= game.location
         %td.players= game.canceled? ? '—' : pluralize(game.confirmed_players.count, 'player')
+
+= paginate @games

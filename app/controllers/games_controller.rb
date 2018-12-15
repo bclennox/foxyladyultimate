@@ -78,6 +78,13 @@ class GamesController < ApplicationController
     redirect_to @game, notice: 'Rescheduled the game and sent your message.'
   end
 
+  def statistics
+  end
+
+  def cancellations
+    @cancellations = Cancellation.order(:date)
+  end
+
 private
 
   def notifier

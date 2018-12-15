@@ -15,8 +15,10 @@ Rails.application.routes.draw do
 
   resources :games do
     collection do
+      get :cancellations
       get :next
       get :schedule
+      get :statistics
     end
 
     member do

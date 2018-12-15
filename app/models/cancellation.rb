@@ -1,0 +1,2 @@
+class Cancellation < ApplicationRecord
+end

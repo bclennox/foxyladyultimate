@@ -8,6 +8,8 @@
 /.bundle
 /vendor/bundle
 
+/node_modules
+
 # Ignore sensitive environment variables
 /.envrc
 /.env
