@@ -59,7 +59,7 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "foxy_lady_ultimate_#{Rails.env}"
   config.action_mailer.perform_caching = false
-  config.action_mailer.default_url_options = { host: 'www.foxyladyultimate.com' }
+  config.action_mailer.default_url_options = { host: 'foxyladyultimate.com' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address:        ENV['SMTP_HOST'],
