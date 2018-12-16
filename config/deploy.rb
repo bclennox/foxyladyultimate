@@ -1,4 +1,4 @@
-lock "3.9.0"
+lock "3.11.0"
 
 set :application, 'foxyladyultimate.com'
 set :repo_url, 'github-foxyladyultimate:bclennox/foxyladyultimate'
