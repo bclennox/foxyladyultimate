@@ -16,6 +16,7 @@ module FoxyLadyUltimate
     # -- all .rb files in that directory are automatically loaded.
 
     config.time_zone = 'Eastern Time (US & Canada)'
-    config.active_job.queue_adapter = :queue_classic
+    config.active_record.schema_format = :sql
+    config.active_job.queue_adapter = :que
   end
 end
