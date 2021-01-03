@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.4.1'
+ruby '2.7.1'
 gem 'rails', '~> 5.1.4'
 
 gem 'coffee-rails'
@@ -14,7 +14,6 @@ gem 'jquery-rails'
 gem 'kaminari'
 gem 'morrisjs-rails'
 gem 'pg'
-gem 'queue_classic'
 gem 'rack-cache'
 gem 'raphael-rails'
 gem 'sass-rails'
