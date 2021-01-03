@@ -1,8 +1,9 @@
 source 'https://rubygems.org'
 
 ruby '2.7.1'
-gem 'rails', '~> 5.1.4'
+gem 'rails', '~> 5.2.0'
 
+gem 'bootsnap', require: false
 gem 'coffee-rails'
 gem 'devise'
 gem 'draper'
