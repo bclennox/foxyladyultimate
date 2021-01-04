@@ -1,6 +1,6 @@
 RSpec.feature 'Player management' do
   background do
-    admin = FactoryGirl.create(:user, username: 'brandan', password: 'nadnarb')
+    admin = create(:user, username: 'brandan', password: 'nadnarb')
 
     visit new_user_session_path
 
@@ -41,7 +41,7 @@ RSpec.feature 'Player management' do
     given(:new_first_name) { 'Kevin' }
     given(:new_last_name)  { 'Parker' }
 
-    given!(:player) { FactoryGirl.create(:player, first_name: old_first_name, last_name: old_last_name) }
+    given!(:player) { create(:player, first_name: old_first_name, last_name: old_last_name) }
 
     background do
       click_link 'Players'
@@ -58,7 +58,7 @@ RSpec.feature 'Player management' do
   end
 
   context 'deleting a player' do
-    given!(:player) { FactoryGirl.create(:player) }
+    given!(:player) { create(:player) }
 
     background do
       click_link 'Players'

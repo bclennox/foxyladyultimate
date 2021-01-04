@@ -1,7 +1,7 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :game do
-    location 'The Park'
+    location { 'The Park' }
     starts_at { Time.now }
-    canceled false
+    canceled { false }
   end
 end

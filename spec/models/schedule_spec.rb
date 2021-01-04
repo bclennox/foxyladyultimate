@@ -1,6 +1,6 @@
 RSpec.describe Schedule do
   context 'parsing the time' do
-    let(:schedule) { FactoryGirl.build(:schedule, time: '2pm') }
+    let(:schedule) { build(:schedule, time: '2pm') }
 
     describe '#time' do
       subject { schedule.time }
@@ -9,7 +9,7 @@ RSpec.describe Schedule do
   end
 
   context 'delegation' do
-    subject { FactoryGirl.create(:schedule) }
+    subject { create(:schedule) }
 
     context 'when the scheduler responds to the message' do
       it 'delegates the message' do
@@ -28,7 +28,7 @@ RSpec.describe Schedule do
     let(:day) { 'Monday' }
     let(:time) { '6:30pm' }
     let(:location) { 'The Park' }
-    let(:schedule) { FactoryGirl.create(:schedule, day: day, time: time, location: location) }
+    let(:schedule) { create(:schedule, day: day, time: time, location: location) }
 
     subject { schedule.to_s }
 

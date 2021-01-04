@@ -33,8 +33,8 @@ RSpec.describe PlayersController do
     before { sign_in session_user }
 
     describe '#index' do
-      let(:players) { FactoryGirl.create_list(:player, 3) }
-      let(:game) { FactoryGirl.create(:game, starts_at: 1.week.ago) }
+      let(:players) { create_list(:player, 3) }
+      let(:game) { create(:game, starts_at: 1.week.ago) }
 
       before do
         players.each { |p| game.respond(p, true) }
@@ -47,8 +47,8 @@ RSpec.describe PlayersController do
     end
 
     describe '#ranked' do
-      let(:players) { FactoryGirl.create_list(:player, 3) }
-      let(:game) { FactoryGirl.create(:game, starts_at: 1.week.ago) }
+      let(:players) { create_list(:player, 3) }
+      let(:game) { create(:game, starts_at: 1.week.ago) }
 
       before do
         players.each { |p| game.respond(p, true) }
@@ -68,13 +68,13 @@ RSpec.describe PlayersController do
       end
 
       it 'renders the new template' do
-        expect(response).to be_success
+        expect(response).to have_http_status(200)
       end
     end
 
     describe '#create' do
       context 'with valid parameters' do
-        let(:player_params) { FactoryGirl.attributes_for(:player).stringify_keys }
+        let(:player_params) { attributes_for(:player).stringify_keys }
 
         it 'creates the player' do
           expect { post :create, params: { player: player_params } }.to change{Player.count}.by(1)
@@ -99,7 +99,7 @@ RSpec.describe PlayersController do
         end
 
         it 'renders the new template' do
-          expect(response).to be_success
+          expect(response).to have_http_status(200)
         end
 
         it 'adds a flash message' do
@@ -109,7 +109,7 @@ RSpec.describe PlayersController do
     end
 
     describe '#edit' do
-      let(:player) { FactoryGirl.create(:player) }
+      let(:player) { create(:player) }
       before { get :edit, params: { id: player } }
 
       it 'assigns the instance' do
@@ -117,15 +117,15 @@ RSpec.describe PlayersController do
       end
 
       it 'renders the edit template' do
-        expect(response).to be_success
+        expect(response).to have_http_status(200)
       end
     end
 
     describe '#update' do
-      let(:player) { FactoryGirl.create(:player) }
+      let(:player) { create(:player) }
 
       context 'with valid parameters' do
-        let(:player_params) { FactoryGirl.attributes_for(:player).stringify_keys }
+        let(:player_params) { attributes_for(:player).stringify_keys }
         before { expect_any_instance_of(Player).to receive(:update).and_return(true) }
         before { patch :update, params: { id: player, player: player_params } }
 
@@ -146,7 +146,7 @@ RSpec.describe PlayersController do
         end
 
         it 'renders the edit template' do
-          expect(response).to be_success
+          expect(response).to have_http_status(200)
         end
 
         it 'adds a flash message' do
@@ -156,7 +156,7 @@ RSpec.describe PlayersController do
     end
 
     describe '#destroy' do
-      let(:player) { FactoryGirl.create(:player) }
+      let(:player) { create(:player) }
 
       context 'when successful' do
         before { expect_any_instance_of(Player).to receive(:destroy).and_return(true) }

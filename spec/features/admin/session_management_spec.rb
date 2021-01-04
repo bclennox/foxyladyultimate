@@ -2,7 +2,7 @@ RSpec.feature 'Session and user management' do
   given(:username) { 'brandan' }
   given(:password) { 'nadnarb' }
 
-  given!(:user) { FactoryGirl.create(:user, username: username, password: password) }
+  given!(:user) { create(:user, username: username, password: password) }
 
   context 'signing in' do
     background do

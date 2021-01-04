@@ -3,7 +3,7 @@ class GameDecorator < Draper::Decorator
   include DateFormatter
 
   def self.date_format
-    '%A, %B %-d, %Y at %l:%M%P'
+    '%A, %B %-d, %Y at %-l:%M%P'
   end
 
   def date

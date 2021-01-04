@@ -4,8 +4,8 @@ class Game < ActiveRecord::Base
   before_validation :ensure_location
 
   default_scope -> { order(starts_at: :desc) }
-  scope :upcoming, -> { where('starts_at > NOW()') }
-  scope :past, -> { where('starts_at < NOW()') }
+  scope :upcoming, -> { where('starts_at >= ?', Time.zone.now) }
+  scope :past, -> { where('starts_at < ?', Time.zone.now) }
   scope :on, -> { where(canceled: false) }
 
   def self.seed

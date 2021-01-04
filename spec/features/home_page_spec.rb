@@ -12,9 +12,9 @@ RSpec.feature 'Home page' do
   end
 
   context 'when a game is scheduled' do
-    given!(:game) { FactoryGirl.create(:game, starts_at: Time.now + 1.day) }
-    given!(:brandan) { FactoryGirl.create(:player, first_name: 'Brandan', last_name: 'Lennox') }
-    given!(:lindsay) { FactoryGirl.create(:player, first_name: 'Lindsay', last_name: 'Mooring') }
+    given!(:game) { create(:game, starts_at: Time.now + 1.day) }
+    given!(:brandan) { create(:player, first_name: 'Brandan', last_name: 'Lennox') }
+    given!(:lindsay) { create(:player, first_name: 'Lindsay', last_name: 'Mooring') }
 
     background do
       game.respond(brandan, true)
@@ -33,7 +33,7 @@ RSpec.feature 'Home page' do
   end
 
   context 'when a game has been canceled' do
-    given!(:game) { FactoryGirl.create(:game, starts_at: Time.now + 1.day, canceled: true) }
+    given!(:game) { create(:game, starts_at: Time.now + 1.day, canceled: true) }
 
     it 'says as much' do
       visit root_url

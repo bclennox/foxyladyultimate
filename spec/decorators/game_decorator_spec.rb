@@ -1,6 +1,6 @@
 RSpec.describe GameDecorator do
   describe '#date' do
-    let(:game) { FactoryGirl.build(:game, starts_at: Time.zone.parse('Jun 30, 2013 14:00:00')) }
+    let(:game) { build(:game, starts_at: Time.zone.parse('Jun 30, 2013 14:00:00')) }
     subject { game.decorate.date }
 
     it { is_expected.to include('Sunday') }
@@ -11,7 +11,7 @@ RSpec.describe GameDecorator do
   end
 
   describe '#confirmed_player_names' do
-    let(:game) { FactoryGirl.build(:game) }
+    let(:game) { build(:game) }
     subject { game.decorate }
     before { expect(game).to receive(:confirmed_players).and_return('confirmed_players') }
 
@@ -22,7 +22,7 @@ RSpec.describe GameDecorator do
   end
 
   describe '#declined_player_names' do
-    let(:game) { FactoryGirl.build(:game) }
+    let(:game) { build(:game) }
     subject { game.decorate }
     before { expect(game).to receive(:declined_players).and_return('declined_players') }
 
@@ -33,7 +33,7 @@ RSpec.describe GameDecorator do
   end
 
   describe '#player_names' do
-    let(:game) { FactoryGirl.build(:game) }
+    let(:game) { build(:game) }
     subject { game.decorate.player_names(players) }
 
     context 'with no responses' do
@@ -51,17 +51,17 @@ RSpec.describe GameDecorator do
     end
 
     context 'with one response' do
-      let(:players) { FactoryGirl.build_list(:player, 1) }
+      let(:players) { build_list(:player, 1) }
       it { is_expected.to eq(players.first.short_name) }
     end
 
     context 'with two responses' do
-      let(:players) { FactoryGirl.build_list(:player, 2) }
+      let(:players) { build_list(:player, 2) }
       it { is_expected.to eq("#{players.first.short_name} and #{players.second.short_name}") }
     end
 
     context 'with more than two responses' do
-      let(:players) { FactoryGirl.build_list(:player, 4) }
+      let(:players) { build_list(:player, 4) }
       it { is_expected.to include("#{players.first.short_name},") }
       it { is_expected.to include("#{players.second.short_name},") }
       it { is_expected.to include("#{players.third.short_name},") }
