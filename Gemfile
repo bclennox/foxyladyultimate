@@ -4,6 +4,7 @@ ruby '2.7.1'
 gem 'rails', '~> 6.0.0'
 
 gem 'bootsnap', require: false
+gem 'bootstrap'
 gem 'coffee-rails'
 gem 'devise'
 gem 'draper'

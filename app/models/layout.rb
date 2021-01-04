@@ -14,6 +14,13 @@ class Layout
     [controller.controller_name, controller.action_name].join(' ')
   end
 
+  def nav_link(text, url, options = {})
+    active = view_context.current_page?(url) && 'active'
+    view_context.tag.li(class: ['nav-item', active].compact.join(' ')) do
+      view_context.link_to text, url, options.merge(class: 'nav-link')
+    end
+  end
+
   # https://github.com/seyhunak/twitter-bootstrap-rails/blob/56c8d9cb0c4197b8df1cde33d25b4675421a0d9a/app/helpers/bootstrap_flash_helper.rb
   def flash_messages(flash)
     flash_messages = []

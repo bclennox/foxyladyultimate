@@ -1,0 +1,47 @@
+body {
+  padding-top: 60px;
+  padding-bottom: 120px;
+}
+
+#navbar-main {
+  .nav-item:last-child a {
+    padding-right: 0;
+  }
+}
+
+.page-header {
+  @extend .mt-4;
+  @extend .mb-3;
+  @extend .pb-2;
+  border-bottom: 1px $table-border-color solid;
+
+  .subnav {
+    @extend .mb-2;
+
+    .nav-item:first-child a {
+      padding-left: 0;
+    }
+
+    .nav-item:last-child a {
+      padding-right: 0;
+    }
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+tr {
+  td.actions a {
+    visibility: hidden;
+  }
+
+  &:hover td.actions a {
+    visibility: visible;
+  }
+}

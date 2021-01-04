@@ -71,10 +71,16 @@ GEM
       public_suffix (>= 2.0.2, < 5.0)
     airbrussh (1.4.0)
       sshkit (>= 1.6.1, != 1.7.0)
+    autoprefixer-rails (10.1.0.0)
+      execjs
     awesome_print (1.8.0)
     bcrypt (3.1.16)
     bootsnap (1.5.1)
       msgpack (~> 1.0)
+    bootstrap (4.5.3)
+      autoprefixer-rails (>= 9.1.0)
+      popper_js (>= 1.14.3, < 2)
+      sassc-rails (>= 2.0.0)
     builder (3.2.4)
     capistrano (3.14.1)
       airbrussh (>= 1.0.0)
@@ -193,6 +199,7 @@ GEM
       mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
     pg (1.2.3)
+    popper_js (1.16.0)
     public_suffix (4.0.6)
     que (1.0.0.beta4)
     rack (2.2.3)
@@ -317,6 +324,7 @@ PLATFORMS
 DEPENDENCIES
   awesome_print
   bootsnap
+  bootstrap
   capistrano
   capistrano-bundler
   capistrano-passenger

@@ -1,24 +1,26 @@
 %hr
 
 - if game.upcoming?
-  = link_to 'Edit', edit_game_path(game), :class => 'btn btn-default'
+  = link_to 'Edit Game', edit_game_path(game), :class => 'btn btn-primary'
 - else
 
-  %h2 Add or Remove Players
+  %h2.mb-3 Add or Remove Players
 
-  .row.edit-players
-    .col-md-2
-      = form_tag override_game_url(game) do
-        .form-group
+  .edit-players
+    = form_tag override_game_url(game) do
+      .form-row.mb-2
+        .col-6.col-md-4.col-lg-3
           = label_tag :player_id, 'Player Name', class: 'sr-only'
           = select_tag :player_id, options_from_collection_for_select(game.unconfirmed_players, :id, :short_name), class: 'form-control'
-        = hidden_field_tag :played, 'yes'
-        = button_tag 'Add', class: 'btn btn-primary'
+          = hidden_field_tag :played, 'yes'
+        .col-2
+          = button_tag 'Add', class: 'btn btn-primary'
 
-    .col-md-2.col-md-offset-2
-      = form_tag override_game_url(game) do
-        .form-group
+    = form_tag override_game_url(game) do
+      .form-row
+        .col-6
           = label_tag :player_id, 'Player Name', class: 'sr-only'
           = select_tag :player_id, options_from_collection_for_select(game.confirmed_players, :id, :short_name), class: 'form-control'
-        = hidden_field_tag :played, 'no'
-        = button_tag 'Remove', class: 'btn btn-primary'
+          = hidden_field_tag :played, 'no'
+        .col-2
+          = button_tag 'Remove', class: 'btn btn-danger'
