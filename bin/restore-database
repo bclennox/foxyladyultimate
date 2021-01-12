@@ -1,0 +1,16 @@
+#!/bin/bash
+
+if [ $# -lt 1 ] ; then
+  echo "Usage: $0 /path/to/backup.pgdump"
+  exit 1
+fi
+
+backup_path="$1"
+
+database_name=foxyladyultimate_development
+database_user=brandan
+
+dropdb --if-exists $database_name
+createdb -O $database_user $database_name
+pg_restore -O -d $database_name $backup_path
+psql -d $database_name -c "UPDATE players SET email = 'bclennox@gmail.com'"
