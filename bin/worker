@@ -1,4 +1,4 @@
 #!/bin/bash
 
 source ~/.bash_profile
-QUEUE=mailers bundle exec rake jobs:work
+bundle exec que
