@@ -170,10 +170,9 @@ GEM
     nokogiri (1.8.5)
       mini_portile2 (~> 2.3.0)
     orm_adapter (0.5.0)
-    pg (0.18.4)
+    pg (1.2.3)
     public_suffix (3.0.3)
-    queue_classic (3.1.0)
-      pg (>= 0.17, < 0.19)
+    que (1.0.0.beta4)
     rack (2.0.6)
     rack-cache (1.8.0)
       rack (>= 0.4)
@@ -307,7 +306,7 @@ DEPENDENCIES
   listen
   morrisjs-rails
   pg
-  queue_classic
+  que (= 1.0.0.beta4)
   rack-cache
   rails (~> 5.1.4)
   raphael-rails
