@@ -1,7 +1,7 @@
 RSpec.describe GameMailer do
-  let(:game)   { FactoryGirl.create(:game) }
-  let(:player) { FactoryGirl.create(:player) }
-  let(:sender) { FactoryGirl.create(:user) }
+  let(:game)   { create(:game) }
+  let(:player) { create(:player) }
+  let(:sender) { create(:user) }
   let(:body)   { 'body' }
 
   { reminder: '', cancellation: 'Canceled', reschedule: 'Rescheduled' }.each do |method, message_subject|

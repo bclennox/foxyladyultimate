@@ -23,3 +23,6 @@
 /coverage
 /public/assets
 /*.swp
+/*~
+
+/spec/examples.txt

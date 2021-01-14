@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 RSpec.describe GamesController do
   context 'before signing in' do
     before { sign_out session_user }
@@ -38,7 +40,7 @@ RSpec.describe GamesController do
     before { sign_in session_user }
 
     describe '#index' do
-      before { FactoryGirl.create_list(:game, 3) }
+      before { create_list(:game, 3) }
       before { get :index }
 
       it 'decorates the instances' do
@@ -47,12 +49,12 @@ RSpec.describe GamesController do
     end
 
     describe '#show' do
-      let(:game) { FactoryGirl.create(:game) }
+      let(:game) { create(:game) }
 
       context 'format.html' do
         it 'renders the show template' do
           get :show, params: { id: game }
-          expect(response).to be_success
+          expect(response).to have_http_status(200)
         end
 
         context 'without a saved access token' do
@@ -63,7 +65,7 @@ RSpec.describe GamesController do
         end
 
         context 'with a saved access token' do
-          let(:player) { FactoryGirl.create(:player) }
+          let(:player) { create(:player) }
           before { cookies[:access_token] = player.access_token }
 
           it 'assigns a player' do
@@ -88,7 +90,7 @@ RSpec.describe GamesController do
     end
 
     describe '#edit' do
-      let(:game) { FactoryGirl.create(:game) }
+      let(:game) { create(:game) }
       before { get :edit, params: { id: game } }
 
       it 'decorates the instance' do
@@ -96,12 +98,12 @@ RSpec.describe GamesController do
       end
 
       it 'renders the edit template' do
-        expect(response).to be_success
+        expect(response).to have_http_status(200)
       end
     end
 
     describe '#update' do
-      let(:game) { FactoryGirl.create(:game) }
+      let(:game) { create(:game) }
 
       context 'with valid parameters' do
         let(:params) { { 'location' => 'Elsewhere' } }
@@ -120,8 +122,8 @@ RSpec.describe GamesController do
 
     describe '#next' do
       before { Game.delete_all }
-      let!(:past_games) { FactoryGirl.create_list(:game, 3, starts_at: 1.month.ago) }
-      let!(:upcoming_game) { FactoryGirl.create(:game, starts_at: 1.week.from_now) }
+      let!(:past_games) { create_list(:game, 3, starts_at: 1.month.ago) }
+      let!(:upcoming_game) { create(:game, starts_at: 1.week.from_now) }
       before { get :next }
 
       it 'assigns the last upcoming game' do
@@ -130,7 +132,7 @@ RSpec.describe GamesController do
     end
 
     describe '#schedule' do
-      let(:game) { FactoryGirl.create(:game) }
+      let(:game) { create(:game) }
       before { expect(Game).to receive(:seed).and_return(game) }
       before { get :schedule }
 
@@ -144,8 +146,8 @@ RSpec.describe GamesController do
     end
 
     describe '#respond' do
-      let(:game) { FactoryGirl.create(:game) }
-      let(:player) { FactoryGirl.create(:player) }
+      let(:game) { create(:game) }
+      let(:player) { create(:player) }
       let(:params) { { id: game, access_token: player.access_token } }
 
       before { get :respond, params: params }
@@ -180,8 +182,8 @@ RSpec.describe GamesController do
     end
 
     describe '#override' do
-      let(:game) { FactoryGirl.create(:game) }
-      let(:player) { FactoryGirl.create(:player) }
+      let(:game) { create(:game) }
+      let(:player) { create(:player) }
 
       before { post :override, params: params }
 
@@ -211,7 +213,7 @@ RSpec.describe GamesController do
     end
 
     describe '#remind' do
-      let(:game) { FactoryGirl.create(:game) }
+      let(:game) { create(:game) }
       let(:message) { 'message' }
 
       before { expect_any_instance_of(GameNotifier).to receive(:send_reminder) }
@@ -227,7 +229,7 @@ RSpec.describe GamesController do
     end
 
     describe '#cancel' do
-      let(:game) { FactoryGirl.create(:game) }
+      let(:game) { create(:game) }
       let(:message) { 'message' }
 
       before { expect_any_instance_of(GameNotifier).to receive(:send_cancellation) }
@@ -243,7 +245,7 @@ RSpec.describe GamesController do
     end
 
     describe '#reschedule' do
-      let(:game) { FactoryGirl.create(:game) }
+      let(:game) { create(:game) }
       let(:message) { 'message' }
 
       before { expect_any_instance_of(GameNotifier).to receive(:send_reschedule) }

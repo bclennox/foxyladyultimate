@@ -1,6 +1,8 @@
-RSpec.feature 'Player management' do
-  background do
-    admin = FactoryGirl.create(:user, username: 'brandan', password: 'nadnarb')
+require 'rails_helper'
+
+RSpec.describe 'Player management' do
+  before do
+    admin = create(:user, username: 'brandan', password: 'nadnarb')
 
     visit new_user_session_path
 
@@ -10,12 +12,12 @@ RSpec.feature 'Player management' do
   end
 
   context 'adding a player' do
-    given(:first_name) { 'Jeff' }
-    given(:last_name) { 'Winger' }
-    given(:email) { 'jeffrey@greendale.edu' }
-    given(:phone) { '919.919.9191' }
+    let(:first_name) { 'Jeff' }
+    let(:last_name) { 'Winger' }
+    let(:email) { 'jeffrey@greendale.edu' }
+    let(:phone) { '919.919.9191' }
 
-    background do
+    before do
       click_link 'Players'
       click_link 'Add a Player'
 
@@ -36,14 +38,14 @@ RSpec.feature 'Player management' do
   end
 
   context 'editing a player' do
-    given(:old_first_name) { 'Ben' }
-    given(:old_last_name)  { 'Chang' }
-    given(:new_first_name) { 'Kevin' }
-    given(:new_last_name)  { 'Parker' }
+    let(:old_first_name) { 'Ben' }
+    let(:old_last_name)  { 'Chang' }
+    let(:new_first_name) { 'Kevin' }
+    let(:new_last_name)  { 'Parker' }
 
-    given!(:player) { FactoryGirl.create(:player, first_name: old_first_name, last_name: old_last_name) }
+    let!(:player) { create(:player, first_name: old_first_name, last_name: old_last_name) }
 
-    background do
+    before do
       click_link 'Players'
       click_link '', href: edit_player_path(player)
 
@@ -58,13 +60,15 @@ RSpec.feature 'Player management' do
   end
 
   context 'deleting a player' do
-    given!(:player) { FactoryGirl.create(:player) }
+    let!(:player) { create(:player, first_name: 'Zaboo') }
 
-    background do
+    before do
       click_link 'Players'
       click_link '', href: player_path(player)
     end
 
-    it 'no longer shows the player in the list'
+    it 'no longer shows the player in the list' do
+      skip 'requires a JS driver'
+    end
   end
 end
