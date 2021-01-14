@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 RSpec.describe SchedulesController do
   context 'before signing in' do
     before { sign_out session_user }
@@ -18,7 +20,7 @@ RSpec.describe SchedulesController do
     before { sign_in session_user }
 
     describe '#edit' do
-      before { FactoryGirl.create(:schedule) }
+      before { create(:schedule) }
       before { get :edit }
 
       it 'decorates the instance' do
@@ -27,10 +29,10 @@ RSpec.describe SchedulesController do
     end
 
     describe '#update' do
-      before { FactoryGirl.create(:schedule) }
+      before { create(:schedule) }
 
       context 'with valid parameters' do
-        let(:schedule_params) { FactoryGirl.attributes_for(:schedule).stringify_keys }
+        let(:schedule_params) { attributes_for(:schedule).stringify_keys }
         before { expect_any_instance_of(Schedule).to receive(:update).and_return(true) }
         before { patch :update, params: { schedule: schedule_params } }
 
@@ -51,7 +53,7 @@ RSpec.describe SchedulesController do
         end
 
         it 'renders the edit template' do
-          expect(response).to be_success
+          expect(response).to have_http_status(200)
         end
 
         it 'adds a flash message' do

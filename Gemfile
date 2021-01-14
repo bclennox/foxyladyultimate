@@ -1,8 +1,9 @@
 source 'https://rubygems.org'
 
 ruby '2.7.2'
-gem 'rails', '~> 5.1.4'
+gem 'rails', '~> 5.2.0'
 
+gem 'bootsnap'
 gem 'coffee-rails'
 gem 'devise'
 gem 'draper'
@@ -22,7 +23,7 @@ gem 'turbolinks'
 gem 'uglifier'
 
 group :development do
-  gem 'awesome_print'
+  gem 'amazing_print'
   gem 'capistrano'
   gem 'capistrano-bundler'
   gem 'capistrano-passenger'
@@ -35,7 +36,10 @@ end
 
 group :test do
   gem 'capybara'
-  gem 'factory_girl_rails'
-  gem 'rspec-rails'
+  gem 'factory_bot_rails'
   gem 'simplecov', require: false
+end
+
+group :development, :test do
+  gem 'rspec-rails'
 end

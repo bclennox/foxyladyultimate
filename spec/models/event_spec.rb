@@ -1,5 +1,5 @@
 RSpec.describe Event do
-  let(:game)         { FactoryGirl.create(:game) }
+  let(:game)         { create(:game) }
   let(:game_url)     { 'http://ultimate.dev/games/31' }
   let(:view_context) { double('ViewContext', game_url: game_url) }
 

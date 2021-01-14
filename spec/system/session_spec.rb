@@ -1,11 +1,13 @@
-RSpec.feature 'Session and user management' do
-  given(:username) { 'brandan' }
-  given(:password) { 'nadnarb' }
+require 'rails_helper'
 
-  given!(:user) { FactoryGirl.create(:user, username: username, password: password) }
+RSpec.describe 'Session and user management' do
+  let(:username) { 'brandan' }
+  let(:password) { 'nadnarb' }
+
+  let!(:user) { create(:user, username: username, password: password) }
 
   context 'signing in' do
-    background do
+    before do
       visit root_url
       click_link 'Sign In'
 
@@ -28,7 +30,7 @@ RSpec.feature 'Session and user management' do
   end
 
   context 'signing out' do
-    background do
+    before do
       visit root_url
       click_link 'Sign In'
 
@@ -49,7 +51,7 @@ RSpec.feature 'Session and user management' do
   end
 
   context 'redirecting after signing in' do
-    background do
+    before do
       visit root_url
       click_link 'Games'
       click_link 'Sign In'

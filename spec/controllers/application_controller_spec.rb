@@ -1,6 +1,8 @@
+require 'rails_helper'
+
 RSpec.describe ApplicationController do
   describe '#authorizer' do
-    let(:user)       { FactoryGirl.build(:user) }
+    let(:user)       { build(:user) }
     let(:authorizer) { controller.authorizer }
 
     before { expect(controller).to receive(:current_user).and_return(user) }
