@@ -1,4 +1,4 @@
-class Player < ActiveRecord::Base
+class Player < ApplicationRecord
   before_create :generate_access_token
   after_commit :flush_cache
 
