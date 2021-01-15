@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
 ruby '2.7.2'
-gem 'rails', '~> 5.2.0'
+gem 'rails', '~> 6.0.0'
 
-gem 'bootsnap'
+gem 'bootsnap', require: false
 gem 'coffee-rails'
 gem 'devise'
 gem 'draper'
@@ -13,11 +13,9 @@ gem 'haml-rails'
 gem 'jbuilder'
 gem 'jquery-rails'
 gem 'kaminari'
-gem 'morrisjs-rails'
 gem 'pg'
 gem 'que', '1.0.0.beta4'
 gem 'rack-cache'
-gem 'raphael-rails'
 gem 'sass-rails'
 gem 'turbolinks'
 gem 'uglifier'
@@ -38,6 +36,7 @@ group :test do
   gem 'capybara'
   gem 'factory_bot_rails'
   gem 'simplecov', require: false
+  gem 'webdrivers'
 end
 
 group :development, :test do
