@@ -4,21 +4,18 @@ ruby '2.7.2'
 gem 'rails', '~> 6.0.0'
 
 gem 'bootsnap', require: false
-gem 'coffee-rails'
 gem 'devise'
 gem 'draper'
 gem 'icalendar'
 gem 'ice_cube'
 gem 'haml-rails'
 gem 'jbuilder'
-gem 'jquery-rails'
 gem 'kaminari'
 gem 'pg'
 gem 'que', '1.0.0.beta4'
 gem 'rack-cache'
 gem 'sass-rails'
-gem 'turbolinks'
-gem 'uglifier'
+gem 'webpacker'
 
 group :development do
   gem 'amazing_print'
