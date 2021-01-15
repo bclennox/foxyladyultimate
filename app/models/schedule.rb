@@ -1,6 +1,6 @@
 require 'ice_cube'
 
-class Schedule < ActiveRecord::Base
+class Schedule < ApplicationRecord
   validates :time, presence: true
 
   def self.instance

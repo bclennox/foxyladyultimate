@@ -1,4 +1,4 @@
-class Game < ActiveRecord::Base
+class Game < ApplicationRecord
   has_many :responses, dependent: :destroy
   has_many :players, through: :responses
   before_validation :ensure_location
