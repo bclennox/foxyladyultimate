@@ -51,16 +51,6 @@ body {
   }
 }
 
-tr {
-  td.actions a {
-    visibility: hidden;
-  }
-
-  &:hover td.actions a {
-    visibility: visible;
-  }
-}
-
 .page-header {
   .subnav {
     background-color: transparent;

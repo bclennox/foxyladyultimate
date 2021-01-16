@@ -69,6 +69,9 @@ GEM
     airbrussh (1.4.0)
       sshkit (>= 1.6.1, != 1.7.0)
     amazing_print (1.2.2)
+    apparition (0.6.0)
+      capybara (~> 3.13, < 4)
+      websocket-driver (>= 0.6.5)
     bcrypt (3.1.16)
     bootsnap (1.5.1)
       msgpack (~> 1.0)
@@ -309,6 +312,7 @@ PLATFORMS
 
 DEPENDENCIES
   amazing_print
+  apparition
   bootsnap
   capistrano
   capistrano-bundler

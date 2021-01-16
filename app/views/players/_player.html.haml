@@ -6,5 +6,5 @@
   - if authorizer.admin?
     %td.phone= player.phone
     %td.actions
-      = link_to content_tag(:i, nil, class: 'edit-player glyphicon glyphicon-edit'), edit_player_path(player)
-      = link_to content_tag(:i, nil, class: 'delete-player glyphicon glyphicon-remove'), player_path(player), :method => :delete, :data => { :confirm => 'Delete this player?' }
+      = player.edit_link
+      = player.remove_link

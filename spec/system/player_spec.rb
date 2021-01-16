@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Player management' do
-  before do
+  def sign_in
     admin = create(:user, username: 'brandan', password: 'nadnarb')
 
     visit new_user_session_path
@@ -18,6 +18,8 @@ RSpec.describe 'Player management' do
     let(:phone) { '919.919.9191' }
 
     before do
+      sign_in
+
       click_link 'Players'
       click_link 'Add a Player'
 
@@ -46,6 +48,8 @@ RSpec.describe 'Player management' do
     let!(:player) { create(:player, first_name: old_first_name, last_name: old_last_name) }
 
     before do
+      sign_in
+
       click_link 'Players'
       click_link '', href: edit_player_path(player)
 
@@ -60,15 +64,23 @@ RSpec.describe 'Player management' do
   end
 
   context 'deleting a player' do
-    let!(:player) { create(:player, first_name: 'Zaboo') }
+    let!(:player) { create(:player, first_name: 'Zaboo', last_name: 'the Warlock') }
 
     before do
+      driven_by(:apparition)
+      sign_in
       click_link 'Players'
-      click_link '', href: player_path(player)
     end
 
     it 'no longer shows the player in the list' do
-      skip 'requires a JS driver'
+      expect(page).to have_link('Zaboo the Warlock')
+
+      accept_confirm 'Remove Zaboo the Warlock?' do
+        click_link 'Remove', href: player_path(player)
+      end
+
+      expect(page).to have_text('Player was successfully removed.')
+      expect(page).not_to have_link('Zaboo the Warlock')
     end
   end
 end

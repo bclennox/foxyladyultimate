@@ -30,6 +30,7 @@ group :development do
 end
 
 group :test do
+  gem 'apparition'
   gem 'capybara'
   gem 'factory_bot_rails'
   gem 'simplecov', require: false
