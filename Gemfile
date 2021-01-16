@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 ruby '2.7.2'
-gem 'rails', '~> 6.0.0'
+gem 'rails', '~> 6.1.0'
 
 gem 'bootsnap', require: false
 gem 'devise'
@@ -30,6 +30,7 @@ group :development do
 end
 
 group :test do
+  gem 'apparition'
   gem 'capybara'
   gem 'factory_bot_rails'
   gem 'simplecov', require: false

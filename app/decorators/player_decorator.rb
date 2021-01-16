@@ -13,7 +13,7 @@ class PlayerDecorator < Draper::Decorator
   end
 
   def icon
-    h.content_tag(:i, nil, class: "glyphicon #{icon_class}")
+    h.tag.i class: "glyphicon #{icon_class}"
   end
 
   def css_class
@@ -23,6 +23,20 @@ class PlayerDecorator < Draper::Decorator
       'worthy'
     else
       'worthless'
+    end
+  end
+
+  def edit_link
+    h.link_to h.edit_player_path(self) do
+      h.tag.span('Edit', class: 'sr-only') +
+        h.tag.i(class: 'edit-player glyphicon glyphicon-edit')
+    end
+  end
+
+  def remove_link
+    h.link_to h.player_path(self), method: :delete, data: { confirm: "Remove #{name}?" } do
+      h.tag.span('Remove', class: 'sr-only') +
+        h.tag.i(class: 'delete-player glyphicon glyphicon-remove')
     end
   end
 
