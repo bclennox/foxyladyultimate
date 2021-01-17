@@ -1,18 +1,20 @@
-= form_for schedule, html: { class: 'form-horizontal' } do |f|
-  .form-group
-    = f.label :day, class: 'col-md-2 control-label'
-    .col-md-4
+= form_for schedule, class: 'form-horizontal' do |f|
+  .form-group.row
+    = f.label :day, class: 'col-form-label col-12 col-md-2 col-lg-1'
+    .col-12.col-md-4.col-lg-2
       = f.collection_select :day, schedule.available_days, :to_s, :to_s, {}, class: 'form-control'
-  .form-group
-    = f.label :time, class: 'col-md-2 control-label'
-    .col-md-4
+
+  .form-group.row
+    = f.label :time, class: 'col-form-label col-12 col-md-2 col-lg-1'
+    .col-12.col-md-2
       = f.text_field :time, class: 'form-control'
-  .form-group
-    = f.label :location, class: 'col-md-2 control-label'
-    .col-md-4
+
+  .form-group.row
+    = f.label :location, class: 'col-form-label col-12 col-md-2 col-lg-1'
+    .col-12.col-md-4
       = f.text_field :location, class: 'form-control'
 
-  .form-group
-    .col-md-4.col-md-offset-2
-      = f.submit nil, class: 'btn btn-primary'
-      = link_to 'Go Back', games_path, class: 'btn btn-default'
+  .form-group.row
+    .col-12.offset-md-2.col-md-10.offset-lg-1.col-lg-11
+      = f.submit class: 'btn btn-primary'
+      = link_to 'Go Back', games_path, class: 'btn btn-link'

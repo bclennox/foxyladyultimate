@@ -1,25 +1,24 @@
-class PlayerDecorator < Draper::Decorator
-  delegate_all
+class PlayerDecorator < ApplicationDecorator
   include DateFormatter
 
   def attendance
-    if object.retired?
+    if retired?
       'Retired'
     elsif games.empty?
       'Never played'
     else
-      "Played #{last_played}, #{h.pluralize(games.size, 'game')} total"
+      "Played #{last_played}<br>#{h.pluralize(games.size, 'game')} total".html_safe
     end
   end
 
-  def icon
-    h.tag.i class: "glyphicon #{icon_class}"
+  def attendance_icon
+    icon(attendance_icon_class)
   end
 
   def css_class
-    if object.retired?
+    if retired?
       'retired'
-    elsif object.worthy?
+    elsif worthy?
       'worthy'
     else
       'worthless'
@@ -28,32 +27,30 @@ class PlayerDecorator < Draper::Decorator
 
   def edit_link
     h.link_to h.edit_player_path(self) do
-      h.tag.span('Edit', class: 'sr-only') +
-        h.tag.i(class: 'edit-player glyphicon glyphicon-edit')
+      h.tag.span('Edit', class: 'sr-only') + icon('pencil-fill', classes: 'edit-player')
     end
   end
 
   def remove_link
     h.link_to h.player_path(self), method: :delete, data: { confirm: "Remove #{name}?" } do
-      h.tag.span('Remove', class: 'sr-only') +
-        h.tag.i(class: 'delete-player glyphicon glyphicon-remove')
+      h.tag.span('Remove', class: 'sr-only') + icon('x-circle-fill', classes: 'remove-player')
     end
   end
 
-private
+  private
 
-  def icon_class
-    if object.retired?
-      'glyphicon-heart-empty'
-    elsif object.worthy?
-      'glyphicon-star'
+  def attendance_icon_class
+    if retired?
+      'heart-fill'
+    elsif worthy?
+      'star-fill'
     else
-      'glyphicon-star-empty'
+      'star'
     end
   end
 
   def games
-    @games ||= object.played_games
+    @games ||= played_games
   end
 
   def last_played

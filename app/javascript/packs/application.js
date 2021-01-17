@@ -22,3 +22,5 @@ import 'bootstrap'
 
 import '../games'
 import '../players'
+
+import '../stylesheets/application'

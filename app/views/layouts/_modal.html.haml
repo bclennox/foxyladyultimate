@@ -2,12 +2,12 @@
   .modal-dialog
     .modal-content
       .modal-header
-        %h4.modal-title= title
+        %h5.modal-title= title
 
       = form_tag url do
         .modal-body
           = yield
 
         .modal-footer
-          = button_tag 'Close', type: 'button', class: 'btn btn-default', data: { dismiss: 'modal' }
+          = button_tag 'Close', type: 'button', class: 'btn btn-link', data: { dismiss: 'modal' }
           = submit_tag button, class: 'btn btn-primary'

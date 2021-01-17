@@ -1,5 +1,5 @@
 %tr{class: player.css_class}
-  %td.icon= player.icon
+  %td.icon= player.attendance_icon
   %td.name= authorizer.admin? ? link_to(player.name, "mailto:#{player.email}") : player.name
   %td.attendance= player.attendance
 

@@ -14,7 +14,7 @@ gem 'kaminari'
 gem 'pg'
 gem 'que', '1.0.0.beta4'
 gem 'rack-cache'
-gem 'sass-rails'
+gem 'view_component', require: 'view_component/engine'
 gem 'webpacker'
 
 group :development do

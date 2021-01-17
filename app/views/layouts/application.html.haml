@@ -1,41 +1,35 @@
-!!! 5
+!!!
 %html(lang="en")
   %head
     %meta(charset="utf-8")
-    %meta(http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1")
-    %meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    %meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
     = csrf_meta_tags
 
     %title= layout.full_page_title
 
-    = stylesheet_link_tag 'application'
+    = stylesheet_packs_with_chunks_tag 'application'
     = javascript_packs_with_chunks_tag 'application'
 
   %body{class: layout.body_class}
-    %nav.navbar.navbar-default.navbar-fixed-top(role="navigation")
+    %nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top
       .container
-        .navbar-header
-          %button.navbar-toggle(data-target="#navbar-main" data-toggle="collapse")
-            %span.sr-only Toggle navigation
-            %span.icon-bar
-            %span.icon-bar
-            %span.icon-bar
-          = link_to 'Foxy Lady Ultimate', root_path, class: 'navbar-brand'
+        = link_to 'Foxy Lady Ultimate', root_path, class: 'navbar-brand'
+
+        %button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navbar-main" aria-controls="navbar-main" aria-expanded="false" aria-label="Toggle navigation")
+          %span.navbar-toggler-icon
 
         .collapse.navbar-collapse#navbar-main
-          %ul.nav.navbar-nav
-            %li= link_to 'Games', games_path
-            %li= link_to 'Players', players_path
+          %ul.navbar-nav.mr-auto
+            = layout.nav_link 'Games', games_path
+            = layout.nav_link 'Players', players_path
 
-          %ul.nav.navbar-nav.navbar-right
+          %ul.navbar-nav.ml-auto
             - if user_signed_in?
-              %li= link_to 'Change Your Password', edit_user_registration_path
-              %li= link_to "Sign Out #{current_user.first_name}", destroy_user_session_path, method: :delete
+              = layout.nav_link 'Change Your Password', edit_user_registration_path
+              = layout.nav_link "Sign Out #{current_user.first_name}", destroy_user_session_path, method: :delete
             - else
-              %li= link_to 'Sign In', new_user_session_path
+              = layout.nav_link 'Sign In', new_user_session_path
 
     .container
-      .row
-        .col-md-12
-          = layout.flash_messages(flash)
-          = yield
+      = layout.flash_messages
+      = yield

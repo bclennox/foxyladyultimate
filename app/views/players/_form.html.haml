@@ -1,28 +1,32 @@
-= form_for player, html: { class: 'form-horizontal' } do |f|
-  .form-group
-    = f.label :first_name, class: 'col-md-2 control-label'
-    .col-md-4
+= form_for player, class: 'form-horizontal' do |f|
+  .form-group.row
+    = f.label :first_name, class: 'col-form-label col-12 col-md-2'
+    .col-12.col-md-6.col-lg-3
       = f.text_field :first_name, class: 'form-control'
-  .form-group
-    = f.label :last_name, class: 'col-md-2 control-label'
-    .col-md-4
-      = f.text_field :last_name, class: 'form-control'
-  .form-group
-    = f.label :email, class: 'col-md-2 control-label'
-    .col-md-4
-      = f.text_field :email, class: 'form-control'
-  .form-group
-    = f.label :phone, class: 'col-md-2 control-label'
-    .col-md-4
-      = f.text_field :phone, class: 'form-control'
-  .form-group
-    .col-md-4.col-md-offset-2
-      .checkbox
-        = f.label :retired do
-          = f.check_box :retired
-          Retired
 
-  .form-group
-    .col-md-4.col-md-offset-2
-      = f.submit nil, class: 'btn btn-primary'
-      = link_to 'Go Back', players_path, class: 'btn btn-default'
+  .form-group.row
+    = f.label :last_name, class: 'col-form-label col-12 col-md-2'
+    .col-12.col-md-6.col-lg-3
+      = f.text_field :last_name, class: 'form-control'
+
+  .form-group.row
+    = f.label :email, class: 'col-form-label col-12 col-md-2'
+    .col-12.col-md-6.col-lg-3
+      = f.text_field :email, class: 'form-control'
+
+  .form-group.row
+    = f.label :phone, class: 'col-form-label col-12 col-md-2'
+    .col-12.col-md-6.col-lg-3
+      = f.text_field :phone, class: 'form-control'
+      %small.form-text.text-muted Optional
+
+  .form-group.row
+    .col-12.offset-md-2.col-md-10
+      .form-check
+        = f.check_box :retired, class: 'form-check-input'
+        = f.label :retired, class: 'form-check-label'
+
+  .form-group.row
+    .col-12.offset-md-2.col-md-10
+      = f.submit class: 'btn btn-primary'
+      = link_to 'Go Back', players_path, class: 'btn btn-link'

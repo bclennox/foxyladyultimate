@@ -1,0 +1,5 @@
+.alert.alert-dismissable.fade.show.mt-3{class: "alert-#{css_class}"}
+  = message
+
+  %button.close{type: 'button', data: { dismiss: 'alert' }, aria: { label: 'Close' }}
+    %span{aria: { hidden: true }} &times;

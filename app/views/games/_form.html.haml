@@ -1,14 +1,15 @@
-= form_for game, html: { class: 'form-horizontal' } do |f|
-  .form-group
-    = f.label :location, class: 'col-md-2 control-label'
-    .col-md-4
+= form_for game, class: 'form-horizontal' do |f|
+  .form-group.row
+    = f.label :location, class: 'col-form-label col-12 col-md-2'
+    .col-12.col-md-4
       = f.text_field :location, class: 'form-control'
-  .form-group
-    = f.label :starts_at, class: 'col-md-2 control-label'
-    .col-md-4
-      = f.datetime_select :starts_at, {}, class: 'input-sm'
 
-  .form-group
-    .col-md-4.col-md-offset-2
-      = f.submit nil, class: 'btn btn-primary'
-      = link_to 'Go Back', (game.new_record? ? games_path : game), class: 'btn btn-default'
+  .form-group.row
+    = f.label :starts_at, class: 'col-form-label col-12 col-md-2'
+    .col-12.col-md-6
+      = f.datetime_select :starts_at, {}, class: 'form-control form-control-sm mb-1'
+
+  .form-group.row
+    .col-12.offset-md-2.col-md-10
+      = f.submit class: 'btn btn-primary'
+      = link_to 'Go Back', (game.new_record? ? games_path : game), class: 'btn btn-link'
