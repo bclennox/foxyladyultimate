@@ -6,24 +6,25 @@
     = render 'actions'
 
 .row
-  .col-md-6
-    %h2 Everyone
+  .col-12.col-lg-6
+    %h3.mb-3 Everyone
 
-    %table.table.table-hover.players
-      %thead
-        %tr
-          %th.icon
-          %th.name Name
-          %th.attendance Attendance
+    .table-responsive
+      %table.table.table-hover.players
+        %thead.thead-dark
+          %tr
+            %th.icon
+            %th.name Name
+            %th.attendance Attendance
 
-          - if authorizer.admin?
-            %th.phone Phone
-            %th.actions
+            - if authorizer.admin?
+              %th.phone Phone
+              %th.actions
 
-      %tbody
-        = render players
+        %tbody
+          = render players
 
-  .col-md-6
-    %h2 By Games Played
+  .col-12.col-lg-6
+    %h3.mb-3 By Games Played
 
-    %canvas#player-chart{'data-url' => ranked_players_url(format: 'json')}
+    %canvas#player-chart.mt-4{'data-url' => ranked_players_url(format: 'json')}

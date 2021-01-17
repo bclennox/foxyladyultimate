@@ -1,32 +1,28 @@
-@import "lib/mixins";
-
 body.players {
   table.players {
     .worthless,
     .retired {
       .icon,
-      .attendance {
-        color: #aaa;
+      .attendance,
+      .phone {
+        color: $text-muted;
       }
     }
 
     th.icon,
     td.icon {
-      @include icon-column;
+      width: 1.5rem;
+      text-align: center;
     }
 
     tr {
       td.actions a {
-        color: #aaa;
+        color: $text-muted;
       }
 
       &:hover td.actions a {
         color: inherit;
       }
     }
-  }
-
-  #player-chart {
-    margin-top: 25px;
   }
 }

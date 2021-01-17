@@ -1,34 +1,37 @@
-%h3= pluralize game.confirmed_players.count, 'player'
+%h3.mb-3= pluralize game.confirmed_players.count, 'player'
 
 .game-details
-  %dl
-    %dt When
-    %dd= game.date
-    %dd.text-muted= game.relative_date
+  %dl.row
+    %dt.col-12.col-md-2 When
+    %dd.col-12.col-md-10
+      %p.mb-0= game.date
+      %p.mb-0.text-muted= game.relative_date
 
     - unless game.default_location?
-      %dt Where
-      %dd= game.location
+      %dt.col-12.col-md-2 Where
+      %dd.col-12.col-md-10= game.location
 
-    %dt
+    %dt.col-12.col-md-2
       - if game.canceled?
         Who Signed Up
       - elsif game.upcoming?
         Who’s In
       - else
         Who Played
-    %dd
+    %dd.col-12.col-md-10
       = game.confirmed_player_names
 
-    %dt= game.upcoming? ? "Who’s Out" : "Who Declined"
-    %dd= game.declined_player_names
+    %dt.col-12.col-md-2= game.upcoming? ? "Who’s Out" : "Who Declined"
+    %dd.col-12.col-md-10= game.declined_player_names
 
   - if game.upcoming? && game.on?
-    %p
-      = link_to game_path(game, format: 'ics') do
-        = content_tag(:i, nil, class: 'glyphicon glyphicon-calendar')
-        Add it to your calendar
+    %p= game.calendar_link
 
-= render 'player_actions' if game.upcoming? && game.on? && player.present?
-= render 'admin_actions' if authorizer.admin?
+- if game.upcoming? && game.on? && player.present?
+  %hr
+  = render 'player_actions'
+
+- elsif authorizer.admin?
+  %hr
+  = render 'admin_actions' if authorizer.admin?
 

@@ -4,25 +4,30 @@
   %h1 Games
   - if authorizer.admin?
     .subnav
-      %ul.nav.nav-pills
+      %ul.nav
         - if Game.upcoming.empty?
-          %li= link_to "Schedule #{Schedule.instance.day}’s Game", schedule_games_path
-        %li= link_to 'Change the Schedule', edit_schedule_path
+          %li.nav-item
+            = link_to "Schedule #{Schedule.instance.day}’s Game", schedule_games_path, class: 'nav-link'
+        %li.nav-item
+          = link_to 'Change the Schedule', edit_schedule_path, class: 'nav-link'
 
 
-%p.lead= Schedule.instance
+%p.lead.my-4= Schedule.instance
 
-= paginate @games
+.table-responsive
+  %table.table.table-hover.games
+    %thead.thead-dark
+      %tr
+        %th.date Date
+        %th.location Location
+        %th.players Attendance
 
-%table.table.table-striped.games
-  %thead
-    %tr
-      %th.date Date
-      %th.location Location
-      %th.players Attendance
-  %tbody
-    - games.each do |game|
-      %tr{class: game.canceled? ? 'canceled' : 'on'}
-        %td.name= link_to(game.canceled? ? "#{game.date} (canceled)" : game.date, game)
-        %td.location= game.location
-        %td.players= game.canceled? ? '—' : pluralize(game.confirmed_players.count, 'player')
+    %tbody
+      - games.each do |game|
+        %tr{class: game.canceled? ? 'canceled' : 'on'}
+          %td.name= link_to(game.canceled? ? "#{game.date} (canceled)" : game.date, game)
+          %td.location= game.location
+          %td.players= game.canceled? ? '—' : pluralize(game.confirmed_players.count, 'player')
+
+.d-flex.justify-content-center.mt-4
+  = paginate @games

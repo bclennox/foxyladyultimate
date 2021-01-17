@@ -14,24 +14,19 @@ class Layout
     [controller.controller_name, controller.action_name].join(' ')
   end
 
-  # https://github.com/seyhunak/twitter-bootstrap-rails/blob/56c8d9cb0c4197b8df1cde33d25b4675421a0d9a/app/helpers/bootstrap_flash_helper.rb
-  def flash_messages(flash)
-    flash_messages = []
-    flash.each do |type, message|
-      # Skip empty messages, e.g. for devise messages set to nothing in a locale file.
-      next if message.blank?
+  def nav_link(text, url, options = {})
+    active = view_context.current_page?(url) && 'active'
 
-      type = 'success' if type == 'notice'
-      type = 'danger'  if type == 'alert'
-      next unless %w(danger info success warning).include?(type)
-
-      Array(message).each do |msg|
-        text = view_context.content_tag(:div,
-                           view_context.content_tag(:button, view_context.raw("&times;"), :class => "close", "data-dismiss" => "alert") +
-                           msg.html_safe, :class => "alert alert-dismissable alert-#{type}")
-        flash_messages << text if msg
-      end
+    view_context.tag.li(class: ['nav-item', active].compact.join(' ')) do
+      view_context.link_to text, url, options.merge(class: 'nav-link')
     end
-    flash_messages.join("\n").html_safe
+  end
+
+  def flash_messages
+    view_context.flash
+      .map { AlertComponent.new(type: _1, message: _2) }
+      .reject(&:blank?)
+      .map { view_context.render(_1) }
+      .then { view_context.safe_join(_1) }
   end
 end
