@@ -1,6 +1,9 @@
 class PlayersController < ApplicationController
+  include AccessTokenController
+
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_player, only: [:edit, :update, :destroy]
+  before_action :set_player_by_cookie_access_token, only: [:index]
 
   decorates_assigned :player, :players
 
@@ -47,7 +50,7 @@ class PlayersController < ApplicationController
     end
   end
 
-private
+  private
 
   def set_player
     @player = Player.find(params[:id])

@@ -1,8 +1,10 @@
 class GamesController < ApplicationController
+  include AccessTokenController
+
   before_action :authenticate_user!, only: [:edit, :update, :schedule, :remind, :cancel, :reschedule]
   before_action :find_game, only: [:show, :edit, :update, :respond, :override, :remind, :cancel, :reschedule]
-  before_action :find_player_by_params_access_token!, only: :respond
-  before_action :find_player_by_cookie_access_token, only: [:next, :show]
+  before_action :set_player_by_params_access_token!, only: :respond
+  before_action :set_player_by_cookie_access_token, only: [:next, :show]
 
   after_action :set_access_token, only: [:respond]
 
@@ -90,15 +92,6 @@ private
 
   def set_access_token
     cookies.permanent[:access_token] = @player.access_token
-  end
-
-  def find_player_by_params_access_token!
-    @player = Player.find_by_access_token(params[:access_token])
-    redirect_to root_path unless @player
-  end
-
-  def find_player_by_cookie_access_token
-    @player = Player.find_by_access_token(cookies[:access_token])
   end
 
   def game_params

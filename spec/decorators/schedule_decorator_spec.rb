@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 RSpec.describe ScheduleDecorator do
   describe '#available_days' do
     let(:schedule) { build(:schedule) }

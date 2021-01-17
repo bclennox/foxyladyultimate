@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 RSpec.describe User do
   describe '#name' do
     let(:user) { build(:user, first_name: 'Brandan', last_name: 'Lennox') }

@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 RSpec.describe Player do
   describe '::emailable' do
     before do
@@ -62,6 +64,20 @@ RSpec.describe Player do
       end
 
       it { is_expected.to be_present }
+    end
+  end
+
+  describe 'access tokens' do
+    subject { player.access_token }
+
+    context 'when no token is specified' do
+      let(:player) { create(:player, access_token: nil) }
+      it { is_expected.to be_present }
+    end
+
+    context 'when a token is specified' do
+      let(:player) { create(:player, access_token: 'abc123') }
+      it { is_expected.to eq('abc123') }
     end
   end
 end

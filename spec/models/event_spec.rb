@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 RSpec.describe Event do
   let(:game)         { create(:game) }
   let(:game_url)     { 'http://ultimate.dev/games/31' }

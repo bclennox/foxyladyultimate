@@ -1,5 +1,5 @@
 class Player < ApplicationRecord
-  before_create :generate_access_token
+  before_create :generate_access_token, unless: -> { access_token.present? }
   after_commit :flush_cache
 
   validates_presence_of :first_name, :last_name, :email

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       get :ranked
     end
   end
+  resources :removals, only: [:new, :create]
 
   resource :schedule, only: [:edit, :update]
 

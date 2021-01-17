@@ -1,4 +1,9 @@
 .subnav
   %ul.nav
-    %li.nav-item
-      = link_to 'Add a Player', new_player_path, class: 'nav-link'
+    - if authorizer.admin?
+      %li.nav-item
+        = link_to 'Add a Player', new_player_path, class: 'nav-link'
+
+    - if player.present?
+      %li.nav-item
+        = link_to 'Remove Me from the List', new_removal_path(access_token: player.access_token), class: 'nav-link btn btn-link text-warning'
