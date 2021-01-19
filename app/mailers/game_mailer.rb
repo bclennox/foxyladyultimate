@@ -61,6 +61,7 @@ private
 
     attachments['ultimate.ics'] = Event.new(game: @game, view_context: view_context).to_ical
 
+    headers['List-Unsubscribe'] = "<mailto:bclennox@gmail.com?subject=Unsubscribe+#{@player.access_token}> <#{new_removal_url(access_token: @player.access_token)}>"
     mail(to: to, from: from, subject: subject)
   end
 end

@@ -1,0 +1,17 @@
+- layout.page_title = 'Remove Me'
+
+.page-header
+  %h1 Remove Me from the List
+
+= form_with url: removals_path, method: :post, scope: :removal, class: 'form-horizontal' do |f|
+  = hidden_field_tag :access_token, player.access_token
+
+  .form-group.row
+    = f.label :email, 'Confirm your email', class: 'col-form-label col-12 col-md-3 col-lg-2'
+    .col-12.col-md-6.col-lg-3
+      = f.text_field :email, class: 'form-control', value: player.email
+
+  .form-group.row
+    .col-12.offset-md-3.col-md-9.offset-lg-2.col-lg-10
+      = f.submit 'Remove Me', class: 'btn btn-warning'
+      = link_to 'Go Back', players_path, class: 'btn btn-link'

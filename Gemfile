@@ -18,7 +18,6 @@ gem 'view_component', require: 'view_component/engine'
 gem 'webpacker'
 
 group :development do
-  gem 'amazing_print'
   gem 'capistrano'
   gem 'capistrano-bundler'
   gem 'capistrano-passenger'
@@ -33,10 +32,14 @@ group :test do
   gem 'apparition'
   gem 'capybara'
   gem 'factory_bot_rails'
+  gem 'guard-rspec'
   gem 'simplecov', require: false
+  gem 'spy'
   gem 'webdrivers'
 end
 
 group :development, :test do
+  gem 'amazing_print'
+  gem 'pry-byebug'
   gem 'rspec-rails'
 end

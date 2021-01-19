@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 RSpec.describe Schedule do
   context 'parsing the time' do
     let(:schedule) { build(:schedule, time: '2pm') }

@@ -8,8 +8,12 @@
   = @game.location
 
 %p
-  = link_to @positive_response, respond_game_url(@game, access_token: @player.access_token, playing: 'yes'), class: 'acceptance'
-  |
-  = link_to @negative_response, respond_game_url(@game, access_token: @player.access_token, playing: 'no'), class: 'declination'
-  |
-  = link_to 'Show me who’s playing', game_url(@game), class: 'postponement'
+  = link_to @positive_response, respond_game_url(@game, access_token: @player.access_token, playing: 'yes')
+  %span.separator /
+  = link_to @negative_response, respond_game_url(@game, access_token: @player.access_token, playing: 'no'), class: 'text-secondary'
+
+%p
+  You can also
+  = link_to 'see who’s playing', game_url(@game)
+  or
+  = link_to('unsubscribe', new_removal_url(access_token: @player.access_token)) + '.'

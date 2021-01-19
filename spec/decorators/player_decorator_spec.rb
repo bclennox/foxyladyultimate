@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 RSpec.describe PlayerDecorator do
   describe '#attendance' do
     let(:player)    { create(:player) }

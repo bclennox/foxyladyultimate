@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 RSpec.describe GameDecorator do
   describe '#date' do
     let(:game) { build(:game, starts_at: Time.zone.parse('Jun 30, 2013 14:00:00')) }

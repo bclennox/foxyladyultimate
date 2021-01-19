@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 RSpec.describe Authorizer do
   describe '#admin?' do
     context 'with a user' do
