@@ -1,3 +1,7 @@
+.row
+  .col-12.col-md-8.col-lg-5
+    = render ValidationErrorsComponent.new(model: player)
+
 = form_for player, class: 'form-horizontal' do |f|
   .form-group.row
     = f.label :first_name, class: 'col-form-label col-12 col-md-2'

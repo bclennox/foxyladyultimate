@@ -1,0 +1,13 @@
+body.quips {
+  table.quips {
+    tr {
+      td.actions a {
+        color: $text-muted;
+      }
+
+      &:hover td.actions a {
+        color: inherit;
+      }
+    }
+  }
+}

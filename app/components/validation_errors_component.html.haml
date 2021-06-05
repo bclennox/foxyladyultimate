@@ -1,0 +1,6 @@
+.alert.alert-warning
+  %p Please fix these errors and try again:
+
+  %ul.mb-0
+    - error_messages.each do |message|
+      %li= message

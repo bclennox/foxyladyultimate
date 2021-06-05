@@ -1,0 +1,28 @@
+- layout.page_title = 'Quips'
+
+.page-header
+  %h1 Quips
+
+  - if player
+    .subnav
+      %ul.nav
+        %li.nav-item
+          = link_to 'New Quip', new_quip_path(access_token: player.access_token), class: 'nav-link'
+
+.table-responsive
+  %table.table.table-hover.quips
+    %thead.thead-dark
+      %tr
+        %th.confirmation Confirmation
+        %th.rejection Rejection
+        %th.submitter Submitted By
+
+        - if authorizer.admin?
+          %th.approval.text-center Approved?
+          %th.actions
+
+    %tbody= render quips
+
+
+.d-flex.justify-content-center.mt-4
+  = paginate @quips

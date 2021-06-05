@@ -24,6 +24,8 @@
             = layout.nav_link 'Players', players_path
 
           %ul.navbar-nav.ml-auto
+            = layout.quips_link
+
             - if user_signed_in?
               = layout.nav_link 'Change Your Password', edit_user_registration_path
               = layout.nav_link "Sign Out #{current_user.first_name}", destroy_user_session_path, method: :delete

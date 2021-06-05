@@ -346,6 +346,40 @@ WITH (fillfactor='90');
 
 
 --
+-- Name: quips; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.quips (
+    id bigint NOT NULL,
+    player_id bigint NOT NULL,
+    confirmation text NOT NULL,
+    rejection text NOT NULL,
+    approved boolean,
+    created_at timestamp with time zone NOT NULL,
+    updated_at timestamp with time zone NOT NULL
+);
+
+
+--
+-- Name: quips_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.quips_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: quips_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.quips_id_seq OWNED BY public.quips.id;
+
+
+--
 -- Name: responses; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -479,6 +513,13 @@ ALTER TABLE ONLY public.que_jobs ALTER COLUMN id SET DEFAULT nextval('public.que
 
 
 --
+-- Name: quips id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.quips ALTER COLUMN id SET DEFAULT nextval('public.quips_id_seq'::regclass);
+
+
+--
 -- Name: responses id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -548,6 +589,14 @@ ALTER TABLE ONLY public.que_values
 
 
 --
+-- Name: quips quips_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.quips
+    ADD CONSTRAINT quips_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: responses responses_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -569,6 +618,13 @@ ALTER TABLE ONLY public.schedules
 
 ALTER TABLE ONLY public.users
     ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: index_quips_on_player_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_quips_on_player_id ON public.quips USING btree (player_id);
 
 
 --
@@ -614,6 +670,14 @@ CREATE TRIGGER que_state_notify AFTER INSERT OR DELETE OR UPDATE ON public.que_j
 
 
 --
+-- Name: quips fk_rails_11a55a7424; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.quips
+    ADD CONSTRAINT fk_rails_11a55a7424 FOREIGN KEY (player_id) REFERENCES public.players(id);
+
+
+--
 -- PostgreSQL database dump complete
 --
 
@@ -635,6 +699,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20150404030021'),
 ('20210112035103'),
 ('20210112035156'),
-('20210115040650');
+('20210115040650'),
+('20210605010225');
 
 

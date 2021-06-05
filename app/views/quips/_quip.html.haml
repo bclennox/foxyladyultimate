@@ -1,0 +1,8 @@
+%tr
+  %td.confirmation= quip.confirmation
+  %td.rejection= quip.rejection
+  %td.submitter= quip.player_name
+
+  - if authorizer.admin?
+    %td.approval.text-center= quip.approval_icon
+    %td.actions= quip.edit_link

@@ -22,6 +22,19 @@ class Layout
     end
   end
 
+  def quips_link
+    count = Quip.pending.count
+    content = if view_context.authorizer.admin? && count.positive?
+      badge = view_context.tag.span(count, class: 'badge badge-info align-middle')
+      sr = view_context.tag.span('to review', class: 'sr-only')
+      view_context.safe_join(['Quips', badge, sr], ' ')
+    else
+      'Quips'
+    end
+
+    nav_link content, view_context.quips_path
+  end
+
   def flash_messages
     view_context.flash
       .map { AlertComponent.new(type: _1, message: _2) }
