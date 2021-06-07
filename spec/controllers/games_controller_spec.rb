@@ -124,10 +124,15 @@ RSpec.describe GamesController do
       before { Game.delete_all }
       let!(:past_games) { create_list(:game, 3, starts_at: 1.month.ago) }
       let!(:upcoming_game) { create(:game, starts_at: 1.week.from_now) }
+      let!(:quip) { create(:quip, :approved, confirmation: 'Yes', rejection: 'No') }
       before { get :next }
 
       it 'assigns the last upcoming game' do
         expect(controller.game.id).to eq(upcoming_game.id)
+      end
+
+      it 'assigns a quip' do
+        expect(controller.quip.id).to eq(quip.id)
       end
     end
 

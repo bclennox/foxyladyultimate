@@ -84,7 +84,7 @@ class GamesController < ApplicationController
 private
 
   def set_quip
-    @quip = Quip.random
+    @quip = RandomQuip.call
   end
 
   def notifier

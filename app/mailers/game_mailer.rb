@@ -41,7 +41,7 @@ private
     to = Rails.env.development? ? 'brandan@localhost' : message.to
     from = message.from
     subject = message.subject
-    quip = Quip.random
+    quip = RandomQuip.call
 
     @game = message.game.decorate
     @player = message.player
