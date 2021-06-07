@@ -3,5 +3,5 @@ class Quip < ApplicationRecord
   validates :confirmation, :rejection, presence: true
 
   scope :approved, -> { where(approved: true) }
-  scope :pending, -> { where(approved: nil) }
+  scope :pending,  -> { where(approved: nil) }
 end

@@ -621,13 +621,6 @@ ALTER TABLE ONLY public.users
 
 
 --
--- Name: index_quips_on_player_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_quips_on_player_id ON public.quips USING btree (player_id);
-
-
---
 -- Name: que_jobs_args_gin_idx; Type: INDEX; Schema: public; Owner: -
 --
 

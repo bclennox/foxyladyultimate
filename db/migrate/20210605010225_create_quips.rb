@@ -1,7 +1,7 @@
 class CreateQuips < ActiveRecord::Migration[6.1]
   def up
     create_table :quips do |t|
-      t.references :player, null: false, foreign_key: true
+      t.references :player, null: false, index: false, foreign_key: true
       t.text :confirmation, null: false
       t.text :rejection, null: false
       t.boolean :approved
