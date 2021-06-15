@@ -8,4 +8,8 @@ module AccessTokenController
   def set_player_by_cookie_access_token
     @player = Player.find_by_access_token(cookies[:access_token])
   end
+
+  def set_access_token
+    cookies.permanent[:access_token] = @player.access_token
+  end
 end

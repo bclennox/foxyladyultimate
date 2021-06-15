@@ -28,7 +28,7 @@ class PlayersController < ApplicationController
     if @player.save
       redirect_to players_url, notice: 'Player was successfully created.'
     else
-      flash.now[:error] = 'Failed to create player.'
+      flash.now[:alert] = 'Failed to create player.'
       render :new
     end
   end
@@ -37,7 +37,7 @@ class PlayersController < ApplicationController
     if @player.update(player_params)
       redirect_to players_url, notice: 'Player was successfully updated.'
     else
-      flash.now[:error] = 'Failed to update player.'
+      flash.now[:alert] = 'Failed to update player.'
       render :edit
     end
   end

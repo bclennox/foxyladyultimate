@@ -11,6 +11,8 @@ require 'capybara/rspec'
 require 'capybara/rails'
 require 'capybara/apparition'
 
+require 'view_component/test_helpers'
+
 Capybara.register_driver :apparition_headed do |app|
   Capybara::Apparition::Driver.new(app, headless: false)
 end
@@ -46,6 +48,9 @@ RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include SessionHelper, type: :controller
+
+  config.include ViewComponent::TestHelpers, type: :component
+  config.include Capybara::RSpecMatchers, type: :component
 
   config.before(type: :system) do
     driven_by(:rack_test)
