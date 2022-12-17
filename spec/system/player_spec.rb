@@ -67,9 +67,9 @@ RSpec.describe 'Player management' do
     let!(:player) { create(:player, first_name: 'Zaboo', last_name: 'the Warlock') }
 
     before do
-      driven_by(:apparition)
+      driven_by(:selenium_chrome_headless)
       sign_in
-      click_link 'Players'
+      visit players_path
     end
 
     it 'no longer shows the player in the list' do
