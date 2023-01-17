@@ -9,13 +9,10 @@ require 'rspec/rails'
 
 require 'capybara/rspec'
 require 'capybara/rails'
-require 'capybara/apparition'
 
-Capybara.register_driver :apparition_headed do |app|
-  Capybara::Apparition::Driver.new(app, headless: false)
+Capybara.configure do |config|
+  config.server = :webrick
 end
-
-Capybara.server = :webrick
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are

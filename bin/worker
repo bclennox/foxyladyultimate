@@ -1,4 +1,4 @@
 #!/bin/bash
 
 source ~/.bash_profile
-bundle exec que -q mailers -q default
+bundle exec good_job start

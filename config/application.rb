@@ -18,6 +18,6 @@ module FoxyLadyUltimate
     #
     config.time_zone = 'Eastern Time (US & Canada)'
     config.active_record.schema_format = :sql
-    config.active_job.queue_adapter = :que
+    config.active_job.queue_adapter = :good_job
   end
 end
