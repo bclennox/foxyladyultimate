@@ -1,4 +1,4 @@
-import Chart from 'chart.js'
+import Chart from 'chart.js/auto'
 
 const initializePlayerChart = () => {
   const canvas = $('#player-chart')
@@ -14,20 +14,22 @@ const initializePlayerChart = () => {
         }]
       },
       options: {
-        legend: {
-          display: false
+        plugins: {
+          legend: {
+            display: false
+          }
         },
         scales: {
-          xAxes: [{
-            gridLines: {
+          x: {
+            grid: {
               display: false
             }
-          }],
-          yAxes: [{
+          },
+          y: {
             ticks: {
               beginAtZero: true
             }
-          }]
+          }
         }
       }
     })
