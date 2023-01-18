@@ -26,7 +26,6 @@ group :development do
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
   gem 'ed25519'
-  gem 'listen'
   gem 'spring'
   gem 'spring-commands-rspec'
 end
