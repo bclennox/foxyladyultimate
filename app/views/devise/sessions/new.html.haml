@@ -3,19 +3,19 @@
 .page-header
   %h1 Sign In
 
-= form_for resource, as: resource_name, url: session_path(resource_name), class: 'form-horizontal' do |f|
-  .form-group.row
+= form_for resource, as: resource_name, url: session_path(resource_name) do |f|
+  .row.mb-3
     = f.label :username, class: 'col-form-label col-12 col-md-2'
     .col-12.col-md-6.col-lg-4
       = f.text_field :username, autofocus: true, autocapitalize: 'off', autocorrect: 'off', class: 'form-control'
 
-  .form-group.row
+  .row.mb-3
     = f.label :password, class: 'col-form-label col-12 col-md-2'
     .col-12.col-md-6.col-lg-4
       = f.password_field :password, class: 'form-control'
       %small.form-text.text-muted If you don’t know how to sign in, then you’re not supposed to.
 
-  .form-group.row
+  .row
     .col-12.offset-md-2.col-md-10
       = f.submit 'Sign In', class: 'btn btn-primary'
       = link_to 'Go Home', root_url, class: 'btn btn-link'

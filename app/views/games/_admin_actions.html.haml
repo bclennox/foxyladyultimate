@@ -5,16 +5,16 @@
   .edit-players
     .row.mb-4
       .col-12.col-lg-6
-        = form_tag override_game_url(game), class: 'form-inline' do
-          = label_tag :player_id, 'Player Name', class: 'sr-only'
-          = select_tag :player_id, options_from_collection_for_select(game.unconfirmed_players, :id, :short_name), class: 'form-control w-50 mr-2'
+        = form_tag override_game_url(game), class: 'row row-cols-lg-auto g-3 align-items-center' do
           = hidden_field_tag :played, 'yes'
-          = button_tag 'Add', class: 'btn btn-primary'
+          = label_tag :player_id, 'Player Name', class: 'visually-hidden'
+          .col-12= select_tag :player_id, options_from_collection_for_select(game.unconfirmed_players, :id, :short_name), class: 'form-select me-2'
+          .col-12= button_tag 'Add', class: 'btn btn-primary'
 
     .row
       .col-12.col-lg-6
-        = form_tag override_game_url(game), class: 'form-inline' do
-          = label_tag :player_id, 'Player Name', class: 'sr-only'
-          = select_tag :player_id, options_from_collection_for_select(game.confirmed_players, :id, :short_name), class: 'form-control w-50 mr-2'
+        = form_tag override_game_url(game), class: 'row row-cols-lg-auto g-3 align-items-center' do
           = hidden_field_tag :played, 'no'
-          = button_tag 'Remove', class: 'btn btn-warning'
+          = label_tag :player_id, 'Player Name', class: 'visually-hidden'
+          .col-12= select_tag :player_id, options_from_collection_for_select(game.confirmed_players, :id, :short_name), class: 'form-select me-2'
+          .col-12= button_tag 'Remove', class: 'btn btn-warning'

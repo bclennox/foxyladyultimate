@@ -24,10 +24,6 @@ svg.bi {
   .subnav {
     @extend .mb-2;
 
-    .nav-link:hover {
-      text-decoration: underline;
-    }
-
     @include media-breakpoint-down(sm) {
       .nav {
         display: flex;
@@ -48,6 +44,14 @@ svg.bi {
         padding-right: 0;
       }
     }
+  }
+}
+
+a[href] {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
   }
 }
 

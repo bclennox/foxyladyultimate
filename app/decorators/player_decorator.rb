@@ -27,13 +27,13 @@ class PlayerDecorator < ApplicationDecorator
 
   def edit_link
     h.link_to h.edit_player_path(self) do
-      h.tag.span('Edit', class: 'sr-only') + icon('pencil-fill', classes: 'edit-player')
+      h.tag.span('Edit', class: 'visually-hidden') + icon('pencil-fill', classes: 'edit-player')
     end
   end
 
   def remove_link
     h.link_to h.player_path(self), method: :delete, data: { confirm: "Remove #{name}?" } do
-      h.tag.span('Remove', class: 'sr-only') + icon('x-circle-fill', classes: 'remove-player')
+      h.tag.span('Remove', class: 'visually-hidden') + icon('x-circle-fill', classes: 'remove-player')
     end
   end
 

@@ -1,5 +1,4 @@
-.alert.alert-dismissable.fade.show.mt-3{class: "alert-#{css_class}"}
+.alert.alert-dismissible.fade.show.mt-3{class: "alert-#{css_class}", role: 'alert'}
   = message
 
-  %button.close{type: 'button', data: { dismiss: 'alert' }, aria: { label: 'Close' }}
-    %span{aria: { hidden: true }} &times;
+  %button.btn-close{type: 'button', data: { bs_dismiss: 'alert' }, aria: { label: 'Close' }}

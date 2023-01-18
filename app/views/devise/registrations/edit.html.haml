@@ -3,25 +3,25 @@
 .page-header
   %h1 Change Your Password
 
-= form_for resource, as: resource_name, url: user_registration_path, class: 'form-horizontal', method: :patch do |f|
+= form_for resource, as: resource_name, url: user_registration_path, method: :patch do |f|
   = render 'devise/shared/error_messages', resource: resource
 
-  .form-group.row
+  .row.mb-3
     = f.label :current_password, class: 'col-form-label col-12 col-md-3 col-lg-2'
     .col-12.col-md-6.col-lg-4
       = f.password_field :current_password, autofocus: true, autocomplete: 'off', class: 'form-control'
 
-  .form-group.row
+  .row.mb-3
     = f.label :password, class: 'col-form-label col-12 col-md-3 col-lg-2'
     .col-12.col-md-6.col-lg-4
       = f.password_field :password, class: 'form-control'
 
-  .form-group.row
+  .row.mb-3
     = f.label :password_confirmation, 'Confirm Password', class: 'col-form-label col-12 col-md-3 col-lg-2'
     .col-12.col-md-6.col-lg-4
       = f.password_field :password_confirmation, class: 'form-control'
 
-  .form-group.row
+  .row
     .col-12.offset-md-3.offset-lg-2.col-md-9.col-lg-10
       = f.submit 'Change Password', class: 'btn btn-primary'
       = link_to 'Go Home', root_url, class: 'btn btn-link'

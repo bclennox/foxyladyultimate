@@ -19,11 +19,11 @@
           %span.navbar-toggler-icon
 
         .collapse.navbar-collapse#navbar-main
-          %ul.navbar-nav.mr-auto
+          %ul.navbar-nav.me-auto
             = layout.nav_link 'Games', games_path
             = layout.nav_link 'Players', players_path
 
-          %ul.navbar-nav.ml-auto
+          %ul.navbar-nav.ms-auto
             - if user_signed_in?
               = layout.nav_link 'Change Your Password', edit_user_registration_path
               = layout.nav_link "Sign Out #{current_user.first_name}", destroy_user_session_path, method: :delete
