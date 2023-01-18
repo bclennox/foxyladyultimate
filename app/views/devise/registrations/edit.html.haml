@@ -4,7 +4,7 @@
   %h1 Change Your Password
 
 = form_for resource, as: resource_name, url: user_registration_path, class: 'form-horizontal', method: :patch do |f|
-  = devise_error_messages!
+  = render 'devise/shared/error_messages', resource: resource
 
   .form-group.row
     = f.label :current_password, class: 'col-form-label col-12 col-md-3 col-lg-2'
