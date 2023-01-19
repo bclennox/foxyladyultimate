@@ -16,6 +16,8 @@ gem 'pg'
 gem 'puma'
 gem 'rack-cache'
 gem 'rexml'
+gem 'sentry-ruby'
+gem 'sentry-rails'
 gem 'view_component', require: 'view_component/engine'
 gem 'webpacker'
 
