@@ -7,8 +7,8 @@
 
     %title= layout.full_page_title
 
-    = stylesheet_packs_with_chunks_tag 'application'
-    = javascript_packs_with_chunks_tag 'application'
+    = stylesheet_link_tag 'application'
+    = javascript_include_tag 'application', 'data-turbo-track': 'reload', defer: true
 
   %body{class: layout.body_class}
     %nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top

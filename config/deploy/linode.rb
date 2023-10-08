@@ -9,12 +9,12 @@ namespace :assets do
   task :precompile do
     run_locally do
       rake 'assets:precompile'
-      `tar -C public -zvcf tmp/public.tar.gz assets packs`
+      `tar -C public -zcf tmp/public.tar.gz assets`
     end
 
     on roles(:app) do
       upload! 'tmp/public.tar.gz', "#{release_path}/tmp"
-      execute "tar -C #{release_path}/public -zxvf #{release_path}/tmp/public.tar.gz"
+      execute "tar -C #{release_path}/public -zxf #{release_path}/tmp/public.tar.gz"
     end
   end
 end
