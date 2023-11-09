@@ -29,5 +29,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :quips, except: [:show, :destroy]
+
   root to: 'games#next'
 end

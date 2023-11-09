@@ -1,0 +1,27 @@
+- layout.page_title = 'Quips'
+
+.page-header
+  %h1 Quips
+
+  - if authorizer.admin?
+    .subnav
+      %ul.nav
+        %li.nav-item
+          = link_to 'Add a Quip', new_quip_path, class: 'nav-link'
+
+.table-responsive
+  %table.table.table-hover.quips
+    %thead.thead-dark
+      %tr
+        %th.confirmation Confirmation
+        %th.rejection Rejection
+        %th.active.text-center Active?
+        %th.actions
+
+    %tbody
+      - quips.each do |quip|
+        %tr
+          %td.confirmation= quip.confirmation
+          %td.rejection= quip.rejection
+          %td.active.text-center= quip.active_icon
+          %td.actions= quip.edit_link

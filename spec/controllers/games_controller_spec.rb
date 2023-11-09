@@ -52,9 +52,16 @@ RSpec.describe GamesController do
       let(:game) { create(:game) }
 
       context 'format.html' do
+        let!(:quip) { create(:quip, active: true) }
+
         it 'renders the show template' do
           get :show, params: { id: game }
           expect(response).to have_http_status(200)
+        end
+
+        it 'assigns a quip' do
+          get :show, params: { id: game }
+          expect(controller.quip).to eq(quip)
         end
 
         context 'without a saved access token' do
@@ -124,10 +131,15 @@ RSpec.describe GamesController do
       before { Game.delete_all }
       let!(:past_games) { create_list(:game, 3, starts_at: 1.month.ago) }
       let!(:upcoming_game) { create(:game, starts_at: 1.week.from_now) }
+      let!(:quip) { create(:quip, active: true) }
       before { get :next }
 
       it 'assigns the last upcoming game' do
         expect(controller.game.id).to eq(upcoming_game.id)
+      end
+
+      it 'assigns a quip' do
+        expect(controller.quip).to eq(quip)
       end
     end
 

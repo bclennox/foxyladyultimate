@@ -62,3 +62,20 @@ a[href] {
     align-items: center;
   }
 }
+
+table {
+  tr {
+    .actions {
+      text-align: right;
+    }
+
+    td.actions a {
+      color: $text-muted;
+      margin-left: 0.25rem;
+    }
+
+    &:hover td.actions a {
+      color: inherit;
+    }
+  }
+}

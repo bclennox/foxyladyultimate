@@ -22,6 +22,7 @@
           %ul.navbar-nav.me-auto
             = layout.nav_link 'Games', games_path
             = layout.nav_link 'Players', players_path
+            = layout.nav_link 'Quips', quips_path if authorizer.admin?
 
           %ul.navbar-nav.ms-auto
             - if user_signed_in?

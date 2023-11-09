@@ -8,9 +8,9 @@
   = @game.location
 
 %p
-  = link_to @positive_response, respond_game_url(@game, access_token: @player.access_token, playing: 'yes')
+  = link_to @confirmation, respond_game_url(@game, access_token: @player.access_token, playing: 'yes')
   %span.separator /
-  = link_to @negative_response, respond_game_url(@game, access_token: @player.access_token, playing: 'no'), class: 'text-secondary'
+  = link_to @rejection, respond_game_url(@game, access_token: @player.access_token, playing: 'no'), class: 'text-secondary'
 
 %p
   You can also

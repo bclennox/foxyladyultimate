@@ -24,6 +24,7 @@
 /public/assets
 /*.swp
 /*~
+/.rake_tasks
 
 /spec/examples.txt
 
