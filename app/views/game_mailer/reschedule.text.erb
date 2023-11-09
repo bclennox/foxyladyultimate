@@ -4,6 +4,6 @@ When: <%= @game.date %>
 Where: <%= @game.location %>
 URL: <%= game_url(@game) %>
 
-Count me in: <%= raw respond_game_url(@game, access_token: @player.access_token, playing: 'yes') %>
+<%= @confirmation %>: <%= raw respond_game_url(@game, access_token: @player.access_token, playing: 'yes') %>
 
-Count me out: <%= raw respond_game_url(@game, access_token: @player.access_token, playing: 'no') %>
+<%= @rejection %>: <%= raw respond_game_url(@game, access_token: @player.access_token, playing: 'no') %>

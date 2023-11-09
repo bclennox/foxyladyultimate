@@ -1,7 +1,5 @@
-- positive_response, negative_response = GameMailer.responses.sample
-
 .player-actions
   %h2.mb-3= "RSVP as #{player.short_name}"
 
-  .response.mb-2= link_to positive_response, respond_game_url(game, access_token: player.access_token, playing: 'yes'), class: 'btn btn-primary me-2'
-  .response= link_to negative_response, respond_game_url(game, access_token: player.access_token, playing: 'no'), class: 'btn btn-secondary'
+  .response.mb-2= link_to quip.confirmation, respond_game_url(game, access_token: player.access_token, playing: 'yes'), class: 'btn btn-primary me-2'
+  .response= link_to quip.rejection, respond_game_url(game, access_token: player.access_token, playing: 'no'), class: 'btn btn-secondary'

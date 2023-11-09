@@ -5,10 +5,11 @@ class GamesController < ApplicationController
   before_action :find_game, only: [:show, :edit, :update, :respond, :override, :remind, :cancel, :reschedule]
   before_action :set_player_by_params_access_token!, only: :respond
   before_action :set_player_by_cookie_access_token, only: [:next, :show]
+  before_action :set_quip, only: [:next, :show]
 
   after_action :set_access_token, only: [:respond]
 
-  decorates_assigned :game, :games, :player
+  decorates_assigned :game, :games, :player, :quip
 
   def index
     @games = Game.page(params[:page]).per(25)
@@ -88,6 +89,10 @@ private
 
   def find_game
     @game = Game.find(params[:id])
+  end
+
+  def set_quip
+    @quip = RandomQuip.call
   end
 
   def set_access_token

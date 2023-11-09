@@ -105,7 +105,7 @@ RSpec.describe PlayersController do
         end
 
         it 'adds a flash message' do
-          expect(flash[:error]).to be_present
+          expect(flash[:alert]).to be_present
         end
       end
     end
@@ -152,7 +152,7 @@ RSpec.describe PlayersController do
         end
 
         it 'adds a flash message' do
-          expect(flash[:error]).to be_present
+          expect(flash[:alert]).to be_present
         end
       end
     end

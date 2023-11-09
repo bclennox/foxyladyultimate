@@ -158,6 +158,39 @@ ALTER SEQUENCE public.players_id_seq OWNED BY public.players.id;
 
 
 --
+-- Name: quips; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.quips (
+    id bigint NOT NULL,
+    confirmation text NOT NULL,
+    rejection text NOT NULL,
+    active boolean DEFAULT true NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: quips_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.quips_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: quips_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.quips_id_seq OWNED BY public.quips.id;
+
+
+--
 -- Name: responses; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -284,6 +317,13 @@ ALTER TABLE ONLY public.players ALTER COLUMN id SET DEFAULT nextval('public.play
 
 
 --
+-- Name: quips id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.quips ALTER COLUMN id SET DEFAULT nextval('public.quips_id_seq'::regclass);
+
+
+--
 -- Name: responses id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -350,6 +390,14 @@ ALTER TABLE ONLY public.good_jobs
 
 ALTER TABLE ONLY public.players
     ADD CONSTRAINT players_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: quips quips_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.quips
+    ADD CONSTRAINT quips_pkey PRIMARY KEY (id);
 
 
 --
@@ -480,6 +528,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230117035511'),
 ('20230118030154'),
 ('20230118030155'),
-('20230118030156');
+('20230118030156'),
+('20231109021632'),
+('20231109021740');
 
 
