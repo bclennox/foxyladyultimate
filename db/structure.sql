@@ -73,6 +73,46 @@ ALTER SEQUENCE public.games_id_seq OWNED BY public.games.id;
 
 
 --
+-- Name: good_job_batches; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.good_job_batches (
+    id uuid DEFAULT gen_random_uuid() NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    description text,
+    serialized_properties jsonb,
+    on_finish text,
+    on_success text,
+    on_discard text,
+    callback_queue_name text,
+    callback_priority integer,
+    enqueued_at timestamp(6) without time zone,
+    discarded_at timestamp(6) without time zone,
+    finished_at timestamp(6) without time zone
+);
+
+
+--
+-- Name: good_job_executions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.good_job_executions (
+    id uuid DEFAULT gen_random_uuid() NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    active_job_id uuid NOT NULL,
+    job_class text,
+    queue_name text,
+    serialized_params jsonb,
+    scheduled_at timestamp(6) without time zone,
+    finished_at timestamp(6) without time zone,
+    error text,
+    error_event smallint
+);
+
+
+--
 -- Name: good_job_processes; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -116,7 +156,13 @@ CREATE TABLE public.good_jobs (
     concurrency_key text,
     cron_key text,
     retried_good_job_id uuid,
-    cron_at timestamp with time zone
+    cron_at timestamp with time zone,
+    batch_id uuid,
+    batch_callback_id uuid,
+    is_discrete boolean,
+    executions_count integer,
+    job_class text,
+    error_event smallint
 );
 
 
@@ -361,6 +407,22 @@ ALTER TABLE ONLY public.games
 
 
 --
+-- Name: good_job_batches good_job_batches_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.good_job_batches
+    ADD CONSTRAINT good_job_batches_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: good_job_executions good_job_executions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.good_job_executions
+    ADD CONSTRAINT good_job_executions_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: good_job_processes good_job_processes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -425,6 +487,13 @@ ALTER TABLE ONLY public.users
 
 
 --
+-- Name: index_good_job_executions_on_active_job_id_and_created_at; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_good_job_executions_on_active_job_id_and_created_at ON public.good_job_executions USING btree (active_job_id, created_at);
+
+
+--
 -- Name: index_good_job_settings_on_key; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -457,6 +526,20 @@ CREATE INDEX index_good_jobs_on_active_job_id ON public.good_jobs USING btree (a
 --
 
 CREATE INDEX index_good_jobs_on_active_job_id_and_created_at ON public.good_jobs USING btree (active_job_id, created_at);
+
+
+--
+-- Name: index_good_jobs_on_batch_callback_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_good_jobs_on_batch_callback_id ON public.good_jobs USING btree (batch_callback_id) WHERE (batch_callback_id IS NOT NULL);
+
+
+--
+-- Name: index_good_jobs_on_batch_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_good_jobs_on_batch_id ON public.good_jobs USING btree (batch_id) WHERE (batch_id IS NOT NULL);
 
 
 --
@@ -508,28 +591,32 @@ CREATE UNIQUE INDEX unique_schema_migrations ON public.schema_migrations USING b
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
-('20130123020547'),
-('20130123034111'),
-('20130123043730'),
-('20130126202957'),
-('20130126210524'),
-('20130129185309'),
-('20130129221821'),
-('20130131211059'),
-('20130216181708'),
-('20130529023505'),
-('20141228163852'),
-('20141228163853'),
-('20150404030021'),
-('20210112035103'),
-('20210112035156'),
-('20210115040650'),
-('20230114191236'),
-('20230117035511'),
-('20230118030154'),
-('20230118030155'),
-('20230118030156'),
+('20231115031846'),
+('20231115031845'),
+('20231115031844'),
+('20231115031843'),
+('20231115031842'),
+('20231109021740'),
 ('20231109021632'),
-('20231109021740');
-
+('20230118030156'),
+('20230118030155'),
+('20230118030154'),
+('20230117035511'),
+('20230114191236'),
+('20210115040650'),
+('20210112035156'),
+('20210112035103'),
+('20150404030021'),
+('20141228163853'),
+('20141228163852'),
+('20130529023505'),
+('20130216181708'),
+('20130131211059'),
+('20130129221821'),
+('20130129185309'),
+('20130126210524'),
+('20130126202957'),
+('20130123043730'),
+('20130123034111'),
+('20130123020547');
 
