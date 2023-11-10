@@ -4,10 +4,10 @@ class PlayerDecorator < ApplicationDecorator
   def attendance
     if retired?
       'Retired'
-    elsif games.empty?
+    elsif confirmed_games.empty?
       'Never played'
     else
-      "Played #{last_played}<br>#{h.pluralize(games.size, 'game')} total".html_safe
+      "Played #{last_played}<br>#{h.pluralize(confirmed_games.size, 'game')} total".html_safe
     end
   end
 
@@ -49,11 +49,7 @@ class PlayerDecorator < ApplicationDecorator
     end
   end
 
-  def games
-    @games ||= played_games
-  end
-
   def last_played
-    time_ago_in_words_with_modifier(games.first.starts_at)
+    time_ago_in_words_with_modifier(confirmed_games.first.starts_at)
   end
 end

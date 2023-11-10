@@ -8,7 +8,7 @@ class PlayersController < ApplicationController
   decorates_assigned :player, :players
 
   def index
-    @players = Player.active
+    @players = Player.active.includes(:confirmed_games)
   end
 
   def ranked
