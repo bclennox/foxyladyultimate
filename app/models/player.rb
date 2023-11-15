@@ -10,7 +10,7 @@ class Player < ApplicationRecord
 
   has_many :responses
   has_many :games, through: :responses
-  has_many :confirmed_games, -> { merge(Response.confirmed) }, through: :responses, source: :game
+  has_many :confirmed_games, -> { on.merge(Response.confirmed) }, through: :responses, source: :game
 
   def name
     "#{first_name} #{last_name}"
@@ -23,7 +23,7 @@ class Player < ApplicationRecord
   end
 
   def worthy?
-    confirmed_games.present? && confirmed_games.first.starts_at > 1.month.ago
+    confirmed_games.present? && confirmed_games.last.starts_at > 1.month.ago
   end
 
   def destroy

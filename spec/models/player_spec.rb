@@ -80,4 +80,26 @@ RSpec.describe Player do
       it { is_expected.to eq('abc123') }
     end
   end
+
+  describe '#confirmed_games' do
+    let(:player) { create(:player) }
+
+    let!(:confirmed_canceled_game) { create(:game, canceled: true) }
+    let!(:confirmed_active_game) { create(:game, canceled: false) }
+    let!(:declined_game) { create(:game, canceled: false) }
+    let!(:ignored_game) { create(:game, canceled: false) }
+
+    before do
+      confirmed_canceled_game.respond(player, true)
+      confirmed_active_game.respond(player, true)
+      declined_game.respond(player, false)
+    end
+
+    subject { player.confirmed_games }
+
+    it { is_expected.to     include(confirmed_active_game) }
+    it { is_expected.not_to include(confirmed_canceled_game) }
+    it { is_expected.not_to include(declined_game) }
+    it { is_expected.not_to include(ignored_game) }
+  end
 end
