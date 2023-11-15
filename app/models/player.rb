@@ -10,6 +10,7 @@ class Player < ApplicationRecord
 
   has_many :responses
   has_many :games, through: :responses
+  has_many :confirmed_games, -> { merge(Response.confirmed) }, through: :responses, source: :game
 
   def name
     "#{first_name} #{last_name}"
@@ -21,14 +22,8 @@ class Player < ApplicationRecord
     end
   end
 
-  def played_games
-    Rails.cache.fetch([self, 'played_games']) do
-      games.on.past.where(responses: { playing: true }).to_a
-    end
-  end
-
   def worthy?
-    played_games.present? && played_games.first.starts_at > 1.month.ago
+    confirmed_games.present? && confirmed_games.first.starts_at > 1.month.ago
   end
 
   def destroy

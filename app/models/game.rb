@@ -1,6 +1,8 @@
 class Game < ApplicationRecord
   has_many :responses, dependent: :destroy
   has_many :players, through: :responses
+  has_many :confirmed_players, -> { merge(Response.confirmed) }, through: :responses, source: :player
+  has_many :declined_players, -> { merge(Response.declined) }, through: :responses, source: :player
   before_validation :ensure_location
 
   default_scope -> { order(starts_at: :desc) }
@@ -17,20 +19,8 @@ class Game < ApplicationRecord
     responses.create(player_id: player.id, playing: playing)
   end
 
-  def confirmed_players
-    Rails.cache.fetch([self, 'confirmed_players']) do
-      players.where(responses: { playing: true }).to_a
-    end
-  end
-
   def unconfirmed_players
     Player.active - confirmed_players
-  end
-
-  def declined_players
-    Rails.cache.fetch([self, 'declined_players']) do
-      players.where(responses: { playing: false }).to_a
-    end
   end
 
   def upcoming?

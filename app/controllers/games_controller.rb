@@ -12,7 +12,7 @@ class GamesController < ApplicationController
   decorates_assigned :game, :games, :player, :quip
 
   def index
-    @games = Game.page(params[:page]).per(25)
+    @games = Game.includes(:confirmed_players).page(params[:page]).per(25)
   end
 
   def show

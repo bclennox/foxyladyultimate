@@ -27,7 +27,7 @@
         %tr{class: game.canceled? ? 'canceled' : 'on'}
           %td.name= link_to(game.canceled? ? "#{game.date} (canceled)" : game.date, game)
           %td.location= game.location
-          %td.players= game.canceled? ? '—' : pluralize(game.confirmed_players.count, 'player')
+          %td.players= game.canceled? ? '—' : pluralize(game.confirmed_players.size, 'player')
 
 .d-flex.justify-content-center.mt-4
   = paginate @games
