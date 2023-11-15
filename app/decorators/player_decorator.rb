@@ -50,6 +50,6 @@ class PlayerDecorator < ApplicationDecorator
   end
 
   def last_played
-    time_ago_in_words_with_modifier(confirmed_games.first.starts_at)
+    time_ago_in_words_with_modifier(confirmed_games.last.starts_at)
   end
 end

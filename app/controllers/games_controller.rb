@@ -12,7 +12,11 @@ class GamesController < ApplicationController
   decorates_assigned :game, :games, :player, :quip
 
   def index
-    @games = Game.includes(:confirmed_players).page(params[:page]).per(25)
+    @games = Game
+      .includes(:confirmed_players)
+      .order(starts_at: :desc)
+      .page(params[:page])
+      .per(25)
   end
 
   def show
@@ -36,7 +40,7 @@ class GamesController < ApplicationController
   end
 
   def next
-    @game = Game.upcoming.last
+    @game = Game.upcoming.first
   end
 
   def schedule

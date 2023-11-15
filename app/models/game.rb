@@ -5,7 +5,6 @@ class Game < ApplicationRecord
   has_many :declined_players, -> { merge(Response.declined) }, through: :responses, source: :player
   before_validation :ensure_location
 
-  default_scope -> { order(starts_at: :desc) }
   scope :upcoming, -> { where('starts_at > NOW()') }
   scope :past, -> { where('starts_at < NOW()') }
   scope :on, -> { where(canceled: false) }
