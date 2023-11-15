@@ -53,21 +53,32 @@ RSpec.describe GameDecorator do
     end
 
     context 'with one response' do
-      let(:players) { build_list(:player, 1) }
-      it { is_expected.to eq(players.first.short_name) }
+      let(:players) { [build(:player, short_name: 'Vulfmon')] }
+      it { is_expected.to eq('Vulfmon') }
     end
 
     context 'with two responses' do
-      let(:players) { build_list(:player, 2) }
-      it { is_expected.to eq("#{players.first.short_name} and #{players.second.short_name}") }
+      let(:players) do
+        [
+          build(:player, short_name: 'Louis'),
+          build(:player, short_name: 'Genevieve')
+        ]
+      end
+
+      it { is_expected.to eq("Louis and Genevieve") }
     end
 
     context 'with more than two responses' do
-      let(:players) { build_list(:player, 4) }
-      it { is_expected.to include("#{players.first.short_name},") }
-      it { is_expected.to include("#{players.second.short_name},") }
-      it { is_expected.to include("#{players.third.short_name},") }
-      it { is_expected.to include("and #{players.fourth.short_name}") }
+      let(:players) do
+        [
+          build(:player, short_name: 'John'),
+          build(:player, short_name: 'Paul'),
+          build(:player, short_name: 'George'),
+          build(:player, short_name: 'Ringo'),
+        ]
+      end
+
+      it { is_expected.to eq('John, Paul, George, and Ringo') }
     end
   end
 end

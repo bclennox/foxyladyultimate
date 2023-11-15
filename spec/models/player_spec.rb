@@ -22,16 +22,7 @@ RSpec.describe Player do
   describe '#short_name' do
     let(:original) { create(:player, first_name: 'Nerf', last_name: 'Derbler') }
     subject { original.short_name }
-
-    context 'when no other players with the same first name exist' do
-      before { Player.where(first_name: original.first_name).delete_all }
-      it { is_expected.to eq(original.first_name) }
-    end
-
-    context 'when another player with the same first name exists' do
-      before { create(:player, first_name: 'Nerf', last_name: 'Zerbder') }
-      it { is_expected.to eq(original.name) }
-    end
+    it { is_expected.to eq('Nerf Derbler') }
   end
 
   describe '#worthy?' do

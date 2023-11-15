@@ -76,6 +76,7 @@ RSpec.describe PlayersController do
 
     describe '#create' do
       context 'with valid parameters' do
+        before { allow(PopulatePlayerShortNamesJob).to receive(:perform_later) }
         let(:player_params) { attributes_for(:player).stringify_keys }
 
         it 'creates the player' do
@@ -90,6 +91,11 @@ RSpec.describe PlayersController do
         it 'adds a flash message' do
           post :create, params: { player: player_params }
           expect(flash[:notice]).to be_present
+        end
+
+        it 'updates player short names' do
+          post :create, params: { player: player_params }
+          expect(PopulatePlayerShortNamesJob).to have_received(:perform_later)
         end
       end
 
@@ -128,6 +134,7 @@ RSpec.describe PlayersController do
 
       context 'with valid parameters' do
         let(:player_params) { attributes_for(:player).stringify_keys }
+        before { allow(PopulatePlayerShortNamesJob).to receive(:perform_later) }
         before { expect_any_instance_of(Player).to receive(:update).and_return(true) }
         before { patch :update, params: { id: player, player: player_params } }
 
@@ -137,6 +144,10 @@ RSpec.describe PlayersController do
 
         it 'adds a flash message' do
           expect(flash[:notice]).to be_present
+        end
+
+        it 'updates player short names' do
+          expect(PopulatePlayerShortNamesJob).to have_received(:perform_later)
         end
       end
 

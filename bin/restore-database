@@ -14,3 +14,4 @@ dropdb --if-exists $database_name
 createdb -O $database_user $database_name
 pg_restore -O -d $database_name $backup_path
 psql -d $database_name -c "UPDATE players SET email = 'bclennox@gmail.com'"
+psql -d $database_name -c "UPDATE ar_internal_metadata SET value = 'development' WHERE key = 'environment'"

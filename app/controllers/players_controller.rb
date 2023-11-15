@@ -26,6 +26,7 @@ class PlayersController < ApplicationController
     @player = Player.new(player_params)
 
     if @player.save
+      PopulatePlayerShortNamesJob.perform_later
       redirect_to players_url, notice: 'Player was successfully created.'
     else
       flash.now[:alert] = 'Failed to create player.'
@@ -35,6 +36,7 @@ class PlayersController < ApplicationController
 
   def update
     if @player.update(player_params)
+      PopulatePlayerShortNamesJob.perform_later
       redirect_to players_url, notice: 'Player was successfully updated.'
     else
       flash.now[:alert] = 'Failed to update player.'

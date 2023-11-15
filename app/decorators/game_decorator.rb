@@ -24,10 +24,10 @@ class GameDecorator < ApplicationDecorator
   def player_names(players)
     names = players.map(&:short_name)
 
-    case names.size
-      when 0    then upcoming? ? 'No one yet' : 'No one'
-      when 1..2 then names.join(' and ')
-      else           names[0..-2].join(', ') + ', and ' + names.last
+    if names.empty?
+      upcoming? ? 'No one yet' : 'No one'
+    else
+      names.to_sentence
     end
   end
 
