@@ -180,7 +180,8 @@ CREATE TABLE public.players (
     updated_at timestamp with time zone NOT NULL,
     access_token character varying(255),
     deleted_at timestamp with time zone,
-    retired boolean DEFAULT false NOT NULL
+    retired boolean DEFAULT false NOT NULL,
+    short_name character varying NOT NULL
 );
 
 
@@ -591,6 +592,7 @@ CREATE UNIQUE INDEX unique_schema_migrations ON public.schema_migrations USING b
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20231116123629'),
 ('20231115031846'),
 ('20231115031845'),
 ('20231115031844'),
