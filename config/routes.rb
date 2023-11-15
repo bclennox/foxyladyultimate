@@ -31,5 +31,9 @@ Rails.application.routes.draw do
 
   resources :quips, except: [:show, :destroy]
 
+  authenticate :user, -> (user) { Authorizer.new(user: user).admin? } do
+    mount GoodJob::Engine => 'good_job'
+  end
+
   root to: 'games#next'
 end
