@@ -11,11 +11,11 @@
     = javascript_include_tag 'application', 'data-turbo-track': 'reload', defer: true
 
   %body{class: layout.body_class}
-    %nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top
+    %nav.navbar.navbar-expand-lg.bg-dark.fixed-top(data-bs-theme="dark")
       .container
         = link_to 'Foxy Lady Ultimate', root_path, class: 'navbar-brand'
 
-        %button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navbar-main" aria-controls="navbar-main" aria-expanded="false" aria-label="Toggle navigation")
+        %button.navbar-toggler(type="button" data-bs-toggle="collapse" data-bs-target="#navbar-main" aria-controls="navbar-main" aria-expanded="false" aria-label="Toggle navigation")
           %span.navbar-toggler-icon
 
         .collapse.navbar-collapse#navbar-main
