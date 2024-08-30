@@ -9,7 +9,7 @@
 
     - unless game.default_location?
       %dt.col-12.col-md-2 Where
-      %dd.col-12.col-md-10= game.location
+      %dd.col-12.col-md-10= game.location.link
 
     %dt.col-12.col-md-2
       - if game.canceled?

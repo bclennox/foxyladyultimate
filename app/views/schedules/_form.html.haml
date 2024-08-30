@@ -10,9 +10,9 @@
       = f.text_field :time, class: 'form-control'
 
   .row.mb-3
-    = f.label :location, class: 'col-form-label col-12 col-md-2 col-lg-1'
+    = f.label :location_id, class: 'col-form-label col-12 col-md-2 col-lg-1'
     .col-12.col-md-4
-      = f.text_field :location, class: 'form-control'
+      = f.collection_select :location_id, @locations, :id, :name, {}, class: 'form-select'
 
   .row
     .col-12.offset-md-2.col-md-10.offset-lg-1.col-lg-11

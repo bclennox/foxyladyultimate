@@ -1,6 +1,8 @@
 class GameDecorator < ApplicationDecorator
   include DateFormatter
 
+  decorates_association :location
+
   def self.date_format
     '%A, %B %-d, %Y at %-l:%M%P'
   end

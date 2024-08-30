@@ -9,7 +9,7 @@ RSpec.describe Event do
 
   subject { Event.new(game: game, view_context: view_context).to_ical }
 
-  it { is_expected.to match(%r(LOCATION:\s*#{game.location})) }
+  it { is_expected.to match(%r(LOCATION:\s*#{game.location.name})) }
   it { is_expected.to match(%r(URL:\s*#{game_url})) }
   it { is_expected.to match(%r(SEQUENCE:\s*60)) }
 end

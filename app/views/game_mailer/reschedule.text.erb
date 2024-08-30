@@ -1,7 +1,7 @@
 <%= @body %>
 
 When: <%= @game.date %>
-Where: <%= @game.location %>
+Where: <%= @location.name %> (<%= @location.url %>)
 URL: <%= game_url(@game) %>
 
 <%= @confirmation %>: <%= raw respond_game_url(@game, access_token: @player.access_token, playing: 'yes') %>

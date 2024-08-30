@@ -1,4 +1,5 @@
 class Game < ApplicationRecord
+  belongs_to :location
   has_many :responses, dependent: :destroy
   has_many :players, through: :responses
   has_many :confirmed_players, -> { merge(Response.confirmed) }, through: :responses, source: :player

@@ -2,17 +2,14 @@ require 'ice_cube'
 
 class Schedule < ApplicationRecord
   validates :time, presence: true
+  belongs_to :location
 
   def self.instance
-    first
+    @instance ||= first
   end
 
   def time=(t)
     write_attribute :time, parse_time(t)
-  end
-
-  def to_s
-    "#{ice_cube} at #{Time.zone.parse(time).strftime('%l:%M%P')} — #{location}"
   end
 
   def method_missing(method, *args)
@@ -21,6 +18,10 @@ class Schedule < ApplicationRecord
     else
       super
     end
+  end
+
+  def description
+    ice_cube.to_s
   end
 
 private

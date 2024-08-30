@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :schedule do
     day { 'Sunday' }
-    location { 'Dillard Drive Elementary' }
+    location
     time { '12:00:00' }
   end
 end

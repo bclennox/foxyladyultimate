@@ -5,7 +5,7 @@
   = @game.date
   %br
   %strong Where:
-  = @game.location
+  = link_to @location.name, @location.url
 
 %p
   = link_to @confirmation, respond_game_url(@game, access_token: @player.access_token, playing: 'yes'), class: 'acceptance'

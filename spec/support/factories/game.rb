@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :game do
-    location { 'The Park' }
+    location
     starts_at { Time.now }
     canceled { false }
   end

@@ -44,6 +44,7 @@ private
     quip = RandomQuip.call
 
     @game = message.game.decorate
+    @location = @game.location
     @player = message.player
     @body = message.body
     @confirmation = quip.confirmation

@@ -2,12 +2,12 @@
   .row.mb-3
     = f.label :location, class: 'col-form-label col-12 col-md-2'
     .col-12.col-md-4
-      = f.text_field :location, class: 'form-control'
+      = f.collection_select :location_id, @locations, :id, :name, {}, class: 'form-select'
 
   .row.mb-3
     = f.label :starts_at, class: 'col-form-label col-12 col-md-2'
     .col-12.col-md-3
-      = f.datetime_select :starts_at, {}, class: 'form-control form-control-sm mb-1'
+      = f.datetime_select :starts_at, {}, class: 'form-select mb-1'
 
   .row
     .col-12.offset-md-2.col-md-10
