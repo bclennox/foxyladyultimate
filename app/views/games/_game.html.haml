@@ -7,9 +7,8 @@
       %p.mb-0= game.date
       %p.mb-0.text-muted= game.relative_date
 
-    - unless game.default_location?
-      %dt.col-12.col-md-2 Where
-      %dd.col-12.col-md-10= game.location.link
+    %dt.col-12.col-md-2 Where
+    %dd.col-12.col-md-10= game.location.link
 
     %dt.col-12.col-md-2
       - if game.canceled?

@@ -25,4 +25,12 @@ RSpec.describe Schedule do
       end
     end
   end
+
+  describe '#recurrence' do
+    let(:schedule) { build(:schedule, day: 'Tuesday', time: '6pm') }
+
+    subject { schedule.recurrence }
+
+    it { is_expected.to eq('Weekly on Tuesdays at 6:00pm') }
+  end
 end

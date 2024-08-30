@@ -31,10 +31,6 @@ class Game < ApplicationRecord
     !canceled?
   end
 
-  def default_location?
-    location == self.class.schedule.location
-  end
-
 private
 
   def self.schedule
