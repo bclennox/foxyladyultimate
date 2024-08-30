@@ -1,8 +1,8 @@
 class ScheduleDecorator < ApplicationDecorator
   decorates_association :location
 
-  def time_in_time_zone
-    Time.zone.parse(time).strftime('%l:%M%P')
+  def summary
+    "#{recurrence} — #{location.link}".html_safe
   end
 
   def available_days

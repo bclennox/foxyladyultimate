@@ -12,12 +12,7 @@
           = link_to 'Change the Schedule', edit_schedule_path, class: 'nav-link'
 
 
-%p.lead.my-4
-  = default_schedule.description
-  at
-  = default_schedule.time_in_time_zone
-  —
-  = default_schedule.location.link
+%p.lead.my-4= default_schedule.summary
 
 .table-responsive
   %table.table.table-hover.games

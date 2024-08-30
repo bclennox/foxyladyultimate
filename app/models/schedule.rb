@@ -20,8 +20,8 @@ class Schedule < ApplicationRecord
     end
   end
 
-  def description
-    ice_cube.to_s
+  def recurrence
+    "#{ice_cube} at #{time_in_time_zone}"
   end
 
 private
@@ -43,6 +43,10 @@ private
       hour, minute, second = t.split(':')
       Time.zone.local(2013, 1, 1, hour, minute, second)
     end
+  end
+
+  def time_in_time_zone
+    Time.zone.parse(time).strftime('%l:%M%P').squish
   end
 
   def parse_time(t)
