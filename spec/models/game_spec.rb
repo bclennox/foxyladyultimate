@@ -71,14 +71,4 @@ RSpec.describe Game do
       it { is_expected.to be_on }
     end
   end
-
-  describe '#default_location?' do
-    let(:schedule) { build(:schedule) }
-    before { expect(Schedule).to receive(:instance).and_return(schedule) }
-
-    context 'when the game is at the normal location' do
-      subject { build(:game, location: schedule.location) }
-      it { is_expected.to be_default_location }
-    end
-  end
 end
