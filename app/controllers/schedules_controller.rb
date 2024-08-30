@@ -1,6 +1,6 @@
 class SchedulesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_schedule
+  before_action :set_schedule, :set_locations
 
   decorates_assigned :schedule
 
@@ -22,7 +22,11 @@ private
     @schedule = Schedule.instance
   end
 
+  def set_locations
+    @locations = Location.order(:name)
+  end
+
   def schedule_params
-    params.require(:schedule).permit(:day, :location, :time)
+    params.require(:schedule).permit(:day, :location_id, :time)
   end
 end

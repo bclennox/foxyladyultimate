@@ -49,7 +49,8 @@ CREATE TABLE public.games (
     starts_at timestamp with time zone,
     canceled boolean DEFAULT false,
     created_at timestamp with time zone NOT NULL,
-    updated_at timestamp with time zone NOT NULL
+    updated_at timestamp with time zone NOT NULL,
+    location_id bigint NOT NULL
 );
 
 
@@ -167,6 +168,38 @@ CREATE TABLE public.good_jobs (
 
 
 --
+-- Name: locations; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.locations (
+    id bigint NOT NULL,
+    name character varying NOT NULL,
+    url character varying NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: locations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.locations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: locations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.locations_id_seq OWNED BY public.locations.id;
+
+
+--
 -- Name: players; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -280,7 +313,8 @@ CREATE TABLE public.schedules (
     "time" character varying(255),
     created_at timestamp with time zone NOT NULL,
     updated_at timestamp with time zone NOT NULL,
-    location character varying(255)
+    location character varying(255),
+    location_id bigint NOT NULL
 );
 
 
@@ -354,6 +388,13 @@ ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
 --
 
 ALTER TABLE ONLY public.games ALTER COLUMN id SET DEFAULT nextval('public.games_id_seq'::regclass);
+
+
+--
+-- Name: locations id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.locations ALTER COLUMN id SET DEFAULT nextval('public.locations_id_seq'::regclass);
 
 
 --
@@ -445,6 +486,14 @@ ALTER TABLE ONLY public.good_job_settings
 
 ALTER TABLE ONLY public.good_jobs
     ADD CONSTRAINT good_jobs_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: locations locations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.locations
+    ADD CONSTRAINT locations_pkey PRIMARY KEY (id);
 
 
 --
@@ -586,12 +635,30 @@ CREATE UNIQUE INDEX unique_schema_migrations ON public.schema_migrations USING b
 
 
 --
+-- Name: schedules fk_rails_adb60b2104; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.schedules
+    ADD CONSTRAINT fk_rails_adb60b2104 FOREIGN KEY (location_id) REFERENCES public.locations(id);
+
+
+--
+-- Name: games fk_rails_d35c8ddede; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.games
+    ADD CONSTRAINT fk_rails_d35c8ddede FOREIGN KEY (location_id) REFERENCES public.locations(id);
+
+
+--
 -- PostgreSQL database dump complete
 --
 
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20240830114043'),
+('20240830114042'),
 ('20231116123629'),
 ('20231115031846'),
 ('20231115031845'),

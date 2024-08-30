@@ -7,12 +7,17 @@
       %ul.nav
         - if Game.upcoming.empty?
           %li.nav-item
-            = link_to "Schedule #{Schedule.instance.day}’s Game", schedule_games_path, class: 'nav-link'
+            = link_to "Schedule #{default_schedule.day}’s Game", schedule_games_path, class: 'nav-link'
         %li.nav-item
           = link_to 'Change the Schedule', edit_schedule_path, class: 'nav-link'
 
 
-%p.lead.my-4= Schedule.instance
+%p.lead.my-4
+  = default_schedule.description
+  at
+  = default_schedule.time_in_time_zone
+  —
+  = default_schedule.location.link
 
 .table-responsive
   %table.table.table-hover.games
@@ -26,7 +31,7 @@
       - games.each do |game|
         %tr{class: game.canceled? ? 'canceled' : 'on'}
           %td.name= link_to(game.canceled? ? "#{game.date} (canceled)" : game.date, game)
-          %td.location= game.location
+          %td.location= game.location.link
           %td.players= game.canceled? ? '—' : pluralize(game.confirmed_players.size, 'player')
 
 .d-flex.justify-content-center.mt-4

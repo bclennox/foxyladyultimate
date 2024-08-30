@@ -5,6 +5,6 @@
   = @game.date
   %br
   %strong Where:
-  = @game.location
+  = link_to @location.name, @location.url
 
 %p= link_to 'See game details anyway', game_url(@game)

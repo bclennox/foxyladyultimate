@@ -6,10 +6,11 @@ class GamesController < ApplicationController
   before_action :set_player_by_params_access_token!, only: :respond
   before_action :set_player_by_cookie_access_token, only: [:next, :show]
   before_action :set_quip, only: [:next, :show]
+  before_action :set_locations, only: [:edit, :update]
 
   after_action :set_access_token, only: [:respond]
 
-  decorates_assigned :game, :games, :player, :quip
+  decorates_assigned :game, :games, :player, :quip, :default_schedule
 
   def index
     @games = Game
@@ -17,6 +18,8 @@ class GamesController < ApplicationController
       .order(starts_at: :desc)
       .page(params[:page])
       .per(25)
+
+    @default_schedule = Schedule.instance
   end
 
   def show
@@ -103,7 +106,11 @@ private
     cookies.permanent[:access_token] = @player.access_token
   end
 
+  def set_locations
+    @locations = Location.order(:name)
+  end
+
   def game_params
-    params.require(:game).permit(:canceled, :location, :starts_at)
+    params.require(:game).permit(:canceled, :location_id, :starts_at)
   end
 end

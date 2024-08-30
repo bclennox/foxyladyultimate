@@ -16,7 +16,7 @@ class Event
         event.summary      = 'Ultimate Frisbee'
         event.dtstart      = game.starts_at.to_datetime
         event.duration     = 'PT3H'
-        event.location     = game.location
+        event.location     = game.location.name
         event.transp       = 'OPAQUE'
         event.url          = url
         event.uid          = url

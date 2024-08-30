@@ -25,17 +25,4 @@ RSpec.describe Schedule do
       end
     end
   end
-
-  describe '#to_s' do
-    let(:day) { 'Monday' }
-    let(:time) { '6:30pm' }
-    let(:location) { 'The Park' }
-    let(:schedule) { create(:schedule, day: day, time: time, location: location) }
-
-    subject { schedule.to_s }
-
-    it { is_expected.to include(day) }
-    it { is_expected.to include(time) }
-    it { is_expected.to include(location) }
-  end
 end
