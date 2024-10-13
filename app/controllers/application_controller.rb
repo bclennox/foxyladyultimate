@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   helper_method :authorizer, :layout
-  before_action :set_sentry_context
+  before_action :set_sentry_context, :set_current_schedule
   after_action :store_location
 
   def authorizer
@@ -16,6 +16,10 @@ private
 
   def set_sentry_context
     Sentry.set_user(email: current_user.email) if user_signed_in?
+  end
+
+  def set_current_schedule
+    Current.schedule = Schedule.sole
   end
 
   def store_location

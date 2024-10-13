@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Game do
   describe '::seed' do
     let(:schedule) { build(:schedule) }
-    before { expect(Game).to receive(:schedule).at_least(:once).and_return(schedule) }
+    before { expect(Current).to receive(:schedule).at_least(:once).and_return(schedule) }
     before { Game.delete_all }
 
     it 'creates the game' do

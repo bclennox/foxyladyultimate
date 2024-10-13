@@ -44,9 +44,12 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include SessionHelper, type: :controller
 
+  config.before do
+    create(:schedule)
+  end
+
   config.before(type: :system) do
     driven_by(:rack_test)
-    create(:schedule)
   end
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your

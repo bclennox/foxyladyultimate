@@ -4,10 +4,6 @@ class Schedule < ApplicationRecord
   validates :time, presence: true
   belongs_to :location
 
-  def self.instance
-    @instance ||= first
-  end
-
   def time=(t)
     write_attribute :time, parse_time(t)
   end

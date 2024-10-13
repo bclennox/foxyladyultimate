@@ -19,7 +19,7 @@ class GamesController < ApplicationController
       .page(params[:page])
       .per(25)
 
-    @default_schedule = Schedule.instance
+    @default_schedule = Current.schedule
   end
 
   def show
