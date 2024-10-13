@@ -2,7 +2,7 @@
   .row.mb-3
     = f.label :day, class: 'col-form-label col-12 col-md-2 col-lg-1'
     .col-12.col-md-4.col-lg-2
-      = f.collection_select :day, schedule.available_days, :to_s, :to_s, {}, class: 'form-control'
+      = f.collection_select :day, schedule.available_days, :to_s, :to_s, {}, class: 'form-select'
 
   .row.mb-3
     = f.label :time, class: 'col-form-label col-12 col-md-2 col-lg-1'
