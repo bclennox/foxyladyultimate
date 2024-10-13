@@ -11,7 +11,7 @@ class Game < ApplicationRecord
   scope :on, -> { where(canceled: false) }
 
   def self.seed
-    find_or_create_by!(starts_at: schedule.next_occurrence.start_time)
+    find_or_create_by!(starts_at: Current.schedule.next_occurrence.start_time)
   end
 
   def respond(player, playing)
@@ -33,11 +33,7 @@ class Game < ApplicationRecord
 
 private
 
-  def self.schedule
-    Schedule.instance
-  end
-
   def ensure_location
-    self.location = self.class.schedule.location if location.blank?
+    self.location = Current.schedule.location if location.blank?
   end
 end

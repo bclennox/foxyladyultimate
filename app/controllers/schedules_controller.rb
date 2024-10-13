@@ -19,7 +19,7 @@ class SchedulesController < ApplicationController
 private
 
   def set_schedule
-    @schedule = Schedule.instance
+    @schedule = Current.schedule
   end
 
   def set_locations

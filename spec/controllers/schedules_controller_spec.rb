@@ -20,7 +20,6 @@ RSpec.describe SchedulesController do
     before { sign_in session_user }
 
     describe '#edit' do
-      before { create(:schedule) }
       before { get :edit }
 
       it 'decorates the instance' do
@@ -29,8 +28,6 @@ RSpec.describe SchedulesController do
     end
 
     describe '#update' do
-      before { create(:schedule) }
-
       context 'with valid parameters' do
         let(:schedule_params) { attributes_for(:schedule).stringify_keys }
         before { expect_any_instance_of(Schedule).to receive(:update).and_return(true) }
