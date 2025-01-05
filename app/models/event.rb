@@ -15,7 +15,7 @@ class Event
       calendar.event do |event|
         event.summary      = 'Ultimate Frisbee'
         event.dtstart      = game.starts_at.to_datetime
-        event.duration     = 'PT3H'
+        event.duration     = 'PT2H'
         event.location     = game.location.name
         event.transp       = 'OPAQUE'
         event.url          = url
