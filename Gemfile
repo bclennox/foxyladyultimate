@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 ruby '~> 3.4'
-gem 'rails', '~> 7.1.0'
+gem 'rails', '~> 7.2.0'
 
 gem 'bootsnap', require: false
 gem 'devise'
@@ -20,7 +20,7 @@ gem 'rexml'
 gem 'sentry-ruby'
 gem 'sentry-rails'
 gem 'sprockets-rails'
-gem 'view_component', require: 'view_component/engine'
+gem 'view_component'
 
 group :development do
   gem 'bcrypt_pbkdf'
@@ -37,9 +37,9 @@ group :test do
   gem 'capybara'
   gem 'factory_bot_rails'
   gem 'guard-rspec'
+  gem 'selenium-webdriver'
   gem 'simplecov', require: false
   gem 'spy'
-  gem 'webdrivers'
   gem 'webrick'
 end
 

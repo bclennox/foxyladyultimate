@@ -90,7 +90,8 @@ CREATE TABLE public.good_job_batches (
     callback_priority integer,
     enqueued_at timestamp(6) without time zone,
     discarded_at timestamp(6) without time zone,
-    finished_at timestamp(6) without time zone
+    finished_at timestamp(6) without time zone,
+    jobs_finished_at timestamp(6) without time zone
 );
 
 
@@ -692,6 +693,7 @@ ALTER TABLE ONLY public.games
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250217032902'),
 ('20250217031314'),
 ('20250217031313'),
 ('20250217031312'),
