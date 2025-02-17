@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateIndexGoodJobJobsForCandidateLookup < ActiveRecord::Migration[7.2]
+class CreateIndexGoodJobJobsForCandidateLookup < ActiveRecord::Migration[7.1]
   disable_ddl_transaction!
 
   def change

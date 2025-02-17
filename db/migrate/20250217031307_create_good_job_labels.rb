@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateGoodJobLabels < ActiveRecord::Migration[7.2]
+class CreateGoodJobLabels < ActiveRecord::Migration[7.1]
   def change
     reversible do |dir|
       dir.up do
