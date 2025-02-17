@@ -9,6 +9,7 @@ require 'rspec/rails'
 
 require 'capybara/rspec'
 require 'capybara/rails'
+require 'view_component/test_helpers'
 
 Capybara.configure do |config|
   config.server = :webrick
@@ -43,6 +44,7 @@ RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include SessionHelper, type: :controller
+  config.include ViewComponent::TestHelpers, type: :component
 
   config.before do
     create(:schedule)
