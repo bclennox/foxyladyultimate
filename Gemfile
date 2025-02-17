@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '3.2.2'
+ruby '~> 3.4'
 gem 'rails', '~> 7.1.0'
 
 gem 'bootsnap', require: false
@@ -40,6 +40,7 @@ group :test do
   gem 'simplecov', require: false
   gem 'spy'
   gem 'webdrivers'
+  gem 'webrick'
 end
 
 group :development, :test do
