@@ -2,12 +2,8 @@
   .subnav
     %ul.nav
       - if game.canceled?
-        %li.nav-item
-          = link_to 'Reschedule this Game', reschedule_game_path(game), id: 'reschedule-game-link', class: 'nav-link action-link'
+        %li.nav-item= render 'reschedule'
       - else
-        %li.nav-item
-          = link_to 'Edit this Game', edit_game_path(game), class: 'nav-link'
-        %li.nav-item
-          = link_to 'Send a Reminder', remind_game_path(game), id: 'send-reminder-link', class: 'nav-link action-link'
-        %li.nav-item
-          = link_to 'Cancel this Game', cancel_game_path(game), id: 'cancel-game-link', class: 'nav-link action-link'
+        %li.nav-item= link_to 'Edit this Game', edit_game_path(game), class: 'nav-link'
+        %li.nav-item= render 'reminder'
+        %li.nav-item= render 'cancellation'

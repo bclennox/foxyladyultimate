@@ -1,10 +1,7 @@
-require('@rails/ujs').start()
-require('turbolinks').start()
-
+import '@hotwired/turbo-rails'
 import 'bootstrap'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 
-import './games'
-import './players'
-
+import './controllers'
 import './stylesheets/application'
+

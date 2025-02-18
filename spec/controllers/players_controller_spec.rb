@@ -54,7 +54,7 @@ RSpec.describe PlayersController do
 
       before do
         players.each { |p| game.respond(p, true) }
-        get :ranked, format: 'json'
+        get :ranked, params: { since: 1, format: 'json' }
       end
 
       it 'ranks the players' do
@@ -107,7 +107,7 @@ RSpec.describe PlayersController do
         end
 
         it 'renders the new template' do
-          expect(response).to have_http_status(200)
+          expect(response).to have_http_status(422)
         end
 
         it 'adds a flash message' do
@@ -159,7 +159,7 @@ RSpec.describe PlayersController do
         end
 
         it 'renders the edit template' do
-          expect(response).to have_http_status(200)
+          expect(response).to have_http_status(422)
         end
 
         it 'adds a flash message' do

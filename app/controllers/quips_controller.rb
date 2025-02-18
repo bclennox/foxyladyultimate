@@ -17,8 +17,8 @@ class QuipsController < ApplicationController
     if @quip.save
       redirect_to quips_path, notice: "Created the quip."
     else
-      flash.now[:alert] = 'Failed to create the quip.'
-      render :new
+      flash.now[:alert] = "Failed to create quip: #{@quip.errors.to_a.to_sentence}"
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -32,8 +32,8 @@ class QuipsController < ApplicationController
     if @quip.update(quip_params)
       redirect_to quips_path, notice: 'Updated the quip.'
     else
-      flash.now[:alert] = 'Failed to update the quip.'
-      render :edit
+      flash.now[:alert] = "Failed to update quip: #{@quip.errors.to_a.to_sentence}"
+      render :edit, status: :unprocessable_entity
     end
   end
 

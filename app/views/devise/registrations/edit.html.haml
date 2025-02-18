@@ -3,7 +3,7 @@
 .page-header
   %h1 Change Your Password
 
-= form_for resource, as: resource_name, url: user_registration_path, method: :patch do |f|
+= form_for resource, as: resource_name, url: user_registration_path, method: :patch, data: { turbo: false } do |f|
   = render 'devise/shared/error_messages', resource: resource
 
   .row.mb-3

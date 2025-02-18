@@ -1,3 +1,3 @@
 web: rails server
-js: yarn watch
+js: npm run watch
 worker: good_job start

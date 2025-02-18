@@ -1,4 +1,4 @@
-= render layout: 'layouts/modal', locals: { id: 'send-reminder-modal', title: 'Send a Reminder', url: remind_game_path(game), button: 'Send Reminder' } do
+= render ModalLinkComponent.new(title: 'Send a Reminder', url: remind_game_path(game), button_text: 'Send Reminder') do
   %p
     For the game on
     %strong= game.date

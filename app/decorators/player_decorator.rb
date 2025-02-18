@@ -32,7 +32,7 @@ class PlayerDecorator < ApplicationDecorator
   end
 
   def remove_link
-    h.link_to h.player_path(self), method: :delete, data: { confirm: "Remove #{name}?" } do
+    h.link_to h.player_path(self), data: { turbo_method: :delete, turbo_confirm: "Remove #{name}?" } do
       h.tag.span('Remove', class: 'visually-hidden') + icon('x-circle-fill', classes: 'remove-player')
     end
   end
