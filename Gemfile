@@ -20,6 +20,8 @@ gem 'rexml'
 gem 'sentry-ruby'
 gem 'sentry-rails'
 gem 'sprockets-rails'
+gem 'stimulus-rails'
+gem 'turbo-rails'
 gem 'view_component'
 
 group :development do

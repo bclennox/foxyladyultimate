@@ -12,7 +12,9 @@ class PlayersController < ApplicationController
   end
 
   def ranked
-    @players = PlayerRanker.by_games_played.limit(10)
+    @players = PlayerRanker
+      .by_games_played(since: params[:since].to_i.months.ago)
+      .limit(10)
   end
 
   def new
@@ -29,8 +31,8 @@ class PlayersController < ApplicationController
       PopulatePlayerShortNamesJob.perform_later
       redirect_to players_url, notice: 'Player was successfully created.'
     else
-      flash.now[:alert] = 'Failed to create player.'
-      render :new
+      flash.now[:alert] = "Failed to create player: #{@player.errors.to_a.to_sentence}"
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -39,8 +41,8 @@ class PlayersController < ApplicationController
       PopulatePlayerShortNamesJob.perform_later
       redirect_to players_url, notice: 'Player was successfully updated.'
     else
-      flash.now[:alert] = 'Failed to update player.'
-      render :edit
+      flash.now[:alert] = "Failed to update player: #{@player.errors.to_a.to_sentence}"
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -48,7 +50,7 @@ class PlayersController < ApplicationController
     if @player.destroy
       redirect_to players_url, notice: 'Player was successfully removed.'
     else
-      redirect_to players_url, alert: @player.errors.full_messages.join('. ')
+      redirect_to players_url, alert: "Failed to remove player: #{@player.errors.to_a.to_sentence}"
     end
   end
 

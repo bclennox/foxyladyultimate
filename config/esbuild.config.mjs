@@ -10,7 +10,13 @@ const config = {
   outdir: "app/assets/builds",
   resolveExtensions: [".js", ".scss"],
   plugins: [
-    sassPlugin()
+    sassPlugin({
+      logger: {
+        warn(message, options){
+          // remove this when Bootstrap is compatible with @use
+        }
+      }
+    })
   ],
   loader: {
     ".woff": "file",

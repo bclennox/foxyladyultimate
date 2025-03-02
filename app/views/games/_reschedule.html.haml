@@ -1,4 +1,4 @@
-= render layout: 'layouts/modal', locals: { id: 'reschedule-game-modal', title: 'Reschedule this Game', url: reschedule_game_path(game), button: 'Reschedule Game' } do
+= render ModalLinkComponent.new(title: 'Reschedule this Game', url: reschedule_game_path(game), button_text: 'Reschedule Game') do
   %p
     For
     %strong= game.date

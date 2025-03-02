@@ -11,8 +11,8 @@ class SchedulesController < ApplicationController
     if @schedule.update(schedule_params)
       redirect_to games_path, notice: 'Updated the schedule.'
     else
-      flash.now[:error] = 'Failed to update the schedule.'
-      render :edit
+      flash.now[:alert] = "Failed to update schedule: #{@schedule.errors.to_a.to_sentence}"
+      render :edit, status: :unprocessable_entity
     end
   end
 

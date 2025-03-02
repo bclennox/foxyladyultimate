@@ -1,0 +1,16 @@
+%div{ data: { controller: 'modal-link' } }
+  .modal.fade{ data: { modal_link_target: 'modal' } }
+    .modal-dialog
+      .modal-content
+        .modal-header
+          %h5.modal-title= title
+
+        = form_tag url do
+          .modal-body
+            = content
+
+          .modal-footer
+            = button_tag 'Close', type: 'button', class: 'btn btn-link', data: { bs_dismiss: 'modal' }
+            = submit_tag button_text, class: 'btn btn-primary'
+
+  = link_to title, url, class: 'nav-link', data: { action: 'modal-link#showModal:prevent', turbo_prefetch: false }

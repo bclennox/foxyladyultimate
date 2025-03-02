@@ -1,4 +1,4 @@
-= render layout: 'layouts/modal', locals: { id: 'cancel-game-modal', title: 'Cancel this Game', url: cancel_game_path(game), button: 'Cancel Game' } do
+= render ModalLinkComponent.new(title: 'Cancel this Game', url: cancel_game_path(game), button_text: 'Cancel Game') do
   %p
     Originally on
     %strong= game.date

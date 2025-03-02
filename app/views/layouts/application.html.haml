@@ -27,7 +27,7 @@
           %ul.navbar-nav.ms-auto
             - if user_signed_in?
               = layout.nav_link 'Change Your Password', edit_user_registration_path
-              = layout.nav_link "Sign Out #{current_user.first_name}", destroy_user_session_path, method: :delete
+              = layout.nav_link "Sign Out #{current_user.first_name}", destroy_user_session_path, data: { turbo_method: :delete }
             - else
               = layout.nav_link 'Sign In', new_user_session_path
 

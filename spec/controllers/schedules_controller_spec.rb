@@ -50,11 +50,11 @@ RSpec.describe SchedulesController do
         end
 
         it 'renders the edit template' do
-          expect(response).to have_http_status(200)
+          expect(response).to have_http_status(422)
         end
 
         it 'adds a flash message' do
-          expect(flash[:error]).to be_present
+          expect(flash[:alert]).to be_present
         end
       end
     end
