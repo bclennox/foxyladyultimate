@@ -27,7 +27,7 @@ RSpec.describe 'Player management' do
     it 'creates the quip' do
       expect(page).to have_content('Yep')
       expect(page).to have_content('Nope')
-      expect(page).to have_selector('i.bi.bi-check-circle-fill')
+      expect(page).to have_selector('svg.bi use[href*="#check-circle-fill"]')
     end
   end
 
@@ -49,7 +49,7 @@ RSpec.describe 'Player management' do
     it 'updates the quip' do
       expect(page).to have_content('What?')
       expect(page).to have_content('Huh?')
-      expect(page).not_to have_selector('i.bi.bi-check-circle-fill')
+      expect(page).not_to have_selector('svg.bi use[href*="#check-circle-fill"]')
     end
   end
 end

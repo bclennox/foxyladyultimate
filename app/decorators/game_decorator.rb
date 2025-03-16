@@ -35,7 +35,7 @@ class GameDecorator < ApplicationDecorator
 
   def calendar_link
     h.link_to h.game_path(game, format: 'ics') do
-      icon('calendar-plus', classes: 'me-2') + 'Add it to your calendar'
+      icon(:calendar_plus) + h.tag.span('Add it to your calendar', class: 'ms-2')
     end
   end
 end

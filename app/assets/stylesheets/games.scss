@@ -1,3 +1,5 @@
+@use 'bootstrap/bootstrap';
+
 body.games {
   .game-details {
     dt,
@@ -8,14 +10,14 @@ body.games {
   }
 
   .player-actions {
-    @include media-breakpoint-down(sm) {
+    @include bootstrap.media-breakpoint-down(sm) {
       .response .btn {
         display: block;
         width: 100%;
       }
     }
 
-    @include media-breakpoint-up(md) {
+    @include bootstrap.media-breakpoint-up(md) {
       .response {
         display: inline-block;
       }
@@ -25,7 +27,7 @@ body.games {
   table.games {
     tr.canceled {
       td, a {
-        color: $text-muted;
+        color: bootstrap.$text-muted;
       }
     }
   }
