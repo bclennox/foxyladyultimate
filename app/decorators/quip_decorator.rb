@@ -5,7 +5,7 @@ class QuipDecorator < ApplicationDecorator
 
   def edit_link
     h.link_to h.edit_quip_path(self) do
-      h.tag.span('Edit', class: 'visually-hidden') + icon('pencil-fill', classes: 'edit-quip')
+      h.tag.span('Edit', class: 'visually-hidden') + icon(:pencil_fill)
     end
   end
 end

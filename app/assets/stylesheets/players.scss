@@ -1,3 +1,5 @@
+@use 'bootstrap/bootstrap';
+
 body.players {
   table.players {
     .worthless,
@@ -5,7 +7,7 @@ body.players {
       .icon,
       .attendance,
       .phone {
-        color: $text-muted;
+        color: bootstrap.$text-muted;
       }
     }
 

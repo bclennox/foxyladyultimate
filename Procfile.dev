@@ -1,0 +1,4 @@
+web: bin/rails server -p 4000
+css: bin/rails dartsass:watch
+js: npm run watch
+worker: good_job start

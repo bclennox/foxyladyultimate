@@ -9,6 +9,8 @@ RSpec.describe 'Player management' do
     fill_in 'Username', with: admin.username
     fill_in 'Password', with: admin.password
     click_button 'Sign In'
+
+    expect(page).to have_text('Signed in successfully.')
   end
 
   context 'adding a player' do
