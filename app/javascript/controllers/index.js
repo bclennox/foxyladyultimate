@@ -2,10 +2,10 @@
 // Run that command whenever you add a new controller or create them with
 // ./bin/rails generate stimulus controllerName
 
-import { application } from "./application"
+import { application } from "controllers/application"
 
-import ModalLinkController from "./modal_link_controller"
+import ModalLinkController from "controllers/modal_link_controller"
 application.register("modal-link", ModalLinkController)
 
-import PlayerChartController from "./player_chart_controller"
+import PlayerChartController from "controllers/player_chart_controller"
 application.register("player-chart", PlayerChartController)

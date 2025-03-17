@@ -1,5 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
-import Chart from 'chart.js/auto'
+import { Chart, registerables } from 'chart.js'
+
+Chart.register(...registerables)
 
 export default class extends Controller {
   static targets = ['input', 'chart']
