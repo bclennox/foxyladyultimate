@@ -14,7 +14,7 @@ class GamesController < ApplicationController
 
   def index
     @games = Game
-      .includes(:confirmed_players)
+      .includes(:confirmed_players, :location)
       .order(starts_at: :desc)
       .page(params[:page])
       .per(25)
