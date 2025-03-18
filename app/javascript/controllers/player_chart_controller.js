@@ -1,11 +1,10 @@
-import { Controller } from "@hotwired/stimulus"
+import { Controller } from '@hotwired/stimulus'
 import { Chart, registerables } from 'chart.js'
 
 Chart.register(...registerables)
 
 export default class extends Controller {
   static targets = ['input', 'chart']
-  static values = { url: String }
 
   #chart
 
@@ -37,8 +36,8 @@ export default class extends Controller {
   }
 
   async load() {
-    const url = new URL(this.urlValue)
-    url.searchParams.append("since", this.inputTarget.value)
+    const url = new URL(this.element.action)
+    url.searchParams.append('since', this.inputTarget.value)
 
     const response = await fetch(url)
     const data = await response.json()

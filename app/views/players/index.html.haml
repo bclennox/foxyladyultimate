@@ -26,14 +26,16 @@
   .col-12.col-lg-6
     %h3.visually-hidden By Games Played
 
-    .mt-4{ data: { controller: 'player-chart', player_chart_url_value: ranked_players_url(format: 'json') } }
+    = form_with url: ranked_players_url(format: 'json'),
+        class: 'mt-4',
+        data: { controller: 'player-chart', action: 'player-chart#load:prevent' } do |f|
       .d-flex.justify-content-center.align-items-center.my-3.w-50.mx-auto
-        = label_tag :since, 'Past'
+        = f.label :since, 'Past'
 
         .input-group.mx-3
-          = text_field_tag :since, 6, class: 'form-control', data: { player_chart_target: 'input' }
+          = f.text_field :since, value: 6, class: 'form-control', data: { player_chart_target: 'input' }
           %span.input-group-text Months
 
-        = button_tag 'Go', class: 'btn btn-primary', data: { action: 'player-chart#load' }
+        = f.submit 'Go', class: 'btn btn-primary'
 
       %canvas{ data: { player_chart_target: 'chart' } }
