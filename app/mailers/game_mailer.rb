@@ -7,18 +7,22 @@ class GameMailer < ApplicationMailer
     end
   end
 
-private
+  private
 
   Message = Struct.new(:game, :player, :sender, :body) do
     def to
-      player.email
+      Rails.env.development? ? 'brandan@localhost' : player.email
     end
 
     def from
+      "#{sender.name} <#{sender.smtp_username}>"
+    end
+
+    def reply_to
       "#{sender.name} <#{sender.email}>"
     end
 
-  private
+    private
 
     def game_date
       game.starts_at.strftime('%b %-d')
@@ -38,9 +42,10 @@ private
   end
 
   def send_message(message)
-    to = Rails.env.development? ? 'brandan@localhost' : message.to
+    to = message.to
     from = message.from
     subject = message.subject
+    reply_to = message.reply_to
     quip = RandomQuip.call
 
     @game = message.game.decorate
@@ -53,6 +58,12 @@ private
     attachments['ultimate.ics'] = Event.new(game: @game, view_context: view_context).to_ical
 
     headers['List-Unsubscribe'] = "<mailto:bclennox@gmail.com?subject=Unsubscribe+#{@player.access_token}> <#{new_removal_url(access_token: @player.access_token)}>"
-    mail(to: to, from: from, subject: subject)
+
+    delivery_method_options = {
+      user_name: message.sender.smtp_username,
+      password: message.sender.smtp_password
+    }
+
+    mail(to: , from: , subject: , reply_to: , delivery_method_options: )
   end
 end
