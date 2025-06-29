@@ -54,6 +54,11 @@ RSpec.configure do |config|
     driven_by(:rack_test)
   end
 
+  # https://github.com/heartcombo/devise/pull/5728
+  config.before(type: :controller) do
+    Rails.application.reload_routes_unless_loaded
+  end
+
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
