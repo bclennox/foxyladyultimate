@@ -6,5 +6,6 @@ FactoryBot.define do
     password_confirmation { password }
     first_name { 'Brandan' }
     last_name { 'Lennox' }
+    smtp_password { 'fake' }
   end
 end

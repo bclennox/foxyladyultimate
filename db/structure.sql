@@ -367,7 +367,8 @@ CREATE TABLE public.users (
     created_at timestamp with time zone NOT NULL,
     updated_at timestamp with time zone NOT NULL,
     first_name character varying(255),
-    last_name character varying(255)
+    last_name character varying(255),
+    smtp_password character varying NOT NULL
 );
 
 
@@ -692,6 +693,7 @@ ALTER TABLE ONLY public.games
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250629163432'),
 ('20250629140837'),
 ('20250217032902'),
 ('20250217031314'),
