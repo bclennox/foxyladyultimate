@@ -45,7 +45,6 @@ CREATE TABLE public.ar_internal_metadata (
 
 CREATE TABLE public.games (
     id integer NOT NULL,
-    location character varying(255),
     starts_at timestamp with time zone,
     canceled boolean DEFAULT false,
     created_at timestamp with time zone NOT NULL,
@@ -693,6 +692,7 @@ ALTER TABLE ONLY public.games
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250629140837'),
 ('20250217032902'),
 ('20250217031314'),
 ('20250217031313'),
