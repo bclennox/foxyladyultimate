@@ -38,7 +38,7 @@ class GamesController < ApplicationController
     if @game.update(game_params)
       redirect_to games_path, notice: 'Game was successfully updated.'
     else
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 
