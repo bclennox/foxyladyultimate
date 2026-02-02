@@ -118,7 +118,7 @@ GEM
     dartsass-rails (0.5.1)
       railties (>= 6.0.0)
       sass-embedded (~> 1.63)
-    date (3.4.1)
+    date (3.5.1)
     devise (4.9.4)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -243,7 +243,7 @@ GEM
       prism (~> 1.5)
     msgpack (1.8.0)
     nenv (0.3.0)
-    net-imap (0.5.7)
+    net-imap (0.6.2)
       date
       net-protocol
     net-pop (0.1.2)
@@ -408,7 +408,7 @@ GEM
     temple (0.10.3)
     thor (1.5.0)
     tilt (2.6.0)
-    timeout (0.4.3)
+    timeout (0.6.0)
     tsort (0.2.0)
     turbo-rails (2.0.11)
       actionpack (>= 6.0.0)
