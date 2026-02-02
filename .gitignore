@@ -36,3 +36,5 @@ yarn-debug.log*
 !/app/assets/builds/.keep
 
 /config/master.key
+
+/.claude/
