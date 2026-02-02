@@ -16,6 +16,12 @@ class Schedule < ApplicationRecord
     end
   end
 
+  def respond_to_missing?(method, include_private = false)
+    return super if %i[first last].include?(method)
+
+    ice_cube.respond_to?(method) || super
+  end
+
   def recurrence
     "#{ice_cube} at #{time_in_time_zone}"
   end

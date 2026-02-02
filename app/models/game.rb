@@ -24,7 +24,7 @@ class Game < ApplicationRecord
   end
 
   def upcoming?
-    starts_at > Time.now
+    starts_at > Time.zone.now
   end
 
   def on?

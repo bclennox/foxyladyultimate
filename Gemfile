@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '~> 3.4'
+ruby '~> 4.0'
 gem 'rails', '~> 8.0'
 
 gem 'bootsnap', require: false
@@ -22,6 +22,7 @@ gem 'rexml'
 gem 'sentry-ruby'
 gem 'sentry-rails'
 gem 'stimulus-rails'
+gem 'tsort'
 gem 'turbo-rails'
 gem 'view_component'
 
