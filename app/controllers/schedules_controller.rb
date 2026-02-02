@@ -12,7 +12,7 @@ class SchedulesController < ApplicationController
       redirect_to games_path, notice: 'Updated the schedule.'
     else
       flash.now[:alert] = "Failed to update schedule: #{@schedule.errors.to_a.to_sentence}"
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 

@@ -32,7 +32,7 @@ class PlayersController < ApplicationController
       redirect_to players_url, notice: 'Player was successfully created.'
     else
       flash.now[:alert] = "Failed to create player: #{@player.errors.to_a.to_sentence}"
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 
@@ -42,7 +42,7 @@ class PlayersController < ApplicationController
       redirect_to players_url, notice: 'Player was successfully updated.'
     else
       flash.now[:alert] = "Failed to update player: #{@player.errors.to_a.to_sentence}"
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 
