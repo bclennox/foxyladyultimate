@@ -12,28 +12,24 @@
   <!-- Right ear inner -->
   <path d="M390,120 L342,220 L436,188Z" fill="#FFCC80"/>
 
-  <!-- Head -->
-  <ellipse cx="256" cy="295" rx="168" ry="155" fill="#E8842C"/>
+  <!-- Head — tapered snout shape -->
+  <path d="M256,148 C370,148 424,220 424,290 C424,360 350,440 256,460 C162,440 88,360 88,290 C88,220 142,148 256,148Z" fill="#E8842C"/>
 
-  <!-- White muzzle -->
-  <path d="M256,445 C168,445 128,368 128,310 L256,255 L384,310 C384,368 344,445 256,445Z" fill="#F5F5F5"/>
+  <!-- White muzzle — tapered to match snout -->
+  <path d="M256,460 C190,440 145,380 145,330 L256,270 L367,330 C367,380 322,440 256,460Z" fill="#F5F5F5"/>
 
   <!-- Forehead highlight -->
-  <ellipse cx="256" cy="220" rx="60" ry="30" fill="#F0A050" opacity="0.5"/>
+  <ellipse cx="256" cy="215" rx="55" ry="28" fill="#F0A050" opacity="0.5"/>
 
-  <!-- Eyes -->
-  <ellipse cx="188" cy="275" rx="25" ry="28" fill="#1a1a1a"/>
-  <ellipse cx="324" cy="275" rx="25" ry="28" fill="#1a1a1a"/>
+  <!-- Eyes — slightly narrower for a focused look -->
+  <ellipse cx="188" cy="275" rx="26" ry="24" fill="#1a1a1a"/>
+  <ellipse cx="324" cy="275" rx="26" ry="24" fill="#1a1a1a"/>
   <!-- Eye shine -->
-  <circle cx="197" cy="265" r="8" fill="white" opacity="0.85"/>
-  <circle cx="333" cy="265" r="8" fill="white" opacity="0.85"/>
+  <circle cx="197" cy="267" r="7" fill="white" opacity="0.85"/>
+  <circle cx="333" cy="267" r="7" fill="white" opacity="0.85"/>
 
   <!-- Nose -->
   <ellipse cx="256" cy="348" rx="24" ry="17" fill="#1a1a1a"/>
   <!-- Nose shine -->
   <ellipse cx="252" cy="344" rx="8" ry="5" fill="white" opacity="0.2"/>
-
-  <!-- Mouth -->
-  <path d="M256,365 L256,378" stroke="#999" stroke-width="2.5" stroke-linecap="round"/>
-  <path d="M242,385 Q256,398 270,385" fill="none" stroke="#999" stroke-width="2.5" stroke-linecap="round"/>
 </svg>
