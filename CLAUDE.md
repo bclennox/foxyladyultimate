@@ -67,6 +67,7 @@ bin/rails db:setup
 
 - Use `gh` CLI for creating pull requests, not raw git commands
 - Write commit messages to a temp file and use `git commit -F` to avoid heredoc issues in sandboxed environments
+- Use `tmp/` within this repo for temporary files (not `/tmp/claude`)
 
 ## Deployment
 
