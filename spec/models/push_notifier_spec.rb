@@ -231,6 +231,78 @@ RSpec.describe PushNotifier do
     end
   end
 
+  describe '#notify_update' do
+    context 'with no subscriptions' do
+      it 'does nothing' do
+        expect(WebPush).not_to receive(:payload_send)
+        PushNotifier.new(game: game).notify_update
+      end
+    end
+
+    context 'with subscriptions' do
+      let!(:subscription) { create(:push_subscription) }
+
+      it 'sends a push notification' do
+        expect(WebPush).to receive(:payload_send).with(hash_including(
+          endpoint: subscription.endpoint,
+          p256dh: subscription.p256dh,
+          auth: subscription.auth
+        ))
+
+        PushNotifier.new(game: game).notify_update
+      end
+
+      it 'includes "has been updated" in the body' do
+        expect(WebPush).to receive(:payload_send) do |args|
+          payload = JSON.parse(args[:message])
+          expect(payload['body']).to include('has been updated')
+        end
+
+        PushNotifier.new(game: game).notify_update
+      end
+
+      it 'includes the game date in the payload' do
+        expect(WebPush).to receive(:payload_send) do |args|
+          payload = JSON.parse(args[:message])
+          expect(payload['body']).to include(game.starts_at.strftime('%A, %B %-d'))
+        end
+
+        PushNotifier.new(game: game).notify_update
+      end
+
+      it 'includes the game URL in the payload' do
+        expect(WebPush).to receive(:payload_send) do |args|
+          payload = JSON.parse(args[:message])
+          expect(payload['url']).to eq("/games/#{game.id}")
+        end
+
+        PushNotifier.new(game: game).notify_update
+      end
+
+      it 'includes the icon URL in the payload' do
+        expect(WebPush).to receive(:payload_send) do |args|
+          payload = JSON.parse(args[:message])
+          expect(payload['icon']).to be_present
+        end
+
+        PushNotifier.new(game: game).notify_update
+      end
+    end
+
+    context 'with an expired subscription' do
+      let!(:subscription) { create(:push_subscription) }
+
+      it 'destroys the expired subscription' do
+        response = double(body: 'expired', inspect: 'expired')
+        expect(WebPush).to receive(:payload_send).and_raise(WebPush::ExpiredSubscription.new(response, 'push.example.com'))
+
+        expect {
+          PushNotifier.new(game: game).notify_update
+        }.to change(PushSubscription, :count).by(-1)
+      end
+    end
+  end
+
   describe '#notify_cancellation' do
     context 'with no subscriptions' do
       it 'does nothing' do

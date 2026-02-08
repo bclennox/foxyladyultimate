@@ -36,6 +36,7 @@ class GamesController < ApplicationController
 
   def update
     if @game.update(game_params)
+      SendUpdatePushNotificationJob.perform_later(@game)
       redirect_to games_path, notice: 'Game was successfully updated.'
     else
       render :edit, status: :unprocessable_content

@@ -19,6 +19,10 @@ class PushNotifier
     broadcast(reschedule_payload)
   end
 
+  def notify_update
+    broadcast(update_payload)
+  end
+
   private
 
   def broadcast(payload)
@@ -75,6 +79,17 @@ class PushNotifier
     {
       title: "Foxy Lady Ultimate",
       body: "Game back on for #{date}.",
+      url: "/games/#{game.id}",
+      icon: icon_path
+    }
+  end
+
+  def update_payload
+    date = game.starts_at.strftime('%A, %B %-d')
+
+    {
+      title: "Foxy Lady Ultimate",
+      body: "Game on #{date} has been updated.",
       url: "/games/#{game.id}",
       icon: icon_path
     }
