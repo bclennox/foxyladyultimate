@@ -7,7 +7,7 @@ RSpec.describe SendPushNotificationsJob do
   it 'delegates to PushNotifier' do
     notifier = instance_double(PushNotifier)
     expect(PushNotifier).to receive(:new).with(game: game, player: player, playing: true).and_return(notifier)
-    expect(notifier).to receive(:notify)
+    expect(notifier).to receive(:notify_rsvp)
 
     SendPushNotificationsJob.perform_now(game, player, true)
   end

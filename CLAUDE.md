@@ -63,6 +63,11 @@ bin/rails db:setup
 - `POST /games/:id/remind` - Send custom reminder (admin)
 - `GET /players/ranked` - Player rankings
 
+## Git Workflow
+
+- Use `gh` CLI for creating pull requests, not raw git commands
+- Write commit messages to a temp file and use `git commit -F` to avoid heredoc issues in sandboxed environments
+
 ## Configuration Notes
 
 - Timezone: Eastern Time (US & Canada)
