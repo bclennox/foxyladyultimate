@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   resources :games do
     collection do
       get :next
-      get :schedule
+      post :schedule
     end
 
     member do
