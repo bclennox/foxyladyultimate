@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'routes for games' do
   it 'routes /games/schedule' do
-    expect(get('/games/schedule')).to route_to('games#schedule')
+    expect(post('/games/schedule')).to route_to('games#schedule')
   end
 
   it 'routes /games/1/respond' do

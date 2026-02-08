@@ -7,7 +7,7 @@
       %ul.nav
         - if Game.upcoming.empty?
           %li.nav-item
-            = link_to "Schedule #{default_schedule.day}’s Game", schedule_games_path, class: 'nav-link'
+            = button_to "Schedule #{default_schedule.day}'s Game", schedule_games_path, class: 'nav-link'
         %li.nav-item
           = link_to 'Change the Schedule', edit_schedule_path, class: 'nav-link'
 

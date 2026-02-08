@@ -16,7 +16,7 @@ RSpec.describe GamesController do
     end
 
     describe '#schedule' do
-      before { get :schedule }
+      before { post :schedule }
       it { is_expected.to redirect_to(new_user_session_path) }
     end
 
@@ -146,7 +146,7 @@ RSpec.describe GamesController do
     describe '#schedule' do
       let(:game) { create(:game) }
       before { expect(Game).to receive(:seed).and_return(game) }
-      before { get :schedule }
+      before { post :schedule }
 
       it 'redirects to the new game' do
         expect(response).to redirect_to(game_path(game))
