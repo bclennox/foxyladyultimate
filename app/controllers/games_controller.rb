@@ -47,7 +47,9 @@ class GamesController < ApplicationController
   end
 
   def schedule
-    redirect_to Game.seed, notice: 'Scheduled the next game.'
+    game = Game.seed
+    SendNewGamePushNotificationJob.perform_later(game) if game.previously_new_record?
+    redirect_to game, notice: 'Scheduled the next game.'
   end
 
   def respond
@@ -87,6 +89,7 @@ class GamesController < ApplicationController
   def reschedule
     @game.update(canceled: false)
     notifier.send_reschedule
+    SendReschedulePushNotificationJob.perform_later(@game)
     redirect_to @game, notice: 'Rescheduled the game and sent your message.'
   end
 
