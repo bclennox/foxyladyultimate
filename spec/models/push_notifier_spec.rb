@@ -62,6 +62,15 @@ RSpec.describe PushNotifier do
 
         PushNotifier.new(game: game, player: player, playing: true).notify_rsvp
       end
+
+      it 'includes the icon URL in the payload' do
+        expect(WebPush).to receive(:payload_send) do |args|
+          payload = JSON.parse(args[:message])
+          expect(payload['icon']).to be_present
+        end
+
+        PushNotifier.new(game: game, player: player, playing: true).notify_rsvp
+      end
     end
 
     context 'with an expired subscription' do
@@ -121,6 +130,15 @@ RSpec.describe PushNotifier do
         expect(WebPush).to receive(:payload_send) do |args|
           payload = JSON.parse(args[:message])
           expect(payload['url']).to eq("/games/#{game.id}")
+        end
+
+        PushNotifier.new(game: game).notify_cancellation
+      end
+
+      it 'includes the icon URL in the payload' do
+        expect(WebPush).to receive(:payload_send) do |args|
+          payload = JSON.parse(args[:message])
+          expect(payload['icon']).to be_present
         end
 
         PushNotifier.new(game: game).notify_cancellation

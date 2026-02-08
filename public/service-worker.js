@@ -3,7 +3,7 @@ self.addEventListener("push", function (event) {
   var title = data.title || "Foxy Lady Ultimate"
   var options = {
     body: data.body || "",
-    icon: "/icon.png",
+    icon: data.icon || "/icon.png",
     data: { url: data.url || "/" }
   }
 

@@ -5,10 +5,10 @@
     %meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
     %meta(name="apple-mobile-web-app-capable" content="yes")
     %meta(name="apple-mobile-web-app-status-bar-style" content="black")
-    %link(rel="icon" href="/icon.svg" type="image/svg+xml")
-    %link(rel="icon" href="/icon.png" type="image/png")
-    %link(rel="apple-touch-icon" href="/icon.png")
-    %link(rel="manifest" href="/manifest.json")
+    %link{rel: "icon", href: asset_path("icon.svg"), type: "image/svg+xml"}
+    %link{rel: "icon", href: asset_path("icon.png"), type: "image/png"}
+    %link{rel: "apple-touch-icon", href: asset_path("icon.png")}
+    %link{rel: "manifest", href: manifest_path}
     = csrf_meta_tags
     - if user_signed_in?
       %meta(name="vapid-public-key" content="#{Rails.application.credentials.vapid.public_key}")
