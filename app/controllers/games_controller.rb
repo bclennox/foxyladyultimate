@@ -55,6 +55,7 @@ class GamesController < ApplicationController
     notice = playing ? 'See you there!' : 'Maybe next time.'
 
     @game.respond(@player, playing)
+    SendPushNotificationsJob.perform_later(@game, @player, playing)
 
     redirect_to @game, notice: notice
   end

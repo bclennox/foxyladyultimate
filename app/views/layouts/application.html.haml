@@ -3,7 +3,13 @@
   %head
     %meta(charset="utf-8")
     %meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
+    %meta(name="apple-mobile-web-app-capable" content="yes")
+    %meta(name="apple-mobile-web-app-status-bar-style" content="black")
+    %link(rel="manifest" href="/manifest.json")
+    %link(rel="apple-touch-icon" href="/icon.png")
     = csrf_meta_tags
+    - if user_signed_in?
+      %meta(name="vapid-public-key" content="#{Rails.application.credentials.vapid.public_key}")
 
     %title= layout.full_page_title
 
@@ -26,6 +32,8 @@
 
           %ul.navbar-nav.ms-auto
             - if user_signed_in?
+              %li.nav-item(data-controller="push-notification")
+                %button.nav-link.btn.btn-link(data-push-notification-target="button" data-action="push-notification#toggle")
               = layout.nav_link 'Change Your Password', edit_user_registration_path
               = layout.nav_link "Sign Out #{current_user.first_name}", destroy_user_session_path, data: { turbo_method: :delete }
             - else
