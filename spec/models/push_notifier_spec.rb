@@ -45,6 +45,15 @@ RSpec.describe PushNotifier do
         PushNotifier.new(game: game, player: player, playing: false).notify
       end
 
+      it 'includes the game date in the payload' do
+        expect(WebPush).to receive(:payload_send) do |args|
+          payload = JSON.parse(args[:message])
+          expect(payload['body']).to include(game.starts_at.strftime('%A, %B %-d'))
+        end
+
+        PushNotifier.new(game: game, player: player, playing: true).notify
+      end
+
       it 'includes the game URL in the payload' do
         expect(WebPush).to receive(:payload_send) do |args|
           payload = JSON.parse(args[:message])

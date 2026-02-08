@@ -251,9 +251,9 @@ ALTER SEQUENCE public.players_id_seq OWNED BY public.players.id;
 CREATE TABLE public.push_subscriptions (
     id bigint NOT NULL,
     user_id bigint NOT NULL,
-    endpoint text,
-    p256dh character varying,
-    auth character varying,
+    endpoint text NOT NULL,
+    p256dh character varying NOT NULL,
+    auth character varying NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL
 );
@@ -764,6 +764,7 @@ ALTER TABLE ONLY public.games
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260208044727'),
 ('20260208041812'),
 ('20250629163432'),
 ('20250629140837'),

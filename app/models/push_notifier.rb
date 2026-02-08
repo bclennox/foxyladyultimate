@@ -21,10 +21,11 @@ class PushNotifier
 
   def payload
     verb = playing ? "is playing" : "can't make it"
+    date = game.starts_at.strftime('%A, %B %-d')
 
     {
       title: "Foxy Lady Ultimate",
-      body: "#{player.short_name} #{verb}!",
+      body: "#{player.short_name} #{verb} on #{date}.",
       url: "/games/#{game.id}"
     }
   end
