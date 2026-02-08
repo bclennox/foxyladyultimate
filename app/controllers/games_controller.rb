@@ -36,6 +36,7 @@ class GamesController < ApplicationController
 
   def update
     if @game.update(game_params)
+      SendUpdatePushNotificationJob.perform_later(@game)
       redirect_to games_path, notice: 'Game was successfully updated.'
     else
       render :edit, status: :unprocessable_content
@@ -47,7 +48,9 @@ class GamesController < ApplicationController
   end
 
   def schedule
-    redirect_to Game.seed, notice: 'Scheduled the next game.'
+    game = Game.seed
+    SendNewGamePushNotificationJob.perform_later(game) if game.previously_new_record?
+    redirect_to game, notice: 'Scheduled the next game.'
   end
 
   def respond
@@ -87,6 +90,7 @@ class GamesController < ApplicationController
   def reschedule
     @game.update(canceled: false)
     notifier.send_reschedule
+    SendReschedulePushNotificationJob.perform_later(@game)
     redirect_to @game, notice: 'Rescheduled the game and sent your message.'
   end
 
