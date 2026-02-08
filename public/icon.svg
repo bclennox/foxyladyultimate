@@ -1,3 +1,39 @@
-<svg width="512" height="512" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="256" cy="256" r="256" fill="red"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Background -->
+  <circle cx="256" cy="256" r="256" fill="#212529"/>
+
+  <!-- Left ear outer -->
+  <path d="M108,72 L178,230 L55,190Z" fill="#E8842C"/>
+  <!-- Left ear inner -->
+  <path d="M122,120 L170,220 L76,188Z" fill="#FFCC80"/>
+
+  <!-- Right ear outer -->
+  <path d="M404,72 L334,230 L457,190Z" fill="#E8842C"/>
+  <!-- Right ear inner -->
+  <path d="M390,120 L342,220 L436,188Z" fill="#FFCC80"/>
+
+  <!-- Head -->
+  <ellipse cx="256" cy="295" rx="168" ry="155" fill="#E8842C"/>
+
+  <!-- White muzzle -->
+  <path d="M256,445 C168,445 128,368 128,310 L256,255 L384,310 C384,368 344,445 256,445Z" fill="#F5F5F5"/>
+
+  <!-- Forehead highlight -->
+  <ellipse cx="256" cy="220" rx="60" ry="30" fill="#F0A050" opacity="0.5"/>
+
+  <!-- Eyes -->
+  <ellipse cx="188" cy="275" rx="25" ry="28" fill="#1a1a1a"/>
+  <ellipse cx="324" cy="275" rx="25" ry="28" fill="#1a1a1a"/>
+  <!-- Eye shine -->
+  <circle cx="197" cy="265" r="8" fill="white" opacity="0.85"/>
+  <circle cx="333" cy="265" r="8" fill="white" opacity="0.85"/>
+
+  <!-- Nose -->
+  <ellipse cx="256" cy="348" rx="24" ry="17" fill="#1a1a1a"/>
+  <!-- Nose shine -->
+  <ellipse cx="252" cy="344" rx="8" ry="5" fill="white" opacity="0.2"/>
+
+  <!-- Mouth -->
+  <path d="M256,365 L256,378" stroke="#999" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M242,385 Q256,398 270,385" fill="none" stroke="#999" stroke-width="2.5" stroke-linecap="round"/>
 </svg>
