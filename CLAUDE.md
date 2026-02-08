@@ -68,6 +68,10 @@ bin/rails db:setup
 - Use `gh` CLI for creating pull requests, not raw git commands
 - Write commit messages to a temp file and use `git commit -F` to avoid heredoc issues in sandboxed environments
 
+## Deployment
+
+- Deployed via Capistrano: `bundle exec cap linode deploy`
+
 ## Configuration Notes
 
 - Timezone: Eastern Time (US & Canada)
