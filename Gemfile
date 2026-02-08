@@ -25,6 +25,7 @@ gem 'stimulus-rails'
 gem 'tsort'
 gem 'turbo-rails'
 gem 'view_component'
+gem 'web-push'
 
 group :development do
   gem 'bcrypt_pbkdf'

@@ -31,6 +31,8 @@ Rails.application.routes.draw do
 
   resources :quips, except: [:show, :destroy]
 
+  resource :push_subscription, only: [:create, :destroy]
+
   authenticate :user, -> (user) { Authorizer.new(user: user).admin? } do
     mount GoodJob::Engine => 'good_job'
   end

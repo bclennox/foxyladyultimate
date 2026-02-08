@@ -9,3 +9,6 @@ application.register("modal-link", ModalLinkController)
 
 import PlayerChartController from "controllers/player_chart_controller"
 application.register("player-chart", PlayerChartController)
+
+import PushNotificationController from "controllers/push_notification_controller"
+application.register("push-notification", PushNotificationController)

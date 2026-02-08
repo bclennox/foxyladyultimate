@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :recoverable, :timeoutable
 
+  has_many :push_subscriptions, dependent: :destroy
+
   validates :password, confirmation: true
 
   encrypts :smtp_password
