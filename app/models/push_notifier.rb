@@ -3,7 +3,17 @@ class PushNotifier
 
   attr_accessor :game, :player, :playing
 
-  def notify
+  def notify_rsvp
+    broadcast(rsvp_payload)
+  end
+
+  def notify_cancellation
+    broadcast(cancellation_payload)
+  end
+
+  private
+
+  def broadcast(payload)
     PushSubscription.find_each do |subscription|
       WebPush.payload_send(
         message: payload.to_json,
@@ -17,15 +27,23 @@ class PushNotifier
     end
   end
 
-  private
-
-  def payload
+  def rsvp_payload
     verb = playing ? "is playing" : "can't make it"
     date = game.starts_at.strftime('%A, %B %-d')
 
     {
       title: "Foxy Lady Ultimate",
       body: "#{player.short_name} #{verb} on #{date}.",
+      url: "/games/#{game.id}"
+    }
+  end
+
+  def cancellation_payload
+    date = game.starts_at.strftime('%A, %B %-d')
+
+    {
+      title: "Foxy Lady Ultimate",
+      body: "Game canceled on #{date}.",
       url: "/games/#{game.id}"
     }
   end

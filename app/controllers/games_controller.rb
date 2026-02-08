@@ -80,6 +80,7 @@ class GamesController < ApplicationController
   def cancel
     @game.update(canceled: true)
     notifier.send_cancellation
+    SendCancellationPushNotificationJob.perform_later(@game)
     redirect_to @game, notice: 'Canceled the game and sent your message.'
   end
 
