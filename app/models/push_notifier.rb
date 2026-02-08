@@ -34,7 +34,8 @@ class PushNotifier
     {
       title: "Foxy Lady Ultimate",
       body: "#{player.short_name} #{verb} on #{date}.",
-      url: "/games/#{game.id}"
+      url: "/games/#{game.id}",
+      icon: icon_path
     }
   end
 
@@ -44,8 +45,13 @@ class PushNotifier
     {
       title: "Foxy Lady Ultimate",
       body: "Game canceled on #{date}.",
-      url: "/games/#{game.id}"
+      url: "/games/#{game.id}",
+      icon: icon_path
     }
+  end
+
+  def icon_path
+    ActionController::Base.helpers.asset_path("icon.png")
   end
 
   def vapid

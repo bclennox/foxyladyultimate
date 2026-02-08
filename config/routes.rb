@@ -37,5 +37,7 @@ Rails.application.routes.draw do
     mount GoodJob::Engine => 'good_job'
   end
 
+  get "manifest" => "manifest#show", as: :manifest, defaults: { format: :json }
+
   root to: 'games#next'
 end
