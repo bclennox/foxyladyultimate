@@ -67,9 +67,9 @@ export default class extends Controller {
     var subscription = await this.registration.pushManager.getSubscription()
 
     if (subscription) {
-      this.buttonTarget.textContent = "Disable Push"
+      this.buttonTarget.textContent = "Disable Push Notifications"
     } else {
-      this.buttonTarget.textContent = "Enable Push"
+      this.buttonTarget.textContent = "Enable Push Notifications"
     }
   }
 }

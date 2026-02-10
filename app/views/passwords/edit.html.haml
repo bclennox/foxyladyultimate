@@ -1,18 +1,21 @@
-- layout.page_title = 'Change Your Password'
+- layout.page_title = 'Change Password'
 
 .page-header
-  %h1 Change Your Password
+  %h1 Change Password
 
-= form_for resource, as: resource_name, url: user_registration_path, method: :patch, data: { turbo: false } do |f|
-  = render 'devise/shared/error_messages', resource: resource
+= form_for current_user, url: password_path, method: :patch, data: { turbo: false } do |f|
+  - if current_user.errors.any?
+    .alert.alert-danger
+      - current_user.errors.full_messages.each do |message|
+        %p= message
 
   .row.mb-3
     = f.label :current_password, class: 'col-form-label col-12 col-md-3 col-lg-2'
     .col-12.col-md-6.col-lg-4
-      = f.password_field :current_password, autofocus: true, autocomplete: 'off', class: 'form-control'
+      = f.password_field :current_password, autocomplete: 'off', class: 'form-control'
 
   .row.mb-3
-    = f.label :password, class: 'col-form-label col-12 col-md-3 col-lg-2'
+    = f.label :password, 'New Password', class: 'col-form-label col-12 col-md-3 col-lg-2'
     .col-12.col-md-6.col-lg-4
       = f.password_field :password, class: 'form-control'
 
@@ -21,7 +24,7 @@
     .col-12.col-md-6.col-lg-4
       = f.password_field :password_confirmation, class: 'form-control'
 
-  .row
+  .row.mb-3
     .col-12.offset-md-3.offset-lg-2.col-md-9.col-lg-10
       = f.submit 'Change Password', class: 'btn btn-primary'
-      = link_to 'Go Home', root_url, class: 'btn btn-link'
+      = link_to 'Go Back', root_path, class: 'btn btn-link'
