@@ -20,11 +20,12 @@ RSpec.describe 'Session and user management' do
       expect(page).to have_content('Signed in successfully.')
     end
 
-    it 'allows me to change my password' do
-      expect(page).to have_link('Change Your Password')
+    it 'shows my name in the navbar dropdown' do
+      expect(page).to have_css('.dropdown-toggle', text: 'Brandan')
     end
 
     it 'allows me to sign out' do
+      find('.dropdown-toggle', text: 'Brandan').click
       expect(page).to have_link('Sign Out')
     end
   end
@@ -38,6 +39,7 @@ RSpec.describe 'Session and user management' do
       fill_in 'Password', with: password
       click_button 'Sign In'
 
+      find('.dropdown-toggle', text: 'Brandan').click
       click_link 'Sign Out'
     end
 

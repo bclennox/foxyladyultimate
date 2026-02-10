@@ -34,10 +34,13 @@
 
           %ul.navbar-nav.ms-auto
             - if user_signed_in?
-              %li.nav-item(data-controller="push-notification")
-                %button.nav-link.btn.btn-link(data-push-notification-target="button" data-action="push-notification#toggle")
-              = layout.nav_link 'Change Your Password', edit_user_registration_path
-              = layout.nav_link "Sign Out #{current_user.first_name}", destroy_user_session_path, data: { turbo_method: :delete }
+              %li.nav-item.dropdown
+                %a.nav-link.dropdown-toggle(href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false")
+                  = current_user.first_name
+                %ul.dropdown-menu.dropdown-menu-end
+                  %li= link_to 'Edit Profile', edit_profile_path, class: 'dropdown-item'
+                  %li= link_to 'Change Password', edit_password_path, class: 'dropdown-item'
+                  %li= link_to 'Sign Out', destroy_user_session_path, class: 'dropdown-item', data: { turbo_method: :delete }
             - else
               = layout.nav_link 'Sign In', new_user_session_path
 
