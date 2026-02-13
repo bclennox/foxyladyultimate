@@ -8,7 +8,7 @@ class GamesController < ApplicationController
   before_action :set_quip, only: [:next, :show]
   before_action :set_locations, only: [:edit, :update]
 
-  after_action :set_access_token, only: [:respond]
+  after_action :set_access_token, only: [:respond, :show, :next]
 
   decorates_assigned :game, :games, :player, :quip, :default_schedule
 
@@ -109,7 +109,7 @@ private
   end
 
   def set_access_token
-    cookies.permanent[:access_token] = @player.access_token
+    cookies.permanent[:access_token] = @player.access_token if @player.present?
   end
 
   def set_locations

@@ -7,4 +7,4 @@
   %strong Where:
   = link_to @location.name, @location.url
 
-%p= link_to 'See game details anyway', game_url(@game)
+%p= link_to 'See game details anyway', game_url(@game, access_token: @player.access_token)

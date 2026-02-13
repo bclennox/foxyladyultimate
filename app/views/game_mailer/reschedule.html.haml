@@ -12,4 +12,4 @@
   |
   = link_to @rejection, respond_game_url(@game, access_token: @player.access_token, playing: 'no'), class: 'declination'
   |
-  = link_to 'Show me who’s playing', game_url(@game), class: 'postponement'
+  = link_to 'Show me who's playing', game_url(@game, access_token: @player.access_token), class: 'postponement'

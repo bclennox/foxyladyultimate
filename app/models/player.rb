@@ -8,6 +8,8 @@ class Player < ApplicationRecord
   scope :active, -> { where(deleted_at: nil) }
   scope :emailable, -> { active.where.not(email: nil).where(retired: false) }
 
+  has_one :user, primary_key: :email, foreign_key: :email
+
   has_many :responses
   has_many :games, through: :responses
   has_many :confirmed_games, -> { on.merge(Response.confirmed) }, through: :responses, source: :game

@@ -2,4 +2,4 @@
 
 When: <%= @game.date %>
 Where: <%= @location.name %> (<%= @location.url %>)
-URL: <%= game_url(@game) %>
+URL: <%= game_url(@game, access_token: @player.access_token) %>

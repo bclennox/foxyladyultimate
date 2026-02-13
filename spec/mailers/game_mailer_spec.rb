@@ -64,6 +64,14 @@ RSpec.describe GameMailer do
           expect(subject.size).to eq(1)
         end
       end
+
+      describe 'game URL links' do
+        subject { mailer.body.encoded }
+
+        it 'includes access_token in game URL' do
+          expect(subject).to include(game_url(game, access_token: 'abc123'))
+        end
+      end
     end
   end
 end

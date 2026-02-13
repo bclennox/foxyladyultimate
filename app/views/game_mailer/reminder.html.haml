@@ -14,6 +14,6 @@
 
 %p
   You can also
-  = link_to 'see who’s playing', game_url(@game)
+  = link_to 'see who's playing', game_url(@game, access_token: @player.access_token)
   or
   = link_to('unsubscribe', new_removal_url(access_token: @player.access_token)) + '.'
