@@ -402,7 +402,8 @@ CREATE TABLE public.users (
     updated_at timestamp with time zone NOT NULL,
     first_name character varying(255),
     last_name character varying(255),
-    smtp_password character varying NOT NULL
+    smtp_password character varying NOT NULL,
+    player_id bigint NOT NULL
 );
 
 
@@ -758,12 +759,21 @@ ALTER TABLE ONLY public.games
 
 
 --
+-- Name: users fk_rails_d48ffc270f; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT fk_rails_d48ffc270f FOREIGN KEY (player_id) REFERENCES public.players(id);
+
+
+--
 -- PostgreSQL database dump complete
 --
 
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260215173556'),
 ('20260208044727'),
 ('20260208041812'),
 ('20250629163432'),

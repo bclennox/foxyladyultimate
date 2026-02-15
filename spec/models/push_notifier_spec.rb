@@ -57,7 +57,7 @@ RSpec.describe PushNotifier do
       it 'includes the game URL in the payload' do
         expect(WebPush).to receive(:payload_send) do |args|
           payload = JSON.parse(args[:message])
-          expect(payload['url']).to eq("/games/#{game.id}")
+          expect(payload['url']).to eq("/games/#{game.id}?access_token=#{subscription.user.player.access_token}")
         end
 
         PushNotifier.new(game: game, player: player, playing: true).notify_rsvp
@@ -129,7 +129,7 @@ RSpec.describe PushNotifier do
       it 'includes the game URL in the payload' do
         expect(WebPush).to receive(:payload_send) do |args|
           payload = JSON.parse(args[:message])
-          expect(payload['url']).to eq("/games/#{game.id}")
+          expect(payload['url']).to eq("/games/#{game.id}?access_token=#{subscription.user.player.access_token}")
         end
 
         PushNotifier.new(game: game).notify_new_game
@@ -201,7 +201,7 @@ RSpec.describe PushNotifier do
       it 'includes the game URL in the payload' do
         expect(WebPush).to receive(:payload_send) do |args|
           payload = JSON.parse(args[:message])
-          expect(payload['url']).to eq("/games/#{game.id}")
+          expect(payload['url']).to eq("/games/#{game.id}?access_token=#{subscription.user.player.access_token}")
         end
 
         PushNotifier.new(game: game).notify_reschedule
@@ -273,7 +273,7 @@ RSpec.describe PushNotifier do
       it 'includes the game URL in the payload' do
         expect(WebPush).to receive(:payload_send) do |args|
           payload = JSON.parse(args[:message])
-          expect(payload['url']).to eq("/games/#{game.id}")
+          expect(payload['url']).to eq("/games/#{game.id}?access_token=#{subscription.user.player.access_token}")
         end
 
         PushNotifier.new(game: game).notify_update
@@ -345,7 +345,7 @@ RSpec.describe PushNotifier do
       it 'includes the game URL in the payload' do
         expect(WebPush).to receive(:payload_send) do |args|
           payload = JSON.parse(args[:message])
-          expect(payload['url']).to eq("/games/#{game.id}")
+          expect(payload['url']).to eq("/games/#{game.id}?access_token=#{subscription.user.player.access_token}")
         end
 
         PushNotifier.new(game: game).notify_cancellation
