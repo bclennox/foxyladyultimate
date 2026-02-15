@@ -4,29 +4,37 @@ class PushNotifier
   attr_accessor :game, :player, :playing
 
   def notify_rsvp
-    broadcast(rsvp_payload)
+    verb = playing ? "is playing" : "can't make it"
+    broadcast("#{player.short_name} #{verb} on #{date}.")
   end
 
   def notify_cancellation
-    broadcast(cancellation_payload)
+    broadcast("Game canceled on #{date}.")
   end
 
   def notify_new_game
-    broadcast(new_game_payload)
+    broadcast("New game scheduled for #{date}.")
   end
 
   def notify_reschedule
-    broadcast(reschedule_payload)
+    broadcast("Game back on for #{date}.")
   end
 
   def notify_update
-    broadcast(update_payload)
+    broadcast("Game on #{date} has been updated.")
   end
 
   private
 
-  def broadcast(payload)
+  def broadcast(body)
     PushSubscription.find_each do |subscription|
+      payload = {
+        title: "Foxy Lady Ultimate",
+        body: body,
+        url: build_game_url(subscription.user),
+        icon: icon_path
+      }
+
       WebPush.payload_send(
         message: payload.to_json,
         endpoint: subscription.endpoint,
@@ -39,60 +47,8 @@ class PushNotifier
     end
   end
 
-  def rsvp_payload
-    verb = playing ? "is playing" : "can't make it"
-    date = game.starts_at.strftime('%A, %B %-d')
-
-    {
-      title: "Foxy Lady Ultimate",
-      body: "#{player.short_name} #{verb} on #{date}.",
-      url: "/games/#{game.id}",
-      icon: icon_path
-    }
-  end
-
-  def cancellation_payload
-    date = game.starts_at.strftime('%A, %B %-d')
-
-    {
-      title: "Foxy Lady Ultimate",
-      body: "Game canceled on #{date}.",
-      url: "/games/#{game.id}",
-      icon: icon_path
-    }
-  end
-
-  def new_game_payload
-    date = game.starts_at.strftime('%A, %B %-d')
-
-    {
-      title: "Foxy Lady Ultimate",
-      body: "New game scheduled for #{date}.",
-      url: "/games/#{game.id}",
-      icon: icon_path
-    }
-  end
-
-  def reschedule_payload
-    date = game.starts_at.strftime('%A, %B %-d')
-
-    {
-      title: "Foxy Lady Ultimate",
-      body: "Game back on for #{date}.",
-      url: "/games/#{game.id}",
-      icon: icon_path
-    }
-  end
-
-  def update_payload
-    date = game.starts_at.strftime('%A, %B %-d')
-
-    {
-      title: "Foxy Lady Ultimate",
-      body: "Game on #{date} has been updated.",
-      url: "/games/#{game.id}",
-      icon: icon_path
-    }
+  def date
+    game.starts_at.strftime('%A, %B %-d')
   end
 
   def icon_path
@@ -107,5 +63,10 @@ class PushNotifier
       public_key: credentials.public_key,
       private_key: credentials.private_key
     }
+  end
+
+  def build_game_url(user)
+    token = user.player.access_token
+    "/games/#{game.id}?access_token=#{token}"
   end
 end
