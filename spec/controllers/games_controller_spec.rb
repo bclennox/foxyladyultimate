@@ -64,20 +64,18 @@ RSpec.describe GamesController do
           expect(controller.quip).to eq(quip)
         end
 
-        context 'without a saved access token' do
-          it 'does not assign a player' do
-            get :show, params: { id: game }
-            expect(controller.player).to be_nil
-          end
+        it 'assigns the player from the current user' do
+          get :show, params: { id: game }
+          expect(controller.player).to eq(session_user.player)
         end
 
         context 'with a saved access token' do
           let(:player) { create(:player) }
           before { cookies[:access_token] = player.access_token }
 
-          it 'assigns a player' do
+          it 'assigns the player from the current user, not the cookie' do
             get :show, params: { id: game }
-            expect(controller.player).to eq(player)
+            expect(controller.player).to eq(session_user.player)
           end
         end
       end

@@ -3,7 +3,7 @@ class PlayersController < ApplicationController
 
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_player, only: [:edit, :update, :destroy]
-  before_action :set_player_by_cookie_access_token, only: [:index]
+  before_action :set_player_from_session, only: [:index]
 
   decorates_assigned :player, :players
 
