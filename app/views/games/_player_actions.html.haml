@@ -1,5 +1,5 @@
 .player-actions
   %h2.mb-3= "RSVP as #{player.short_name}"
 
-  .response.mb-2= link_to quip.confirmation, respond_game_url(game, access_token: player.access_token, playing: 'yes'), class: 'btn btn-primary me-2'
-  .response= link_to quip.rejection, respond_game_url(game, access_token: player.access_token, playing: 'no'), class: 'btn btn-secondary'
+  .response.mb-2= link_to quip.confirmation, respond_game_url(game, access_token: player.access_token, playing: 'yes'), class: 'btn btn-primary me-2', data: { turbo_prefetch: false }
+  .response= link_to quip.rejection, respond_game_url(game, access_token: player.access_token, playing: 'no'), class: 'btn btn-secondary', data: { turbo_prefetch: false }
