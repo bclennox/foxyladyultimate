@@ -4,7 +4,7 @@ class GamesController < ApplicationController
   before_action :authenticate_user!, only: [:edit, :update, :schedule, :remind, :cancel, :reschedule]
   before_action :find_game, only: [:show, :edit, :update, :respond, :override, :remind, :cancel, :reschedule]
   before_action :set_player_by_params_access_token!, only: :respond
-  before_action :set_player_by_cookie_access_token, only: [:next, :show]
+  before_action :set_player_from_session, only: [:next, :show]
   before_action :set_quip, only: [:next, :show]
   before_action :set_locations, only: [:edit, :update]
 

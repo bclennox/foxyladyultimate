@@ -5,7 +5,7 @@ module AccessTokenController
     @player = Player.find_by_access_token(params[:access_token]) or redirect_to(root_path)
   end
 
-  def set_player_by_cookie_access_token
-    @player = Player.find_by_access_token(cookies[:access_token])
+  def set_player_from_session
+    @player = current_user&.player || Player.find_by_access_token(cookies[:access_token])
   end
 end
