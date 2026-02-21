@@ -23,7 +23,7 @@ private
   end
 
   def store_location
-    unless request.fullpath.start_with?('/users') || request.xhr?
+    unless request.fullpath.start_with?('/users', '/manifest') || request.xhr?
       session[:previous_url] = request.fullpath
     end
   end
