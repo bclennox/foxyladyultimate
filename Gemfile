@@ -42,7 +42,7 @@ group :test do
   gem 'capybara'
   gem 'factory_bot_rails'
   gem 'guard-rspec'
-  gem 'selenium-webdriver'
+  gem 'capybara-playwright-driver'
   gem 'simplecov', require: false
   gem 'spy'
   gem 'webrick'
