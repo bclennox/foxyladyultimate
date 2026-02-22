@@ -69,7 +69,7 @@ RSpec.describe 'Player management' do
     let!(:player) { create(:player, first_name: 'Zaboo', last_name: 'the Warlock') }
 
     before do
-      driven_by(:selenium_chrome_headless)
+      driven_by(:playwright)
       sign_in
       visit players_path
     end
@@ -78,7 +78,7 @@ RSpec.describe 'Player management' do
       expect(page).to have_link('Zaboo the Warlock')
 
       accept_confirm 'Remove Zaboo the Warlock?' do
-        click_link 'Remove', href: player_path(player)
+        find("a[href='#{player_path(player)}'] svg").click
       end
 
       expect(page).to have_text('Player was successfully removed.')

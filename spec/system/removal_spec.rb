@@ -2,14 +2,14 @@ require 'rails_helper'
 
 RSpec.describe 'Removing yourself' do
   before do
-    driven_by(:selenium_chrome_headless)
+    driven_by(:playwright)
   end
 
   let!(:player) { create(:player) }
 
   context 'when no cookie is set' do
     before do
-      page.driver.browser.manage.delete_all_cookies
+      page.driver.with_playwright_page { |pw| pw.context.clear_cookies }
       visit players_path
     end
 
@@ -22,7 +22,9 @@ RSpec.describe 'Removing yourself' do
   context 'when the cookie is set' do
     before do
       visit root_path  # to set the domain for the cookie
-      page.driver.browser.manage.add_cookie(name: :access_token, value: player.access_token)
+      page.driver.with_playwright_page do |pw|
+        pw.context.add_cookies([{ name: 'access_token', value: player.access_token, domain: URI.parse(page.server_url).host, path: '/' }])
+      end
       visit players_path
       click_on 'Remove Me from the List'
     end
