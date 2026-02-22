@@ -13,6 +13,31 @@ RSpec.describe ApplicationController do
     end
   end
 
+  describe '#store_location' do
+    controller do
+      def index
+        head :ok
+      end
+    end
+
+    it 'does not store the manifest path' do
+      request.env['PATH_INFO'] = '/manifest'
+      get :index
+      expect(session[:previous_url]).to be_nil
+    end
+
+    it 'does not store Devise paths' do
+      request.env['PATH_INFO'] = '/users/sign_in'
+      get :index
+      expect(session[:previous_url]).to be_nil
+    end
+
+    it 'stores other paths' do
+      get :index
+      expect(session[:previous_url]).to be_present
+    end
+  end
+
   describe '#layout' do
     let(:layout) { controller.layout }
 
