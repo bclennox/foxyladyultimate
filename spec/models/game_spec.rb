@@ -46,6 +46,23 @@ RSpec.describe Game do
         it { is_expected.to include(player) }
       end
     end
+
+    context 'for an existing response' do
+      before do
+        game.respond(player, true)
+        game.respond(player, false)
+      end
+
+      describe '#confirmed_players' do
+        subject { game.confirmed_players }
+        it { is_expected.not_to include(player) }
+      end
+
+      describe '#declined_players' do
+        subject { game.declined_players }
+        it { is_expected.to include(player) }
+      end
+    end
   end
 
   describe '#upcoming?' do

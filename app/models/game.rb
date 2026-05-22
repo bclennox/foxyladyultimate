@@ -15,8 +15,9 @@ class Game < ApplicationRecord
   end
 
   def respond(player, playing)
-    responses.where(player_id: player).destroy_all
-    responses.create(player_id: player.id, playing: playing)
+    Game.transaction do
+      responses.create_or_find_by(player:).update(playing:)
+    end
   end
 
   def unconfirmed_players
