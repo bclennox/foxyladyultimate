@@ -728,6 +728,13 @@ CREATE INDEX index_push_subscriptions_on_user_id ON public.push_subscriptions US
 
 
 --
+-- Name: index_responses_on_game_id_and_player_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_responses_on_game_id_and_player_id ON public.responses USING btree (game_id, player_id);
+
+
+--
 -- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -773,6 +780,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260522131956'),
 ('20260215173556'),
 ('20260208044727'),
 ('20260208041812'),
