@@ -28,8 +28,7 @@ RSpec.describe 'Password reset' do
       visit new_user_password_path
 
       fill_in 'Email', with: user.email
-      # Devise 4 and 5 word this button differently, so match on the element.
-      find('input[type="submit"]').click
+      click_button 'Send Reset Link'
     end
 
     it 'tells me to check my email' do
@@ -46,8 +45,7 @@ RSpec.describe 'Password reset' do
       visit new_user_password_path
 
       fill_in 'Email', with: user.email
-      # Devise 4 and 5 word this button differently, so match on the element.
-      find('input[type="submit"]').click
+      click_button 'Send Reset Link'
 
       visit reset_password_url
 
