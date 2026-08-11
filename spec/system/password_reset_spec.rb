@@ -11,6 +11,18 @@ RSpec.describe 'Password reset' do
     mail.body.to_s[%r{http://[^"'\s]*/users/password/edit[^"'\s]*}]
   end
 
+  context 'starting from the sign-in page' do
+    before do
+      visit new_user_session_path
+      click_link 'Forgot password?'
+    end
+
+    it 'takes me to the password reset form' do
+      expect(page.current_path).to eq(new_user_password_path)
+      expect(page).to have_field('Email')
+    end
+  end
+
   context 'requesting instructions' do
     before do
       visit new_user_password_path
