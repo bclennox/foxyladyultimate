@@ -44,7 +44,25 @@ RSpec.describe 'Session and user management' do
     end
 
     it 'tells me the credentials were invalid' do
-      expect(page).to have_content('Invalid email or password.')
+      expect(page).to have_content('Invalid username or password.')
+    end
+  end
+
+  context 'signing in with an unknown username' do
+    before do
+      visit new_user_session_path
+
+      fill_in 'Username', with: 'nobody'
+      fill_in 'Password', with: password
+      click_button 'Sign In'
+    end
+
+    it 'does not sign me in' do
+      expect(page).to have_link('Sign In')
+    end
+
+    it 'gives away nothing about which part was wrong' do
+      expect(page).to have_content('Invalid username or password.')
     end
   end
 
