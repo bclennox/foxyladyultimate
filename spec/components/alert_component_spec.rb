@@ -28,4 +28,15 @@ RSpec.describe AlertComponent, type: :component do
       expect(page).to have_selector('.alert.alert-danger')
     end
   end
+
+  # Layout#flash_messages relies on this to skip empty flashes
+  describe '#blank?' do
+    it 'is blank without a message' do
+      expect(AlertComponent.new(type: :notice, message: '')).to be_blank
+    end
+
+    it 'is not blank with a message' do
+      expect(AlertComponent.new(type: :notice, message: 'hello')).not_to be_blank
+    end
+  end
 end
