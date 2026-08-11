@@ -30,6 +30,24 @@ RSpec.describe 'Session and user management' do
     end
   end
 
+  context 'signing in with a bad password' do
+    before do
+      visit new_user_session_path
+
+      fill_in 'Username', with: username
+      fill_in 'Password', with: 'wrong'
+      click_button 'Sign In'
+    end
+
+    it 'does not sign me in' do
+      expect(page).to have_link('Sign In')
+    end
+
+    it 'tells me the credentials were invalid' do
+      expect(page).to have_content('Invalid email or password.')
+    end
+  end
+
   context 'signing out' do
     before do
       visit root_url
