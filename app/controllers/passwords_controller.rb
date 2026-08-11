@@ -7,7 +7,7 @@ class PasswordsController < ApplicationController
   def update
     if current_user.update_with_password(password_params)
       bypass_sign_in(current_user)
-      redirect_to edit_password_path, notice: 'Your password has been changed.'
+      redirect_to edit_account_password_path, notice: 'Your password has been changed.'
     else
       render :edit, status: :unprocessable_content
     end

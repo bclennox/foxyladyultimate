@@ -40,7 +40,7 @@ RSpec.describe PasswordsController do
         end
 
         it 'redirects to the password page' do
-          expect(response).to redirect_to(edit_password_path)
+          expect(response).to redirect_to(edit_account_password_path)
         end
 
         it 'sets a flash notice' do

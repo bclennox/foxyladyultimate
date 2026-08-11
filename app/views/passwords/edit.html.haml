@@ -3,7 +3,7 @@
 .page-header
   %h1 Change Password
 
-= form_for current_user, url: password_path, method: :patch, data: { turbo: false } do |f|
+= form_for current_user, url: account_password_path, method: :patch, data: { turbo: false } do |f|
   - if current_user.errors.any?
     .alert.alert-danger
       - current_user.errors.full_messages.each do |message|

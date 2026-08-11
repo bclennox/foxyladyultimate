@@ -39,7 +39,7 @@
                   = current_user.first_name
                 %ul.dropdown-menu.dropdown-menu-end
                   %li= link_to 'Edit Profile', edit_profile_path, class: 'dropdown-item'
-                  %li= link_to 'Change Password', edit_password_path, class: 'dropdown-item'
+                  %li= link_to 'Change Password', edit_account_password_path, class: 'dropdown-item'
                   %li= link_to 'Sign Out', destroy_user_session_path, class: 'dropdown-item', data: { turbo_method: :delete }
             - else
               = layout.nav_link 'Sign In', new_user_session_path
