@@ -1,0 +1,18 @@
+- layout.page_title = 'Forgot Password'
+
+.page-header
+  %h1 Forgot Password
+
+= form_for resource, as: resource_name, url: user_password_path, data: { turbo: false } do |f|
+  = render 'devise/shared/error_messages', resource: resource
+
+  .row.mb-3
+    = f.label :email, class: 'col-form-label col-12 col-md-2'
+    .col-12.col-md-6.col-lg-4
+      = f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control'
+      %small.form-text.text-muted We’ll email you a link to set a new password.
+
+  .row
+    .col-12.offset-md-2.col-md-6.col-lg-4.d-flex.align-items-center.gap-2
+      = f.submit 'Send Reset Link', class: 'btn btn-primary'
+      = link_to 'Back to Sign In', new_user_session_path, class: 'btn btn-link text-nowrap px-0 ms-auto'

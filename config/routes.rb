@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   devise_for :users, skip: :registrations
 
   resource :profile, only: [:edit, :update]
-  resource :password, only: [:edit, :update]
+  # Named to avoid shadowing Devise's own scoped `password_path(:user)` helper,
+  # which its password-reset views rely on.
+  resource :password, only: [:edit, :update], as: :account_password
 
   resources :players, except: :show do
     collection do
